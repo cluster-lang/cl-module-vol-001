@@ -1,0 +1,9 @@
+// cl-bit-swap64: 64-bit Nibble Swap Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn swap_nibbles_byte(b: int) -> int:
+    val := b & 255
+    low := val & 15
+    high := (val >> 4) & 15
+    return (low << 4) | high

@@ -1,0 +1,28 @@
+// cl-bloom: Pure Cluster Fast Dynamic Bloom Filter
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+model BloomFilter:
+    bitset: vector[int]
+    bit_capacity: int
+
+fn bloom_new(capacity: int) -> BloomFilter:
+    words: vector[int] := []
+    n_words := (capacity + 63) / 64
+    i := 0
+    while i < n_words:
+        words.push(0)
+        i = i + 1
+    return BloomFilter(words, capacity)
+
+fn bloom_add(bf: BloomFilter, hash_val: int):
+    idx := (hash_val % bf.bit_capacity + bf.bit_capacity) % bf.bit_capacity
+    w_idx := idx / 64
+    b_idx := idx % 64
+    bf.bitset[w_idx] = bf.bitset[w_idx] | (1 << b_idx)
+
+fn bloom_contains(bf: BloomFilter, hash_val: int) -> bool:
+    idx := (hash_val % bf.bit_capacity + bf.bit_capacity) % bf.bit_capacity
+    w_idx := idx / 64
+    b_idx := idx % 64
+    return ((bf.bitset[w_idx] >> b_idx) & 1) == 1

@@ -1,0 +1,37 @@
+// cl-boyer-moore: Boyer-Moore-Horspool Fast Substring Search
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bmh_find(pattern: string, text: string) -> int:
+    plen := len(pattern)
+    tlen := len(text)
+    if plen > tlen: return -1
+
+    bad_char: vector[int] := []
+    i := 0
+    while i < 256:
+        bad_char.push(plen)
+        i = i + 1
+
+    i = 0
+    while i < (plen - 1):
+        bad_char[byte_at(pattern, i) & 255] = plen - 1 - i
+        i = i + 1
+
+    i = 0
+    while i <= (tlen - plen):
+        j := plen - 1
+        mismatch := 0
+        while j >= 0:
+            if mismatch == 0:
+                if byte_at(pattern, j) != byte_at(text, i + j):
+                    mismatch = 1
+            if mismatch == 0:
+                j = j - 1
+            else:
+                j = -2 // break loop
+        if mismatch == 0:
+            return i
+        shift := bad_char[byte_at(text, i + plen - 1) & 255]
+        i = i + shift
+    return -1

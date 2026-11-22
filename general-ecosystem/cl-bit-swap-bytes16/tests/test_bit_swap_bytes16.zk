@@ -1,0 +1,12 @@
+// cl-bit-swap-bytes16: Test Suite
+import "../bswap16.zk"
+
+fn test_bswap16():
+    v := 4660
+    swapped := bit_swap_bytes16(v)
+    if swapped != 13330: sys_exit(1)
+    print("test_bswap16 passed: 0x1234 -> 0x3412 byte swap verified")
+
+fn main():
+    test_bswap16()
+    print("✓ All tests passed for cl-bit-swap-bytes16!")

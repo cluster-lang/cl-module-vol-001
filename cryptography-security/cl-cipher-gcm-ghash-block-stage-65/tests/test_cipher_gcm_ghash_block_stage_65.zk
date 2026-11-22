@@ -1,0 +1,11 @@
+// cl-cipher-gcm-ghash-block-stage-65: Test Suite
+import "../cph_gh_65.zk"
+
+fn test_run():
+    res := ghash_add_65(112233, 445566)
+    if res != 490072: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cipher-gcm-ghash-block-stage-65!")

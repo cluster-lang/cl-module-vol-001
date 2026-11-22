@@ -1,0 +1,13 @@
+// cl-astro-hyperbolic-excess-stage-59: Test Suite
+import "../ast_he_59.zk"
+
+fn test_run():
+    res := hyperbolic_excess_59(150.0, 114.0)
+    diff := res - 1062.0000
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-astro-hyperbolic-excess-stage-59!")

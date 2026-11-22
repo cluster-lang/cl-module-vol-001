@@ -1,0 +1,14 @@
+// cl-affine2d: 2D Affine Transformation Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Flat 6-vector: [a, b, tx, c, d, ty]
+fn affine2d_point(m: vector[int], px: int, py: int) -> vector[int]:
+    res: vector[int] := []
+    res.push((m[0] * px) + (m[1] * py) + m[2])
+    res.push((m[3] * px) + (m[4] * py) + m[5])
+    return res
+
+fn affine2d_identity() -> vector[int]:
+    m: vector[int] := [1, 0, 0, 0, 1, 0]
+    return m

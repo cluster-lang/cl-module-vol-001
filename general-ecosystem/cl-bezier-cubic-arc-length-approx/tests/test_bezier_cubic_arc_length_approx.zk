@@ -1,0 +1,14 @@
+// cl-bezier-cubic-arc-length-approx: Test Suite
+import "../bez_len.zk"
+
+fn test_bez_len():
+    // Straight line segment from (0,0) to (10,0)
+    l := bezier_cubic_length4(0.0, 0.0, 3.333, 0.0, 6.666, 0.0, 10.0, 0.0)
+    diff := l - 10.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.05: sys_exit(1)
+    print("test_bez_len passed: chord arc length approximation verified")
+
+fn main():
+    test_bez_len()
+    print("✓ All tests passed for cl-bezier-cubic-arc-length-approx!")

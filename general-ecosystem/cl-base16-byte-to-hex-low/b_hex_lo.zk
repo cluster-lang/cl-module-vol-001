@@ -1,0 +1,8 @@
+// cl-base16-byte-to-hex-low: Byte Low Nibble to Hex ASCII
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn byte_to_hex_low(b: int) -> int:
+    val := b & 15
+    if val < 10: return 48 + val
+    return 97 + (val - 10)

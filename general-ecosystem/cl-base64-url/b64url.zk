@@ -1,0 +1,24 @@
+// cl-base64-url: RFC 4648 Base64URL Safe Codec
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn b64url_char(n: int) -> string:
+    alphabet := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+    v := n & 63
+    return chr(byte_at(alphabet, v))
+
+fn base64url_encode(s: string) -> string:
+    res := ""
+    slen := len(s)
+    i := 0
+    while (i + 2) < slen:
+        b0 := byte_at(s, i) & 255
+        b1 := byte_at(s, i + 1) & 255
+        b2 := byte_at(s, i + 2) & 255
+        triple := (b0 << 16) | (b1 << 8) | b2
+        res = res + b64url_char(triple >> 18)
+        res = res + b64url_char(triple >> 12)
+        res = res + b64url_char(triple >> 6)
+        res = res + b64url_char(triple)
+        i = i + 3
+    return res

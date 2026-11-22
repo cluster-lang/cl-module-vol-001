@@ -1,0 +1,14 @@
+// cl-bloom-filter-clear: Test Suite
+import "../bloom_clr.zk"
+
+fn test_bloom_clr():
+    f: vector[int] := [123, 456, 789]
+    bloom_clear(f)
+    if f[0] != 0: sys_exit(1)
+    if f[1] != 0: sys_exit(1)
+    if f[2] != 0: sys_exit(1)
+    print("test_bloom_clr passed: filter bitset clear verified")
+
+fn main():
+    test_bloom_clr()
+    print("✓ All tests passed for cl-bloom-filter-clear!")

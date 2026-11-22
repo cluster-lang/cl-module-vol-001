@@ -1,0 +1,14 @@
+// cl-ascii: Test Suite
+import "../ascii.zk"
+
+fn test_ascii():
+    if not is_alpha(65): sys_exit(1)
+    if not is_digit(50): sys_exit(1)
+    if not is_alnum(97): sys_exit(1)
+    if to_upper(97) != 65: sys_exit(1)
+    if to_lower(65) != 97: sys_exit(1)
+    print("test_ascii passed: character predicates verified")
+
+fn main():
+    test_ascii()
+    print("✓ All tests passed for cl-ascii!")

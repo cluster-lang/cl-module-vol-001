@@ -1,0 +1,14 @@
+// cl-bvh-aabb3d-union: 3D AABB Union Merger Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn aabb3d_union(out_min: vector[float], out_max: vector[float], min_a: vector[float], max_a: vector[float], min_b: vector[float], max_b: vector[float]):
+    i := 0
+    while i < 3:
+        mn := min_a[i]
+        if min_b[i] < mn: mn = min_b[i]
+        out_min.push(mn)
+        mx := max_a[i]
+        if max_b[i] > mx: mx = max_b[i]
+        out_max.push(mx)
+        i = i + 1

@@ -1,0 +1,14 @@
+// cl-bezier-quadratic-curvature: Test Suite
+import "../bezier_curv.zk"
+
+fn test_bezier_curv():
+    k := bezier_quad_curvature(2.0, 0.0, 0.0, 4.0)
+    // cross = 2*4 - 0 = 8, speed_sq = 4, speed = 2, denom = 8 -> kappa = 1.0
+    diff := k - 1.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.001: sys_exit(1)
+    print("test_bezier_curv passed: curvature 1.0 verified")
+
+fn main():
+    test_bezier_curv()
+    print("✓ All tests passed for cl-bezier-quadratic-curvature!")

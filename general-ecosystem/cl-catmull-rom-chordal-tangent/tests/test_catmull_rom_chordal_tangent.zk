@@ -1,0 +1,13 @@
+// cl-catmull-rom-chordal-tangent: Test Suite
+import "../catmull_tan_chord.zk"
+
+fn test_catmull_tan_chord():
+    tan := catmull_chordal_tangent1(0.0, 5.0, 10.0, 1.0, 1.0)
+    diff := tan - 5.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.001: sys_exit(1)
+    print("test_catmull_tan_chord passed: chordal tangent 5.0 verified")
+
+fn main():
+    test_catmull_tan_chord()
+    print("✓ All tests passed for cl-catmull-rom-chordal-tangent!")

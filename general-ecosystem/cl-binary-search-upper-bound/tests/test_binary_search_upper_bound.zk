@@ -1,0 +1,12 @@
+// cl-binary-search-upper-bound: Test Suite
+import "../upper_bound.zk"
+
+fn test_upper_bound():
+    a: vector[int] := [10, 20, 30, 30, 40, 50]
+    if upper_bound(a, 30) != 4: sys_exit(1)
+    if upper_bound(a, 50) != 6: sys_exit(1)
+    print("test_upper_bound passed: upper bound index search verified")
+
+fn main():
+    test_upper_bound()
+    print("✓ All tests passed for cl-binary-search-upper-bound!")

@@ -1,0 +1,6 @@
+// cl-cad-bilinear-patch-du-stage-1: Bilinear Surface Patch du Derivative Stage 1
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn patch_du_1(p00: float, p10: float) -> float:
+    return (p10 - p00) * 1.0

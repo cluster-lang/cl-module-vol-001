@@ -1,0 +1,127 @@
+// cl-base58: Pure Cluster Base58 Encoding & Decoding Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn base58_alphabet() -> string:
+    return "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
+
+fn base58_char_index(c: string) -> int:
+    alph := base58_alphabet()
+    i := 0
+    while i < 58:
+        if substring(alph, i, 1) == c:
+            return i
+        i = i + 1
+    return -1
+
+fn base58_encode_bytes(bytes: vector[int]) -> string:
+    if bytes.len() == 0:
+        return ""
+
+    // 1. Count leading zero bytes
+    zeros := 0
+    while zeros < bytes.len() and bytes[zeros] == 0:
+        zeros = zeros + 1
+
+    // 2. Perform base-58 division
+    digits: vector[int] := []
+    digits.push(0)
+
+    i := 0
+    while i < bytes.len():
+        carry := bytes[i]
+        j := 0
+        while j < digits.len():
+            carry = carry + (digits[j] * 256)
+            digits[j] = carry % 58
+            carry = carry / 58
+            j = j + 1
+        while carry > 0:
+            digits.push(carry % 58)
+            carry = carry / 58
+        i = i + 1
+
+    // 3. Construct result string
+    alph := base58_alphabet()
+    res := ""
+
+    // Prepend '1' for each leading zero byte
+    z := 0
+    while z < zeros:
+        res = res + "1"
+        z = z + 1
+
+    // Append digits in reverse order (high to low)
+    d_idx := digits.len() - 1
+    while d_idx >= 0:
+        // Skip leading zero in digits if present and not the only digit
+        if not (d_idx == digits.len() - 1 and digits[d_idx] == 0 and digits.len() > 1):
+            val := digits[d_idx]
+            res = res + substring(alph, val, 1)
+        d_idx = d_idx - 1
+
+    return res
+
+fn base58_encode(s: string) -> string:
+    bytes: vector[int] := []
+    i := 0
+    slen := len(s)
+    while i < slen:
+        bytes.push(byte_at(s, i))
+        i = i + 1
+    return base58_encode_bytes(bytes)
+
+fn base58_decode_bytes(encoded: string) -> vector[int]:
+    slen := len(encoded)
+    res: vector[int] := []
+    if slen == 0:
+        return res
+
+    // 1. Count leading '1' characters
+    zeros := 0
+    while zeros < slen and substring(encoded, zeros, 1) == "1":
+        zeros = zeros + 1
+
+    // 2. Decode base-58 digits to bytes (base 256)
+    bytes: vector[int] := []
+    bytes.push(0)
+
+    i := zeros
+    while i < slen:
+        ch := substring(encoded, i, 1)
+        val := base58_char_index(ch)
+        if val >= 0:
+            carry := val
+            j := 0
+            while j < bytes.len():
+                carry = carry + (bytes[j] * 58)
+                bytes[j] = carry % 256
+                carry = carry / 256
+                j = j + 1
+            while carry > 0:
+                bytes.push(carry % 256)
+                carry = carry / 256
+        i = i + 1
+
+    // 3. Assemble result: leading zero bytes + reversed decoded bytes
+    z := 0
+    while z < zeros:
+        res.push(0)
+        z = z + 1
+
+    b_idx := bytes.len() - 1
+    while b_idx >= 0:
+        if not (b_idx == bytes.len() - 1 and bytes[b_idx] == 0 and bytes.len() > 1):
+            res.push(bytes[b_idx])
+        b_idx = b_idx - 1
+
+    return res
+
+fn base58_decode(encoded: string) -> string:
+    bytes := base58_decode_bytes(encoded)
+    res := ""
+    i := 0
+    while i < bytes.len():
+        res = res + chr(bytes[i])
+        i = i + 1
+    return res

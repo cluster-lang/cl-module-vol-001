@@ -1,0 +1,20 @@
+// cl-bspline-clamped-basis: B-Spline Linear Basis Function
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bspline_step(u: float, u0: float, u1: float) -> float:
+    if u >= u0:
+        if u < u1:
+            return 1.0
+    return 0.0
+
+fn bspline_linear_basis(u: float, u0: float, u1: float, u2: float) -> float:
+    t1 := 0.0
+    d1 := u1 - u0
+    if d1 > 0.000001:
+        t1 = ((u - u0) / d1) * bspline_step(u, u0, u1)
+    t2 := 0.0
+    d2 := u2 - u1
+    if d2 > 0.000001:
+        t2 = ((u2 - u) / d2) * bspline_step(u, u1, u2)
+    return t1 + t2

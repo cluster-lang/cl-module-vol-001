@@ -1,0 +1,6 @@
+// cl-aero-drag-force-stage-89: Aerodynamic Parasitic Drag Force Stage 89
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn drag_force_89(q_inf: float, wing_area: float, c_drag: float) -> float:
+    return q_inf * wing_area * c_drag * 89.0

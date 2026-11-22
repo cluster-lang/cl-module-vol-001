@@ -1,0 +1,11 @@
+// cl-circular-deque: Test Suite
+import "../circular_deque.zk"
+
+fn test_deque():
+    if deque_next_index(9, 10) != 0: sys_exit(1)
+    if deque_prev_index(0, 10) != 9: sys_exit(1)
+    print("test_deque passed: circular deque wrap verified")
+
+fn main():
+    test_deque()
+    print("✓ All tests passed for cl-circular-deque!")

@@ -1,0 +1,16 @@
+// cl-base64-stream: Test Suite
+import "../b64_stream.zk"
+
+fn test_b64_stream():
+    out: vector[int] := []
+    // "Man" -> 77, 97, 110 -> Base64 [19, 22, 5, 46] ("TWFu")
+    base64_pack_triplet(77, 97, 110, out)
+    if out[0] != 19: sys_exit(1)
+    if out[1] != 22: sys_exit(1)
+    if out[2] != 5: sys_exit(1)
+    if out[3] != 46: sys_exit(1)
+    print("test_b64_stream passed: triplet packing verified")
+
+fn main():
+    test_b64_stream()
+    print("✓ All tests passed for cl-base64-stream!")

@@ -1,0 +1,11 @@
+// cl-bspline-clamped-eval: Test Suite
+import "../bspline_clamp.zk"
+
+fn test_bspline_clamp():
+    val := bspline_linear_eval(2.0, 8.0, 0.5)
+    if val != 5.0: sys_exit(1)
+    print("test_bspline_clamp passed: linear evaluation verified")
+
+fn main():
+    test_bspline_clamp()
+    print("✓ All tests passed for cl-bspline-clamped-eval!")

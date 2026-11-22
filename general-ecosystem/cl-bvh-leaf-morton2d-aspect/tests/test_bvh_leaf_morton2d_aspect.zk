@@ -1,0 +1,11 @@
+// cl-bvh-leaf-morton2d-aspect: Test Suite
+import "../morton_asp.zk"
+
+fn test_morton_asp():
+    asp := morton2d_cluster_aspect(20.0, 10.0)
+    if asp != 2.0: sys_exit(1)
+    print("test_morton_asp passed: aspect ratio 2.0 verified")
+
+fn main():
+    test_morton_asp()
+    print("✓ All tests passed for cl-bvh-leaf-morton2d-aspect!")

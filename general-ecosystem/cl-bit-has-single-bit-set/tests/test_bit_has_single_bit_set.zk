@@ -1,0 +1,10 @@
+// cl-bit-has-single-bit-set: Test Suite
+import "../bit_2.zk"
+
+fn test_2():
+    if has_single_bit_set(16) != 1: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_2()
+    print("✓ All tests passed for cl-bit-has-single-bit-set!")

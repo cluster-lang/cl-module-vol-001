@@ -1,0 +1,11 @@
+// cl-cipher-cbc-xor-block-stage-43: Test Suite
+import "../cph_cb_43.zk"
+
+fn test_run():
+    res := cbc_xor_43(12345, 67890)
+    if res != 80182: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cipher-cbc-xor-block-stage-43!")

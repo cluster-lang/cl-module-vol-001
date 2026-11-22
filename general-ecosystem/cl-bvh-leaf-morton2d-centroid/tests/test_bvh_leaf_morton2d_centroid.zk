@@ -1,0 +1,14 @@
+// cl-bvh-leaf-morton2d-centroid: Test Suite
+import "../morton_cent.zk"
+
+fn test_morton_cent():
+    xs: vector[float] := [2.0, 4.0]
+    ys: vector[float] := [6.0, 8.0]
+    c := morton2d_slice_centroid(xs, ys, 0, 1)
+    if c[0] != 3.0: sys_exit(1)
+    if c[1] != 7.0: sys_exit(2)
+    print("test_morton_cent passed: centroid (3.0, 7.0) verified")
+
+fn main():
+    test_morton_cent()
+    print("✓ All tests passed for cl-bvh-leaf-morton2d-centroid!")

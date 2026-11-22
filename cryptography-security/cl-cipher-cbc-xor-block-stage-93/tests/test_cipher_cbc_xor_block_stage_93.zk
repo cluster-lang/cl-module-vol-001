@@ -1,0 +1,11 @@
+// cl-cipher-cbc-xor-block-stage-93: Test Suite
+import "../cph_cb_93.zk"
+
+fn test_run():
+    res := cbc_xor_93(12345, 67890)
+    if res != 80232: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cipher-cbc-xor-block-stage-93!")

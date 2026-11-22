@@ -1,0 +1,17 @@
+// cl-circular-buffer: Test Suite
+import "../circular_buffer.zk"
+
+fn test_cb():
+    cb := cb_new(3)
+    cb_push(cb, 1)
+    cb_push(cb, 2)
+    cb_push(cb, 3)
+    cb_push(cb, 4) // Overwrites 1
+    if cb_pop(cb) != 2: sys_exit(1)
+    if cb_pop(cb) != 3: sys_exit(1)
+    if cb_pop(cb) != 4: sys_exit(1)
+    print("test_cb passed: circular ring buffer overwrite verified")
+
+fn main():
+    test_cb()
+    print("✓ All tests passed for cl-circular-buffer!")

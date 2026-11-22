@@ -1,0 +1,75 @@
+// cl-chacha20: Test Suite
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+import "../chacha20.zk"
+
+fn test_chacha20_block_vector():
+    key: vector[int] := []
+    i := 0
+    while i < 32:
+        key.push(i)
+        i = i + 1
+
+    nonce: vector[int] := []
+    nonce.push(0); nonce.push(0); nonce.push(0); nonce.push(0)
+    nonce.push(0); nonce.push(0); nonce.push(0); nonce.push(74) // 0x4a
+    nonce.push(0); nonce.push(0); nonce.push(0); nonce.push(0)
+
+    key_words := key_words_from_bytes(key)
+    nonce_words := nonce_words_from_bytes(nonce)
+    block := chacha20_block(key_words, 1, nonce_words)
+
+    hex_block := chacha20_bytes_to_hex(block)
+    print("ChaCha20 Block Keystream (64B): " + hex_block)
+
+    // Verify first 16 bytes against RFC 8439 Section 2.3.2
+    expected_prefix := "224f51f3401bd9e12fde276fb8631ded"
+    block_prefix := ""
+    p_i := 0
+    while p_i < 32:
+        block_prefix = block_prefix + chr(byte_at(hex_block, p_i))
+        p_i = p_i + 1
+
+    if block_prefix != expected_prefix:
+        print("RFC 8439 Block Keystream mismatch! Expected prefix: " + expected_prefix + ", Got: " + block_prefix)
+        sys_exit(1)
+    print("test_chacha20_block_vector passed: RFC 8439 Section 2.3.2 block verified")
+
+fn test_chacha20_rfc8439_sunscreen():
+    key: vector[int] := []
+    i := 0
+    while i < 32:
+        key.push(i)
+        i = i + 1
+
+    nonce: vector[int] := []
+    nonce.push(0); nonce.push(0); nonce.push(0); nonce.push(0)
+    nonce.push(0); nonce.push(0); nonce.push(0); nonce.push(74) // 0x4a
+    nonce.push(0); nonce.push(0); nonce.push(0); nonce.push(0)
+
+    plaintext := "Ladies and Gentlemen of the class of '99: If I could offer you only one tip for the future, sunscreen would be it."
+    expected_cipher_hex := "6e2e359a2568f98041ba0728dd0d6981e97e7aec1d4360c20a27afccfd9fae0bf91b65c5524733ab8f593dabcd62b3571639d624e65152ab8f530c359f0861d807ca0dbf500d6a6156a38e088a22b65e52bc514d16ccf806818ce91ab77937365af90bbf74a35be6b40b8eedf2785e42874d"
+
+    cipher_bytes := chacha20_encrypt_string(key, 1, nonce, plaintext)
+    cipher_hex := chacha20_bytes_to_hex(cipher_bytes)
+
+    print("Ciphertext: " + cipher_hex)
+    if cipher_hex != expected_cipher_hex:
+        print("RFC 8439 Section 2.4.2 Encryption mismatch! Expected: " + expected_cipher_hex + ", Got: " + cipher_hex)
+        sys_exit(1)
+    print("test_chacha20_rfc8439_sunscreen encryption passed: 114B ciphertext verified byte-for-byte")
+
+    // Test decryption and roundtrip
+    restored := chacha20_decrypt_string(key, 1, nonce, cipher_bytes)
+    print("Decrypted: " + restored)
+    if restored != plaintext:
+        print("Decryption mismatch! Expected: " + plaintext + ", Got: " + restored)
+        sys_exit(1)
+    print("test_chacha20_rfc8439_sunscreen decryption roundtrip passed: original plaintext restored perfectly")
+
+fn main():
+    print("Testing cl-chacha20 (Pure Cluster RFC 8439 ChaCha20 Stream Cipher)...")
+    test_chacha20_block_vector()
+    test_chacha20_rfc8439_sunscreen()
+    print("✓ All tests passed for cl-chacha20!")

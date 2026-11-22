@@ -1,0 +1,10 @@
+// cl-bit-extract-lowest-set-bit: Test Suite
+import "../bit_0.zk"
+
+fn test_0():
+    if extract_lowest_set_bit(12) != 4: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_0()
+    print("✓ All tests passed for cl-bit-extract-lowest-set-bit!")

@@ -1,0 +1,16 @@
+// cl-bezier-surface: Test Suite
+import "../bezier_surf.zk"
+
+fn test_surf():
+    corners: vector[int] := [0, 100, 100, 200]
+    p00 := bezier_patch_point_1d(corners, 0, 0)
+    if p00 != 0: sys_exit(1)
+    p11 := bezier_patch_point_1d(corners, 1000, 1000)
+    if p11 != 200: sys_exit(1)
+    mid := bezier_patch_point_1d(corners, 500, 500)
+    if mid != 100: sys_exit(1)
+    print("test_surf passed: Bézier surface patch evaluation verified")
+
+fn main():
+    test_surf()
+    print("✓ All tests passed for cl-bezier-surface!")

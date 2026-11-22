@@ -1,0 +1,6 @@
+// cl-cfd-pressure-poisson-stage-14: CFD Incompressible Pressure Source Stage 14
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn pressure_source_14(rho: float, div_u: float) -> float:
+    return rho * div_u * 14.0

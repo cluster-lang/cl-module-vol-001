@@ -1,0 +1,7 @@
+// cl-bspline-clamped-eval: Linear B-Spline Segment Interpolator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn deboor_linear_step(p0: float, p1: float, t0: float, t1: float, t: float) -> float:
+    alpha := (t - t0) / (t1 - t0)
+    return ((1.0 - alpha) * p0) + (alpha * p1)

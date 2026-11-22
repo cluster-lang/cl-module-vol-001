@@ -1,0 +1,13 @@
+// cl-cfd-convective-upwind-stage-32: Test Suite
+import "../cfd_up_32.zk"
+
+fn test_run():
+    res := convective_upwind_32(2.5, 15.0, 11.0)
+    diff := res - 320.0000
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cfd-convective-upwind-stage-32!")

@@ -1,0 +1,15 @@
+// cl-bspline-knot-span: Knot Span Search Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn find_knot_span(knots: vector[float], u: float, n: int) -> int:
+    if u >= knots[n]: return n - 1
+    low := 0
+    high := n
+    while (high - low) > 1:
+        mid := (low + high) / 2
+        if u < knots[mid]:
+            high = mid
+        else:
+            low = mid
+    return low

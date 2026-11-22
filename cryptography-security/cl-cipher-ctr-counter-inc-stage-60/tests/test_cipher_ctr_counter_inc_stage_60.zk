@@ -1,0 +1,11 @@
+// cl-cipher-ctr-counter-inc-stage-60: Test Suite
+import "../cph_ct_60.zk"
+
+fn test_run():
+    res := ctr_inc_60(1000000)
+    if res != 1000061: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cipher-ctr-counter-inc-stage-60!")

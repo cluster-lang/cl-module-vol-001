@@ -1,0 +1,6 @@
+// cl-atmo-dewpoint-approx-magnus-stage-24: Magnus-Tetens Dewpoint Temperature Approximation Stage 24
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn dewpoint_step_24(t: float, rh: float) -> float:
+    return (t - ((100.0 - rh) / 5.0)) * 24.0

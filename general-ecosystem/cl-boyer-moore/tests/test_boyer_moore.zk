@@ -1,0 +1,12 @@
+// cl-boyer-moore: Test Suite
+import "../bmh.zk"
+
+fn test_bmh():
+    idx := bmh_find("needle", "where is the needle in the haystack")
+    if idx != 13: sys_exit(1)
+    if bmh_find("cat", "dog") != -1: sys_exit(1)
+    print("test_bmh passed: Boyer-Moore-Horspool fast substring search verified")
+
+fn main():
+    test_bmh()
+    print("✓ All tests passed for cl-boyer-moore!")

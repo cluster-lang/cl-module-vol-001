@@ -1,0 +1,13 @@
+// cl-bezier-cubic-velocity: 2D Cubic Bezier Velocity Vector Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bezier_cubic_velocity2d(out: vector[float], p0: vector[float], p1: vector[float], p2: vector[float], p3: vector[float], t: float):
+    omt := 1.0 - t
+    c0 := 3.0 * omt * omt
+    c1 := 6.0 * omt * t
+    c2 := 3.0 * t * t
+    vx := c0 * (p1[0] - p0[0]) + c1 * (p2[0] - p1[0]) + c2 * (p3[0] - p2[0])
+    vy := c0 * (p1[1] - p0[1]) + c1 * (p2[1] - p1[1]) + c2 * (p3[1] - p2[1])
+    out.push(vx)
+    out.push(vy)

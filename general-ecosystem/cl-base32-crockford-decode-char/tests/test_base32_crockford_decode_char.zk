@@ -1,0 +1,13 @@
+// cl-base32-crockford-decode-char: Test Suite
+import "../crock_dec.zk"
+
+fn test_crock_dec():
+    if crockford_decode_char(48) != 0: sys_exit(1)  // '0'
+    if crockford_decode_char(57) != 9: sys_exit(1)  // '9'
+    if crockford_decode_char(65) != 10: sys_exit(1) // 'A'
+    if crockford_decode_char(90) != 31: sys_exit(1) // 'Z'
+    print("test_crock_dec passed: Crockford character decoding verified")
+
+fn main():
+    test_crock_dec()
+    print("✓ All tests passed for cl-base32-crockford-decode-char!")

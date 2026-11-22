@@ -1,0 +1,11 @@
+// cl-bit-parity-8bit: Test Suite
+import "../par_8.zk"
+
+fn test_run():
+    res := parity_u8(7)
+    if res != 1: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-bit-parity-8bit!")

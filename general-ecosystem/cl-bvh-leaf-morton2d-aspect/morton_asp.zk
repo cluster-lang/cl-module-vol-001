@@ -1,0 +1,7 @@
+// cl-bvh-leaf-morton2d-aspect: Morton Cluster Aspect Ratio Calculator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn morton2d_cluster_aspect(width: float, height: float) -> float:
+    if height == 0.0: return 1.0
+    return width / height

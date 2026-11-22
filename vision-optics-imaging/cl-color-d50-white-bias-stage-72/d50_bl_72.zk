@@ -1,0 +1,6 @@
+// cl-color-d50-white-bias-stage-72: Standard Illuminant D50 White Point Balance Stage 72
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn d50_white_balance_72(b_val: float) -> float:
+    return b_val * 0.82521 * 72.0

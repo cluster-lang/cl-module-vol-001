@@ -1,0 +1,21 @@
+// cl-bezier: Pure Cluster Quadratic & Cubic Bézier Curves
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bezier_quad(p0: int, p1: int, p2: int, t_pct: int) -> int:
+    t := t_pct
+    one_minus_t := 100 - t
+    // (1-t)^2 * p0 + 2*(1-t)*t*p1 + t^2*p2 / 10000
+    term0 := (one_minus_t * one_minus_t * p0)
+    term1 := (2 * one_minus_t * t * p1)
+    term2 := (t * t * p2)
+    return (term0 + term1 + term2) / 10000
+
+fn bezier_cubic(p0: int, p1: int, p2: int, p3: int, t_pct: int) -> int:
+    t := t_pct
+    u := 100 - t
+    term0 := (u * u * u * p0)
+    term1 := (3 * u * u * t * p1)
+    term2 := (3 * u * t * t * p2)
+    term3 := (t * t * t * p3)
+    return (term0 + term1 + term2 + term3) / 1000000

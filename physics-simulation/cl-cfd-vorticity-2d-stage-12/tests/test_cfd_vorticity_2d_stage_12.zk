@@ -1,0 +1,13 @@
+// cl-cfd-vorticity-2d-stage-12: Test Suite
+import "../cfd_vr_12.zk"
+
+fn test_run():
+    res := vorticity_2d_12(3.5, 1.2)
+    diff := res - 27.6000
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cfd-vorticity-2d-stage-12!")

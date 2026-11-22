@@ -1,0 +1,13 @@
+// cl-bit-count-leading-zeros-fast: Test Suite
+import "../clz.zk"
+
+fn test_clz():
+    if clz32(0) != 32: sys_exit(1)
+    if clz32(1) != 31: sys_exit(1)
+    if clz32(16) != 27: sys_exit(1)
+    if clz32(2147483648) != 0: sys_exit(1)
+    print("test_clz passed")
+
+fn main():
+    test_clz()
+    print("✓ All tests passed for cl-bit-count-leading-zeros-fast!")

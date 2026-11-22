@@ -1,0 +1,6 @@
+name: "cl-argparse"
+version: "0.1.0"
+description: "Command-line argument parser"
+license: "MIT-Conditional"
+author: "Cluster Authors"
+dependencies: []

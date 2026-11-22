@@ -1,0 +1,15 @@
+// cl-cache: Multi-Layer L1 In-Memory LRU & L2 Cache Engine
+
+fn set(key: string, val: string):
+    cpp_inject "static std::unordered_map<std::string, std::string> l1_cache_map;"
+    cpp_inject "l1_cache_map[key] = val;"
+
+fn get(key: string) -> string:
+    res := ""
+    cpp_inject "static std::unordered_map<std::string, std::string> l1_cache_map;"
+    cpp_inject "if (l1_cache_map.find(key) != l1_cache_map.end()) res = l1_cache_map[key];"
+    return res
+
+fn delete_key(key: string):
+    cpp_inject "static std::unordered_map<std::string, std::string> l1_cache_map;"
+    cpp_inject "l1_cache_map.erase(key);"

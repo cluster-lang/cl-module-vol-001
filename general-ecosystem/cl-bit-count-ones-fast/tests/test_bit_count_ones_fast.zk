@@ -1,0 +1,12 @@
+// cl-bit-count-ones-fast: Test Suite
+import "../pop.zk"
+
+fn test_pop():
+    if popcount32(0) != 0: sys_exit(1)
+    if popcount32(7) != 3: sys_exit(1)
+    if popcount32(4294967295) != 32: sys_exit(1)
+    print("test_pop passed")
+
+fn main():
+    test_pop()
+    print("✓ All tests passed for cl-bit-count-ones-fast!")

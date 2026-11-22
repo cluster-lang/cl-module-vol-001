@@ -1,0 +1,10 @@
+// cl-base32-zbase-pad-length: z-base-32 Encoded Output Length Calculator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn zbase32_encoded_length(byte_len: int) -> int:
+    if byte_len <= 0:
+        return 0
+    bits := byte_len * 8
+    chars := (bits + 4) / 5
+    return chars

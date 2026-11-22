@@ -1,0 +1,11 @@
+// cl-cipher-ofb-keystream-xor-stage-78: Test Suite
+import "../cph_of_78.zk"
+
+fn test_run():
+    res := ofb_xor_78(98765, 43210)
+    if res != 76117: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cipher-ofb-keystream-xor-stage-78!")

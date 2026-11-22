@@ -1,0 +1,22 @@
+// cl-bezier-cubic-subdivide: De Casteljau Curve Subdivision
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Subdivides cubic control points p0, p1, p2, p3 at midpoint t=0.5
+// Returns 8 values: left curve (4 points) followed by right curve (4 points)
+fn bezier_subdivide_mid(p0: int, p1: int, p2: int, p3: int) -> vector[int]:
+    p01 := (p0 + p1) / 2
+    p12 := (p1 + p2) / 2
+    p23 := (p2 + p3) / 2
+
+    p012 := (p01 + p12) / 2
+    p123 := (p12 + p23) / 2
+
+    mid := (p012 + p123) / 2
+
+    res: vector[int] := []
+    // Left curve: p0, p01, p012, mid
+    res.push(p0); res.push(p01); res.push(p012); res.push(mid)
+    // Right curve: mid, p123, p23, p3
+    res.push(mid); res.push(p123); res.push(p23); res.push(p3)
+    return res

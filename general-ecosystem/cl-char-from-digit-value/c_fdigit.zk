@@ -1,0 +1,7 @@
+// cl-char-from-digit-value: Convert Numeric Single Digit Integer [0-9] to ASCII Character
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn digit_to_char(d: int) -> int:
+    if d >= 0 and d <= 9: return 48 + d
+    return 0

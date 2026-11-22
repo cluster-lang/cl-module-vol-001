@@ -1,0 +1,12 @@
+// cl-bit-swap-bytes64: Test Suite
+import "../bswap64.zk"
+
+fn test_bswap64():
+    v := 72623859790382848
+    swapped := bit_swap_bytes64(v)
+    if swapped != 1976943448883713: sys_exit(1)
+    print("test_bswap64 passed: 8-byte endianness swap verified")
+
+fn main():
+    test_bswap64()
+    print("✓ All tests passed for cl-bit-swap-bytes64!")

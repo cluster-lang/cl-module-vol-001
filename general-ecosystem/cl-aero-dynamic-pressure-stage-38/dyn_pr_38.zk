@@ -1,0 +1,6 @@
+// cl-aero-dynamic-pressure-stage-38: Bernoulli Dynamic Pressure Stage 38
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn dynamic_pressure_38(rho: float, vel: float) -> float:
+    return 0.5 * rho * vel * vel * 38.0

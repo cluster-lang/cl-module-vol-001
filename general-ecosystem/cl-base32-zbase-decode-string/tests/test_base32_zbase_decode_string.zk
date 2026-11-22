@@ -1,0 +1,17 @@
+// cl-base32-zbase-decode-string: Test Suite
+import "../zbase_dec_str.zk"
+
+fn test_zbase_dec_str():
+    // "ybndr" -> [0, 1, 2, 3, 4]
+    input_str: vector[int] := [121, 98, 110, 100, 114]
+    indices := zbase32_decode_indices(input_str)
+    if indices[0] != 0: sys_exit(1)
+    if indices[1] != 1: sys_exit(2)
+    if indices[2] != 2: sys_exit(3)
+    if indices[3] != 3: sys_exit(4)
+    if indices[4] != 4: sys_exit(5)
+    print("test_zbase_dec_str passed: [0, 1, 2, 3, 4] decoded")
+
+fn main():
+    test_zbase_dec_str()
+    print("✓ All tests passed for cl-base32-zbase-decode-string!")

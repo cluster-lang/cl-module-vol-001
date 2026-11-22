@@ -1,0 +1,6 @@
+// cl-checksum-acc-stage-11: Checksum Accumulator Stage 11
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn chk_acc_stage_11(acc: int, b: int) -> int:
+    return (acc + (b & 255) * 11) & 65535

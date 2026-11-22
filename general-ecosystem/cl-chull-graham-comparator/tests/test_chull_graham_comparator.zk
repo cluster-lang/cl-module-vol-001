@@ -1,0 +1,12 @@
+// cl-chull-graham-comparator: Test Suite
+import "../graham_comp.zk"
+
+fn test_graham():
+    // p1=(2,1) vs p2=(1,2) with respect to p0=(0,0)
+    // p1 has smaller angle (slope 0.5 vs 2.0) -> cp > 0
+    if graham_compare(0, 0, 2, 1, 1, 2) != 1: sys_exit(1)
+    print("test_graham passed: polar comparator verified")
+
+fn main():
+    test_graham()
+    print("✓ All tests passed for cl-chull-graham-comparator!")

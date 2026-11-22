@@ -1,0 +1,13 @@
+// cl-adler32-fast: Test Suite
+import "../adler32_fast.zk"
+
+fn test_adler32_fast():
+    bytes: vector[int] := [49, 50, 51, 52, 53, 54, 55, 56, 57]
+    c := adler32_fast(bytes)
+    // Adler32 of "123456789" is 0x091E01DE (152961502)
+    if c != 152961502: sys_exit(1)
+    print("test_adler32_fast passed: standard 0x091E01DE verified")
+
+fn main():
+    test_adler32_fast()
+    print("✓ All tests passed for cl-adler32-fast!")

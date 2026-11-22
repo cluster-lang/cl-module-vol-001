@@ -1,0 +1,235 @@
+// cl-bs4: HTML/XML Parser & DOM Query Engine (Python BeautifulSoup4 Parity)
+// 100% Pure Cluster Language implementation
+
+model DOMElement:
+    id: int
+    tag: string
+    text: string
+    attrs_keys: vector[string]
+    attrs_vals: vector[string]
+    parent_id: int
+    child_ids: vector[int]
+
+model BeautifulSoup:
+    elements: vector[DOMElement]
+    root_id: int
+
+fn new_element(id: int, tag: string, parent_id: int) -> DOMElement:
+    k: vector[string] := []
+    v: vector[string] := []
+    c: vector[int] := []
+    elem := DOMElement(id, tag, "", k, v, parent_id, c)
+    return elem
+
+fn add_attr(&elem: DOMElement, key: string, val: string):
+    elem.attrs_keys.push(key)
+    elem.attrs_vals.push(val)
+
+fn get_attr(elem: DOMElement, key: string) -> string:
+    i := 0
+    while i < elem.attrs_keys.len():
+        if elem.attrs_keys[i] == key:
+            return elem.attrs_vals[i]
+        i = i + 1
+    return ""
+
+fn has_class(elem: DOMElement, target_class: string) -> bool:
+    c := get_attr(elem, "class")
+    if c == target_class:
+        return true
+    return str_contains(c, target_class)
+
+fn is_whitespace(c: string) -> bool:
+    if c == " " or c == "\t" or c == "\n" or c == "\r":
+        return true
+    return false
+
+fn is_void_tag(tag: string) -> bool:
+    if tag == "br" or tag == "hr" or tag == "img" or tag == "input" or tag == "meta" or tag == "link":
+        return true
+    return false
+
+fn parse(html: string) -> BeautifulSoup:
+    elems: vector[DOMElement] := []
+    root := new_element(0, "document", -1)
+    elems.push(root)
+    soup := BeautifulSoup(elems, 0)
+    
+    tag_stack: vector[int] := []
+    tag_stack.push(0)
+    current_parent := 0
+    
+    n := html.len()
+    i := 0
+    next_id := 1
+    
+    while i < n:
+        c := substring(html, i, 1)
+        if c == "<":
+            // Check comment <!--
+            if i + 4 <= n and substring(html, i, 4) == "<!--":
+                i = i + 4
+                while i + 3 <= n and substring(html, i, 3) != "-->":
+                    i = i + 1
+                i = i + 3
+            // Check doctype <!
+            elif i + 2 <= n and substring(html, i, 2) == "<!":
+                while i < n and substring(html, i, 1) != ">":
+                    i = i + 1
+                if i < n:
+                    i = i + 1
+            // Check closing tag </tag>
+            elif i + 2 <= n and substring(html, i, 2) == "</":
+                i = i + 2
+                close_tag := ""
+                while i < n and substring(html, i, 1) != ">" and substring(html, i, 1) != " ":
+                    close_tag = close_tag + substring(html, i, 1)
+                    i = i + 1
+                while i < n and substring(html, i, 1) != ">":
+                    i = i + 1
+                if i < n:
+                    i = i + 1
+                if tag_stack.len() > 1:
+                    tag_stack.pop()
+                    top_idx := tag_stack.len() - 1
+                    current_parent = tag_stack[top_idx]
+            // Opening tag
+            else:
+                i = i + 1
+                tag_name := ""
+                while i < n and substring(html, i, 1) != " " and substring(html, i, 1) != ">" and substring(html, i, 1) != "/":
+                    tag_name = tag_name + substring(html, i, 1)
+                    i = i + 1
+                tag_name = str_to_lower(tag_name)
+                
+                new_elem := new_element(next_id, tag_name, current_parent)
+                next_id = next_id + 1
+                
+                // Parse attributes
+                while i < n and substring(html, i, 1) != ">" and substring(html, i, 2) != "/>":
+                    while i < n and is_whitespace(substring(html, i, 1)):
+                        i = i + 1
+                    if i >= n or substring(html, i, 1) == ">" or substring(html, i, 2) == "/>":
+                        break
+                    
+                    attr_k := ""
+                    while i < n and substring(html, i, 1) != "=" and substring(html, i, 1) != " " and substring(html, i, 1) != ">" and substring(html, i, 1) != "/":
+                        attr_k = attr_k + substring(html, i, 1)
+                        i = i + 1
+                    attr_k = str_to_lower(attr_k)
+                    
+                    while i < n and is_whitespace(substring(html, i, 1)):
+                        i = i + 1
+                    
+                    attr_v := ""
+                    if i < n and substring(html, i, 1) == "=":
+                        i = i + 1
+                        while i < n and is_whitespace(substring(html, i, 1)):
+                            i = i + 1
+                        if i < n and substring(html, i, 1) == "\"":
+                            i = i + 1
+                            while i < n and substring(html, i, 1) != "\"":
+                                attr_v = attr_v + substring(html, i, 1)
+                                i = i + 1
+                            if i < n:
+                                i = i + 1
+                        elif i < n and substring(html, i, 1) == "'":
+                            i = i + 1
+                            while i < n and substring(html, i, 1) != "'":
+                                attr_v = attr_v + substring(html, i, 1)
+                                i = i + 1
+                            if i < n:
+                                i = i + 1
+                        else:
+                            while i < n and substring(html, i, 1) != " " and substring(html, i, 1) != ">" and substring(html, i, 1) != "/":
+                                attr_v = attr_v + substring(html, i, 1)
+                                i = i + 1
+                    if attr_k.len() > 0:
+                        add_attr(new_elem, attr_k, attr_v)
+                
+                is_self_close := false
+                if i + 1 < n and substring(html, i, 2) == "/>":
+                    is_self_close = true
+                    i = i + 2
+                elif i < n and substring(html, i, 1) == ">":
+                    i = i + 1
+                
+                if is_void_tag(tag_name):
+                    is_self_close = true
+                
+                elem_id := new_elem.id
+                soup.elements.push(new_elem)
+                soup.elements[current_parent].child_ids.push(elem_id)
+                
+                if not is_self_close:
+                    tag_stack.push(elem_id)
+                    current_parent = elem_id
+        else:
+            // Text node
+            raw_text := ""
+            while i < n and substring(html, i, 1) != "<":
+                raw_text = raw_text + substring(html, i, 1)
+                i = i + 1
+            if raw_text.len() > 0 and current_parent >= 0:
+                soup.elements[current_parent].text = soup.elements[current_parent].text + raw_text
+    return soup
+
+fn find(soup: BeautifulSoup, tag: string) -> int:
+    target := str_to_lower(tag)
+    i := 1
+    while i < soup.elements.len():
+        if soup.elements[i].tag == target:
+            return soup.elements[i].id
+        i = i + 1
+    return -1
+
+fn find_all(soup: BeautifulSoup, tag: string) -> vector[int]:
+    res: vector[int] := []
+    target := str_to_lower(tag)
+    i := 1
+    while i < soup.elements.len():
+        if soup.elements[i].tag == target:
+            res.push(soup.elements[i].id)
+        i = i + 1
+    return res
+
+fn find_by_id(soup: BeautifulSoup, id_val: string) -> int:
+    i := 1
+    while i < soup.elements.len():
+        elem := soup.elements[i]
+        val := get_attr(elem, "id")
+        if val == id_val:
+            return elem.id
+        i = i + 1
+    return -1
+
+fn find_by_class(soup: BeautifulSoup, class_val: string) -> vector[int]:
+    res: vector[int] := []
+    i := 1
+    while i < soup.elements.len():
+        elem := soup.elements[i]
+        if has_class(elem, class_val):
+            res.push(elem.id)
+        i = i + 1
+    return res
+
+fn get_text(soup: BeautifulSoup, elem_id: int) -> string:
+    if elem_id >= 0 and elem_id < soup.elements.len():
+        return soup.elements[elem_id].text
+    return ""
+
+fn get_tag_name(soup: BeautifulSoup, elem_id: int) -> string:
+    if elem_id >= 0 and elem_id < soup.elements.len():
+        return soup.elements[elem_id].tag
+    return ""
+
+fn get_attribute(soup: BeautifulSoup, elem_id: int, key: string) -> string:
+    if elem_id >= 0 and elem_id < soup.elements.len():
+        return get_attr(soup.elements[elem_id], key)
+    return ""
+
+fn get_children_ids(soup: BeautifulSoup, elem_id: int) -> vector[int]:
+    empty: vector[int] := []
+    if elem_id >= 0 and elem_id < soup.elements.len():
+        return soup.elements[elem_id].child_ids
+    return empty

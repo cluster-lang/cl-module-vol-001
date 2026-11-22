@@ -1,0 +1,10 @@
+// cl-bvh2d: 2D Bounding Volume Hierarchy Overlap Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bvh_node_overlaps(min1x: int, min1y: int, max1x: int, max1y: int, min2x: int, min2y: int, max2x: int, max2y: int) -> int:
+    if max1x < min2x: return 0
+    if min1x > max2x: return 0
+    if max1y < min2y: return 0
+    if min1y > max2y: return 0
+    return 1

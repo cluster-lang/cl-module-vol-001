@@ -1,0 +1,16 @@
+// cl-aabb2d: Test Suite
+import "../aabb2d.zk"
+
+fn test_aabb2d():
+    b1 := AABB2D(0, 0, 10, 10)
+    b2 := AABB2D(5, 5, 15, 15)
+    b3 := AABB2D(20, 20, 30, 30)
+    if not aabb2d_intersects(b1, b2): sys_exit(1)
+    if aabb2d_intersects(b1, b3): sys_exit(1)
+    if aabb2d_area(b1) != 100: sys_exit(1)
+    if not aabb2d_contains_point(b1, 5, 5): sys_exit(1)
+    print("test_aabb2d passed: 2D spatial collision verified")
+
+fn main():
+    test_aabb2d()
+    print("✓ All tests passed for cl-aabb2d!")

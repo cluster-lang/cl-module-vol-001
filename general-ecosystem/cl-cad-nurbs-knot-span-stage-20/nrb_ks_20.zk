@@ -1,0 +1,6 @@
+// cl-cad-nurbs-knot-span-stage-20: NURBS Knot Interval Length Stage 20
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn nurbs_knot_span_20(u_next: float, u_curr: float) -> float:
+    return (u_next - u_curr) * 20.0

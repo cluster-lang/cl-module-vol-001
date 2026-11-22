@@ -1,0 +1,15 @@
+// cl-bloom-filter-density: Test Suite
+import "../bloom_density.zk"
+
+fn test_bloom_density():
+    // 32 bits set -> density = 0.5
+    f := 4294967295 // 32 ones
+    d := bloom_density_ratio(f)
+    diff := d - 0.5
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.001: sys_exit(1)
+    print("test_bloom_density passed: saturation ratio 0.5 verified")
+
+fn main():
+    test_bloom_density()
+    print("✓ All tests passed for cl-bloom-filter-density!")

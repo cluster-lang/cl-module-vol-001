@@ -1,0 +1,24 @@
+// cl-bitwise: Pure Cluster Low-Level Bitwise Manipulation Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn is_power_of_two(n: int) -> bool:
+    if n <= 0: return false
+    return (n & (n - 1)) == 0
+
+fn popcount(n: int) -> int:
+    count := 0
+    v := n
+    while v > 0:
+        v = v & (v - 1)
+        count = count + 1
+    return count
+
+fn count_trailing_zeros(n: int) -> int:
+    if n == 0: return 64
+    count := 0
+    v := n
+    while (v & 1) == 0:
+        count = count + 1
+        v = v >> 1
+    return count

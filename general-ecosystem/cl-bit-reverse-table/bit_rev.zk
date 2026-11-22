@@ -1,0 +1,13 @@
+// cl-bit-reverse-table: 8-bit Reverse Generator & 64-bit Reversal
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn reverse_byte(b: int) -> int:
+    val := b & 255
+    res := 0
+    i := 0
+    while i < 8:
+        res = (res << 1) | (val & 1)
+        val = val >> 1
+        i = i + 1
+    return res

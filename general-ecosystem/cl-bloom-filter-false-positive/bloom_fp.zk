@@ -1,0 +1,19 @@
+// cl-bloom-filter-false-positive: Theoretical False Positive Ratio Approximation
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn exp_neg_approx(x: float) -> float:
+    // Approximation for e^(-x) using 1 / (1 + x + x^2/2)
+    denom := 1.0 + x + 0.5 * x * x
+    return 1.0 / denom
+
+fn bloom_false_positive_rate(k: int, n: int, m: int) -> float:
+    exponent := (k * 1.0 * n * 1.0) / (m * 1.0)
+    base := 1.0 - exp_neg_approx(exponent)
+    // Approximate base^k for k=1..4
+    res := base
+    iter := 1
+    while iter < k:
+        res = res * base
+        iter = iter + 1
+    return res

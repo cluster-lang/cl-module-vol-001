@@ -1,0 +1,13 @@
+// cl-bit-count-parity-fast: Test Suite
+import "../parity.zk"
+
+fn test_parity():
+    if parity32(0) != 0: sys_exit(1)
+    if parity32(1) != 1: sys_exit(1)
+    if parity32(3) != 0: sys_exit(1)
+    if parity32(7) != 1: sys_exit(1)
+    print("test_parity passed")
+
+fn main():
+    test_parity()
+    print("✓ All tests passed for cl-bit-count-parity-fast!")

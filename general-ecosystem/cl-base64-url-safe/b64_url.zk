@@ -1,0 +1,12 @@
+// cl-base64-url-safe: URL-Safe Base64 Character Substitutor
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Replaces standard 62 ('+' -> '-') and 63 ('/' -> '_')
+fn base64_url_char(val: int) -> int:
+    v := val & 63
+    if v < 26: return 65 + v // 'A'-'Z'
+    if v < 52: return 97 + (v - 26) // 'a'-'z'
+    if v < 62: return 48 + (v - 52) // '0'-'9'
+    if v == 62: return 45 // '-'
+    return 95 // '_'

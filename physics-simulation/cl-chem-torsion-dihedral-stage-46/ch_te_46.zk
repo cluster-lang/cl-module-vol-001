@@ -1,0 +1,6 @@
+// cl-chem-torsion-dihedral-stage-46: Dihedral Torsional Angle Energy Stage 46
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn dihedral_energy_46(vn: float, cos_nphi: float) -> float:
+    return 0.5 * vn * (1.0 + cos_nphi) * 46.0

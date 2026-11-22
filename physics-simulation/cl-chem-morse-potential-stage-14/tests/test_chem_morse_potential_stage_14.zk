@@ -1,0 +1,13 @@
+// cl-chem-morse-potential-stage-14: Test Suite
+import "../ch_mp_14.zk"
+
+fn test_run():
+    res := morse_pot_14(5.0, 1.2, 0.1)
+    diff := res - 61.6000
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-chem-morse-potential-stage-14!")

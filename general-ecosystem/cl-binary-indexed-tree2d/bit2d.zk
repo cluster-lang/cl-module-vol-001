@@ -1,0 +1,36 @@
+// cl-binary-indexed-tree2d: 2D Fenwick Tree Matrix Queries
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bit2d_new(rows: int, cols: int) -> vector[int]:
+    tree: vector[int] := []
+    total := (rows + 1) * (cols + 1)
+    i := 0
+    while i < total:
+        tree.push(0)
+        i = i + 1
+    return tree
+
+fn bit2d_add(tree: vector[int], max_r: int, max_c: int, r: int, c: int, val: int):
+    stride := max_c + 1
+    i := r
+    while i <= max_r:
+        j := c
+        while j <= max_c:
+            idx := (i * stride) + j
+            tree[idx] = tree[idx] + val
+            j = j + (j & (0 - j))
+        i = i + (i & (0 - i))
+
+fn bit2d_query(tree: vector[int], max_c: int, r: int, c: int) -> int:
+    stride := max_c + 1
+    sum := 0
+    i := r
+    while i > 0:
+        j := c
+        while j > 0:
+            idx := (i * stride) + j
+            sum = sum + tree[idx]
+            j = j - (j & (0 - j))
+        i = i - (i & (0 - i))
+    return sum

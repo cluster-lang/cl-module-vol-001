@@ -1,0 +1,6 @@
+// cl-cfd-pressure-poisson-stage-58: CFD Incompressible Pressure Source Stage 58
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn pressure_source_58(rho: float, div_u: float) -> float:
+    return rho * div_u * 58.0

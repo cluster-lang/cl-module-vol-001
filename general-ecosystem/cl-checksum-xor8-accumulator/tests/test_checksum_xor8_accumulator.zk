@@ -1,0 +1,11 @@
+// cl-checksum-xor8-accumulator: Test Suite
+import "../xor8_st.zk"
+
+fn test_run():
+    res := lrc_xor8_step(170, 85)
+    if res != 255: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-checksum-xor8-accumulator!")

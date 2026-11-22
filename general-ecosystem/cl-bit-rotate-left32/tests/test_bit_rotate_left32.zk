@@ -1,0 +1,13 @@
+// cl-bit-rotate-left32: Test Suite
+import "../rot32.zk"
+
+fn test_rot32():
+    v := rotl32(1, 4)
+    if v != 16: sys_exit(1)
+    r := rotr32(16, 4)
+    if r != 1: sys_exit(1)
+    print("test_rot32 passed: 32-bit rotl/rotr verified")
+
+fn main():
+    test_rot32()
+    print("✓ All tests passed for cl-bit-rotate-left32!")

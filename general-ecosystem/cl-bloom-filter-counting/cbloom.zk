@@ -1,0 +1,13 @@
+// cl-bloom-filter-counting: 4-bit Counting Bloom Filter Cell Mutator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn cbloom_inc(cells: vector[int], idx: int):
+    cur := cells[idx]
+    if cur < 15:
+        cells[idx] = cur + 1
+
+fn cbloom_dec(cells: vector[int], idx: int):
+    cur := cells[idx]
+    if cur > 0:
+        cells[idx] = cur - 1

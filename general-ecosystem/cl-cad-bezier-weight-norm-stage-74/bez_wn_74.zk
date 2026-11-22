@@ -1,0 +1,6 @@
+// cl-cad-bezier-weight-norm-stage-74: Rational Bezier Basis Weight Normalizer Stage 74
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bezier_weight_norm_74(w0: float, w1: float, b0: float, b1: float) -> float:
+    return (w0*b0 + w1*b1) * 74.0

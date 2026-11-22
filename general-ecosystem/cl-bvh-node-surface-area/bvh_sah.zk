@@ -1,0 +1,9 @@
+// cl-bvh-node-surface-area: 3D AABB Surface Area Heuristic Metric
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn aabb3d_surface_area(min_b: vector[float], max_b: vector[float]) -> float:
+    dx := max_b[0] - min_b[0]
+    dy := max_b[1] - min_b[1]
+    dz := max_b[2] - min_b[2]
+    return 2.0 * (dx * dy + dy * dz + dz * dx)

@@ -1,0 +1,12 @@
+// cl-catmull-rom-arc: Test Suite
+import "../cr_arc.zk"
+
+fn test_cr_arc():
+    d := cr_step_distance(0.0, 0.0, 3.0, 4.0)
+    if d < 4.99: sys_exit(1)
+    if d > 5.01: sys_exit(1)
+    print("test_cr_arc passed: Euclidean step distance verified")
+
+fn main():
+    test_cr_arc()
+    print("✓ All tests passed for cl-catmull-rom-arc!")

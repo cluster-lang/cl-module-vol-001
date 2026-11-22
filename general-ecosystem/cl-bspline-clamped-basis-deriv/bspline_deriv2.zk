@@ -1,0 +1,10 @@
+// cl-bspline-clamped-basis-deriv: Quadratic B-Spline Basis Derivative Calculator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bspline_quadratic_derivs(t: float) -> vector[float]:
+    dw0 := t - 1.0
+    dw1 := 1.0 - 2.0 * t
+    dw2 := t
+    res: vector[float] := [dw0, dw1, dw2]
+    return res

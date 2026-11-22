@@ -1,0 +1,12 @@
+// cl-bit-count-trailing-zeros: Test Suite
+import "../ctz.zk"
+
+fn test_ctz():
+    if count_trailing_zeros(1) != 0: sys_exit(1)
+    if count_trailing_zeros(16) != 4: sys_exit(1)
+    if count_trailing_zeros(0) != 64: sys_exit(1)
+    print("test_ctz passed: trailing zero count verified")
+
+fn main():
+    test_ctz()
+    print("✓ All tests passed for cl-bit-count-trailing-zeros!")

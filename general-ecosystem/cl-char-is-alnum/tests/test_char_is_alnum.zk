@@ -1,0 +1,10 @@
+// cl-char-is-alnum: Test Suite
+import "../c_alnum.zk"
+
+fn test_char():
+    if char_is_alnum(53) != 1: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_char()
+    print("✓ All tests passed for cl-char-is-alnum!")

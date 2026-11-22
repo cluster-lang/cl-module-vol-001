@@ -1,0 +1,7 @@
+// cl-color-blend-soft-light: Color Soft Light Blend Mode per Channel
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn blend_soft_light(base: float, blend: float) -> float:
+    if blend <= 0.5: return base - (1.0 - 2.0 * blend) * base * (1.0 - base)
+    return base + (2.0 * blend - 1.0) * (base - base * base)

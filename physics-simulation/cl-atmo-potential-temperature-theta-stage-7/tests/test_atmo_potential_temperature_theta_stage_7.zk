@@ -1,0 +1,13 @@
+// cl-atmo-potential-temperature-theta-stage-7: Test Suite
+import "../at_pt_7.zk"
+
+fn test_run():
+    res := theta_factor_7(300.0, 1.1)
+    diff := res - 2160.0600
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-atmo-potential-temperature-theta-stage-7!")

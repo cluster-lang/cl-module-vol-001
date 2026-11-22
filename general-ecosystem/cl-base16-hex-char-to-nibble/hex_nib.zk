@@ -1,0 +1,9 @@
+// cl-base16-hex-char-to-nibble: ASCII Hex Character to 4-bit Nibble
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn hex_to_nibble(ascii_char: int) -> int:
+    if ascii_char >= 48 and ascii_char <= 57: return ascii_char - 48
+    if ascii_char >= 65 and ascii_char <= 70: return ascii_char - 65 + 10
+    if ascii_char >= 97 and ascii_char <= 102: return ascii_char - 97 + 10
+    return 0 - 1

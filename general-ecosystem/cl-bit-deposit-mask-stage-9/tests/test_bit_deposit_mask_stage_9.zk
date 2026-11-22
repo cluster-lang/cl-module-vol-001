@@ -1,0 +1,11 @@
+// cl-bit-deposit-mask-stage-9: Test Suite
+import "../bdep_9.zk"
+
+fn test_run():
+    res := bit_deposit_mask_9(65535)
+    if res != 511: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-bit-deposit-mask-stage-9!")

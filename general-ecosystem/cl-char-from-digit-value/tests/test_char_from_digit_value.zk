@@ -1,0 +1,10 @@
+// cl-char-from-digit-value: Test Suite
+import "../c_fdigit.zk"
+
+fn test_char():
+    if digit_to_char(9) != 57: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_char()
+    print("✓ All tests passed for cl-char-from-digit-value!")

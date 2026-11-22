@@ -1,0 +1,23 @@
+// cl-color: Pure Cluster Color Space Conversions
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+model RGB:
+    r: int
+    g: int
+    b: int
+
+fn hex_nibble(n: int) -> string:
+    v := n & 15
+    if v < 10: return chr(v + 48)
+    return chr(v - 10 + 97)
+
+fn rgb_to_hex(c: RGB) -> string:
+    h0 := hex_nibble((c.r >> 4) & 15) + hex_nibble(c.r & 15)
+    h1 := hex_nibble((c.g >> 4) & 15) + hex_nibble(c.g & 15)
+    h2 := hex_nibble((c.b >> 4) & 15) + hex_nibble(c.b & 15)
+    return h0 + h1 + h2
+
+fn rgb_luminance(c: RGB) -> int:
+    // 0.299 R + 0.587 G + 0.114 B (scaled by 1000)
+    return ((299 * c.r) + (587 * c.g) + (114 * c.b)) / 1000

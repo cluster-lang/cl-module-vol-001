@@ -1,0 +1,12 @@
+// cl-bloom-filter-false-positive: Test Suite
+import "../bloom_fp.zk"
+
+fn test_bloom_fp():
+    fp := bloom_false_positive_rate(1, 10, 100)
+    if fp < 0.0: sys_exit(1)
+    if fp > 0.5: sys_exit(1)
+    print("test_bloom_fp passed: false positive rate approximation verified")
+
+fn main():
+    test_bloom_fp()
+    print("✓ All tests passed for cl-bloom-filter-false-positive!")

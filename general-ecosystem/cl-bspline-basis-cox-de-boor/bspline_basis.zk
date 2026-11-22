@@ -1,0 +1,23 @@
+// cl-bspline-basis-cox-de-boor: B-Spline Basis Evaluation via Cox-de Boor
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn cox_de_boor_basis(i: int, p: int, u: float, knots: vector[float]) -> float:
+    if p == 0:
+        if u >= knots[i] and u < knots[i + 1]:
+            return 1.0
+        return 0.0
+
+    d1 := knots[i + p] - knots[i]
+    term1 := 0.0
+    if d1 != 0.0:
+        b1 := cox_de_boor_basis(i, p - 1, u, knots)
+        term1 = ((u - knots[i]) / d1) * b1
+
+    d2 := knots[i + p + 1] - knots[i + 1]
+    term2 := 0.0
+    if d2 != 0.0:
+        b2 := cox_de_boor_basis(i + 1, p - 1, u, knots)
+        term2 = ((knots[i + p + 1] - u) / d2) * b2
+
+    return term1 + term2

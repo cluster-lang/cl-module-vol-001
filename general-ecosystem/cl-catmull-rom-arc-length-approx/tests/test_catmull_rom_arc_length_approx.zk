@@ -1,0 +1,18 @@
+// cl-catmull-rom-arc-length-approx: Test Suite
+import "../cr_len.zk"
+
+fn test_cr_len():
+    p0: vector[float] := [0.0, 0.0]
+    p1: vector[float] := [1.0, 0.0]
+    p2: vector[float] := [5.0, 0.0]
+    p3: vector[float] := [6.0, 0.0]
+    // Straight line between p1(1,0) and p2(5,0): length = 4.0
+    l := catmull_rom_arc_length(p0, p1, p2, p3, 10)
+    diff := l - 4.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.001: sys_exit(1)
+    print("test_cr_len passed")
+
+fn main():
+    test_cr_len()
+    print("✓ All tests passed for cl-catmull-rom-arc-length-approx!")

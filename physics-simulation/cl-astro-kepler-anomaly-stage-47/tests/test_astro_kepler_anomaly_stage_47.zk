@@ -1,0 +1,13 @@
+// cl-astro-kepler-anomaly-stage-47: Test Suite
+import "../ast_kp_47.zk"
+
+fn test_run():
+    res := kepler_step_47(0.5, 0.1, 0.4794)
+    diff := res - 25.7532
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-astro-kepler-anomaly-stage-47!")

@@ -1,0 +1,23 @@
+// cl-base85: Ascii85 Block Packing Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn ascii85_pack_u32(b0: int, b1: int, b2: int, b3: int) -> int:
+    return ((b0 & 255) << 24) | ((b1 & 255) << 16) | ((b2 & 255) << 8) | (b3 & 255)
+
+fn ascii85_encode_block(val: int, out: vector[int]):
+    v := val
+    b4 := v % 85
+    v = v / 85
+    b3 := v % 85
+    v = v / 85
+    b2 := v % 85
+    v = v / 85
+    b1 := v % 85
+    v = v / 85
+    b0 := v % 85
+    out.push(b0 + 33)
+    out.push(b1 + 33)
+    out.push(b2 + 33)
+    out.push(b3 + 33)
+    out.push(b4 + 33)

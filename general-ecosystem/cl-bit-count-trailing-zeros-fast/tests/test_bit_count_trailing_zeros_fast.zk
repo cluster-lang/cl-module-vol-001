@@ -1,0 +1,13 @@
+// cl-bit-count-trailing-zeros-fast: Test Suite
+import "../ctz_fast.zk"
+
+fn test_ctz_fast():
+    if count_trailing_zeros64(0) != 64: sys_exit(1)
+    if count_trailing_zeros64(1) != 0: sys_exit(2)
+    if count_trailing_zeros64(8) != 3: sys_exit(3)
+    if count_trailing_zeros64(16) != 4: sys_exit(4)
+    print("test_ctz_fast passed: trailing zero bit counter verified")
+
+fn main():
+    test_ctz_fast()
+    print("✓ All tests passed for cl-bit-count-trailing-zeros-fast!")

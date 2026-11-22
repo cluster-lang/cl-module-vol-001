@@ -1,0 +1,13 @@
+// cl-bloom-filter-intersect-count: Test Suite
+import "../bloom_overlap.zk"
+
+fn test_bloom_overlap():
+    f1 := (1 << 2) | (1 << 5) | (1 << 10)
+    f2 := (1 << 5) | (1 << 10) | (1 << 20)
+    c := bloom_intersection_bits(f1, f2)
+    if c != 2: sys_exit(1)
+    print("test_bloom_overlap passed: 2 overlapping bits verified")
+
+fn main():
+    test_bloom_overlap()
+    print("✓ All tests passed for cl-bloom-filter-intersect-count!")

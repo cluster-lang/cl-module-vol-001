@@ -1,0 +1,14 @@
+// cl-bvh-leaf-sort: 16-bit 2D Morton Code Generator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn part1by1(x_in: int) -> int:
+    x := x_in & 65535
+    x = (x | (x << 8)) & 16711935 // 0x00FF00FF
+    x = (x | (x << 4)) & 252645135 // 0x0F0F0F0F
+    x = (x | (x << 2)) & 858993459 // 0x33333333
+    x = (x | (x << 1)) & 1431655765 // 0x55555555
+    return x
+
+fn morton2d(x: int, y: int) -> int:
+    return (part1by1(y) << 1) | part1by1(x)

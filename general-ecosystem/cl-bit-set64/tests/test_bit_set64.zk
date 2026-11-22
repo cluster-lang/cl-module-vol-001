@@ -1,0 +1,16 @@
+// cl-bit-set64: Test Suite
+import "../bitset64.zk"
+
+fn test_bitset64():
+    v := 0
+    v = bitset64_set(v, 3) // 8
+    v = bitset64_set(v, 5) // 32
+    if bitset64_test(v, 3) != 1: sys_exit(1)
+    if bitset64_test(v, 4) != 0: sys_exit(1)
+    if bitset64_popcount(v) != 2: sys_exit(1)
+    if bitset64_popcount(255) != 8: sys_exit(1)
+    print("test_bitset64 passed: 64-bit bitset operations verified")
+
+fn main():
+    test_bitset64()
+    print("✓ All tests passed for cl-bit-set64!")

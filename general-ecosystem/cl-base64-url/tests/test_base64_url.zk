@@ -1,0 +1,12 @@
+// cl-base64-url: Test Suite
+import "../b64url.zk"
+
+fn test_b64url():
+    // "Man" -> "TWFu"
+    enc := base64url_encode("Man")
+    if enc != "TWFu": sys_exit(1)
+    print("test_b64url passed: RFC 4648 Base64URL safe encoding verified")
+
+fn main():
+    test_b64url()
+    print("✓ All tests passed for cl-base64-url!")

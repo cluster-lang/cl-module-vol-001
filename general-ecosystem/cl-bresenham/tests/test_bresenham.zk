@@ -1,0 +1,16 @@
+// cl-bresenham: Test Suite
+import "../bresenham.zk"
+
+fn test_bresenham():
+    pts := bresenham_line(0, 0, 5, 2)
+    // Points count: 6 points -> 12 ints
+    if pts.len() != 12: sys_exit(1)
+    if pts[0] != 0: sys_exit(1)
+    if pts[1] != 0: sys_exit(1)
+    if pts[10] != 5: sys_exit(1)
+    if pts[11] != 2: sys_exit(1)
+    print("test_bresenham passed: 2D integer line rasterization verified")
+
+fn main():
+    test_bresenham()
+    print("✓ All tests passed for cl-bresenham!")

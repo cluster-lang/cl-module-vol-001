@@ -1,0 +1,15 @@
+// cl-binary-indexed-tree2d: Test Suite
+import "../bit2d.zk"
+
+fn test_bit2d():
+    t := bit2d_new(4, 4)
+    bit2d_add(t, 4, 4, 1, 1, 5)
+    bit2d_add(t, 4, 4, 2, 2, 7)
+    if bit2d_query(t, 4, 1, 1) != 5: sys_exit(1)
+    if bit2d_query(t, 4, 2, 2) != 12: sys_exit(1) // 5 + 7
+    if bit2d_query(t, 4, 4, 4) != 12: sys_exit(1)
+    print("test_bit2d passed: 2D Fenwick tree prefix sum verified")
+
+fn main():
+    test_bit2d()
+    print("✓ All tests passed for cl-binary-indexed-tree2d!")

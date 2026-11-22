@@ -1,0 +1,12 @@
+// cl-bit-rotate-left32-fast: Fast 32-bit Circular Left Bit Rotation Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn rotl32_fast(x: int, r: int) -> int:
+    mask32 := 4294967295
+    val := x & mask32
+    shift := r & 31
+    if shift == 0: return val
+    left := (val << shift) & mask32
+    right := val >> (32 - shift)
+    return left | right

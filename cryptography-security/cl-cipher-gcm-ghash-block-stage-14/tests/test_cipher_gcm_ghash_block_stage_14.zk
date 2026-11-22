@@ -1,0 +1,11 @@
+// cl-cipher-gcm-ghash-block-stage-14: Test Suite
+import "../cph_gh_14.zk"
+
+fn test_run():
+    res := ghash_add_14(112233, 445566)
+    if res != 490021: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cipher-gcm-ghash-block-stage-14!")

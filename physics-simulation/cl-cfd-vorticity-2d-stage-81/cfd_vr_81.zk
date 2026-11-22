@@ -1,0 +1,6 @@
+// cl-cfd-vorticity-2d-stage-81: CFD 2D Curl Vorticity Field Stage 81
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn vorticity_2d_81(dv_dx: float, du_dy: float) -> float:
+    return (dv_dx - du_dy) * 81.0

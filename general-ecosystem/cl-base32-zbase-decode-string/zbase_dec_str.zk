@@ -1,0 +1,49 @@
+// cl-base32-zbase-decode-string: Decode z-base-32 String to 5-bit Symbols
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn zbase_char_to_val(c: int) -> int:
+    // 'ybndrfg8ejkmcpqxot1uwisza345h769'
+    if c == 121: return 0  // y
+    if c == 98:  return 1  // b
+    if c == 110: return 2  // n
+    if c == 100: return 3  // d
+    if c == 114: return 4  // r
+    if c == 102: return 5  // f
+    if c == 103: return 6  // g
+    if c == 56:  return 7  // 8
+    if c == 101: return 8  // e
+    if c == 106: return 9  // j
+    if c == 107: return 10 // k
+    if c == 109: return 11 // m
+    if c == 99:  return 12 // c
+    if c == 112: return 13 // p
+    if c == 113: return 14 // q
+    if c == 120: return 15 // x
+    if c == 111: return 16 // o
+    if c == 116: return 17 // t
+    if c == 49:  return 18 // 1
+    if c == 117: return 19 // u
+    if c == 119: return 20 // w
+    if c == 105: return 21 // i
+    if c == 115: return 22 // s
+    if c == 122: return 23 // z
+    if c == 97:  return 24 // a
+    if c == 51:  return 25 // 3
+    if c == 52:  return 26 // 4
+    if c == 53:  return 27 // 5
+    if c == 104: return 28 // h
+    if c == 55:  return 29 // 7
+    if c == 54:  return 30 // 6
+    if c == 57:  return 31 // 9
+    return 0 - 1
+
+fn zbase32_decode_indices(chars: vector[int]) -> vector[int]:
+    out: vector[int] := []
+    n := chars.len()
+    i := 0
+    while i < n:
+        v := zbase_char_to_val(chars[i])
+        out.push(v)
+        i = i + 1
+    return out

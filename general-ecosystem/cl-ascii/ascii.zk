@@ -1,0 +1,20 @@
+// cl-ascii: Pure Cluster ASCII Character Predicates & Case Conversion
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn is_alpha(b: int) -> bool:
+    return (b >= 65 and b <= 90) or (b >= 97 and b <= 122)
+
+fn is_digit(b: int) -> bool:
+    return b >= 48 and b <= 57
+
+fn is_alnum(b: int) -> bool:
+    return is_alpha(b) or is_digit(b)
+
+fn to_upper(b: int) -> int:
+    if b >= 97 and b <= 122: return b - 32
+    return b
+
+fn to_lower(b: int) -> int:
+    if b >= 65 and b <= 90: return b + 32
+    return b

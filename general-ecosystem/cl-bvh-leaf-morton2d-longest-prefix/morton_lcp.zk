@@ -1,0 +1,29 @@
+// cl-bvh-leaf-morton2d-longest-prefix: Morton Code Longest Common Prefix
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn clz32(val_in: int) -> int:
+    mask32 := 4294967295
+    x := val_in & mask32
+    if x == 0:
+        return 32
+    n := 0
+    if (x & 4294901760) == 0:
+        n = n + 16
+        x = (x << 16) & mask32
+    if (x & 4278190080) == 0:
+        n = n + 8
+        x = (x << 8) & mask32
+    if (x & 4026531840) == 0:
+        n = n + 4
+        x = (x << 4) & mask32
+    if (x & 3221225472) == 0:
+        n = n + 2
+        x = (x << 2) & mask32
+    if (x & 2147483648) == 0:
+        n = n + 1
+    return n
+
+fn morton2d_longest_prefix(code_a: int, code_b: int) -> int:
+    diff := code_a ^ code_b
+    return clz32(diff)

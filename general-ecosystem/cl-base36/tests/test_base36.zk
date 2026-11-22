@@ -1,0 +1,11 @@
+// cl-base36: Test Suite
+import "../base36.zk"
+
+fn test_base36():
+    if base36_encode(0) != "0": sys_exit(1)
+    if base36_encode(12345) != "9ix": sys_exit(1)
+    print("test_base36 passed: Base36 alphanumeric encoding verified")
+
+fn main():
+    test_base36()
+    print("✓ All tests passed for cl-base36!")

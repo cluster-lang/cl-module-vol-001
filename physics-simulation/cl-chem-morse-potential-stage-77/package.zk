@@ -1,0 +1,10 @@
+// cl-chem-morse-potential-stage-77 Package Manifest
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+name := "cl-chem-morse-potential-stage-77"
+version := "0.1.0"
+description := "Morse Interatomic Potential Approximation Stage 77"
+main := "ch_mp_77.zk"
+license := "CCFL-2.0"
+author := "zk-mohammad <ZaidKhan-alamgir@proton.me>"

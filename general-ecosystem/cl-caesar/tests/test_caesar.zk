@@ -1,0 +1,14 @@
+// cl-caesar: Test Suite
+import "../caesar.zk"
+
+fn test_caesar():
+    msg := "Hello, World!"
+    enc := caesar_encrypt(msg, 3)
+    if enc != "Khoor, Zruog!": sys_exit(1)
+    dec := caesar_decrypt(enc, 3)
+    if dec != msg: sys_exit(1)
+    print("test_caesar passed: Caesar shift verified")
+
+fn main():
+    test_caesar()
+    print("✓ All tests passed for cl-caesar!")

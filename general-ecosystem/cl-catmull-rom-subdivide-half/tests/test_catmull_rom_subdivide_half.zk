@@ -1,0 +1,12 @@
+// cl-catmull-rom-subdivide-half: Test Suite
+import "../cr_sub.zk"
+
+fn test_cr_sub():
+    m := catmull_rom_midpoint2d(0.0, 0.0, 10.0, 0.0, 20.0, 0.0, 30.0, 0.0)
+    if m[0] != 15.0: sys_exit(1)
+    if m[1] != 0.0: sys_exit(2)
+    print("test_cr_sub passed: Catmull-Rom midpoint (15, 0) verified")
+
+fn main():
+    test_cr_sub()
+    print("✓ All tests passed for cl-catmull-rom-subdivide-half!")

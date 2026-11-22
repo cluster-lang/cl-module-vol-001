@@ -1,0 +1,6 @@
+// cl-bs4 Package Manifest
+name := "cl-bs4"
+version := "0.1.0"
+description := "HTML/XML Parser & DOM Query Engine (Python BeautifulSoup4 parity)"
+main := "bs4.zk"
+license := "MIT"

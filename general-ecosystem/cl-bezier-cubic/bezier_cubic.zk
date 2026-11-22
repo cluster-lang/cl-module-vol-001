@@ -1,0 +1,20 @@
+// cl-bezier-cubic: Cubic Bézier Curve Fixed-Point Evaluator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Fixed-point scaled by 1000
+fn bezier_cubic_1d(p0: int, p1: int, p2: int, p3: int, t: int) -> int:
+    // t is 0..1000
+    u := 1000 - t
+    u2 := (u * u) / 1000
+    u3 := (u2 * u) / 1000
+
+    t2 := (t * t) / 1000
+    t3 := (t2 * t) / 1000
+
+    term0 := (u3 * p0) / 1000
+    term1 := (3 * u2 * t * p1) / 1000000
+    term2 := (3 * u * t2 * p2) / 1000000
+    term3 := (t3 * p3) / 1000
+
+    return term0 + term1 + term2 + term3

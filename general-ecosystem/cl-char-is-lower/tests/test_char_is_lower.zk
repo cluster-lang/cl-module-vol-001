@@ -1,0 +1,10 @@
+// cl-char-is-lower: Test Suite
+import "../c_lower.zk"
+
+fn test_char():
+    if char_is_lower(97) != 1: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_char()
+    print("✓ All tests passed for cl-char-is-lower!")

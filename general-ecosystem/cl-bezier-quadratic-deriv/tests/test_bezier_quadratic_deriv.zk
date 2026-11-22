@@ -1,0 +1,13 @@
+// cl-bezier-quadratic-deriv: Test Suite
+import "../bezier_d1.zk"
+
+fn test_bezier_d1():
+    v := bezier_quad_deriv(0.0, 5.0, 10.0, 0.5)
+    diff := v - 10.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.001: sys_exit(1)
+    print("test_bezier_d1 passed: constant velocity 10.0 verified")
+
+fn main():
+    test_bezier_d1()
+    print("✓ All tests passed for cl-bezier-quadratic-deriv!")

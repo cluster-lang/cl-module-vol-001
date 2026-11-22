@@ -1,0 +1,14 @@
+// cl-bit-rotate-left32: 32-bit Integer Rotate Left & Right
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn rotl32(x: int, b: int) -> int:
+    mask32 := 4294967295
+    val := x & mask32
+    shift := b % 32
+    left := (val << shift) & mask32
+    right := (val >> (32 - shift)) & mask32
+    return left | right
+
+fn rotr32(x: int, b: int) -> int:
+    return rotl32(x, 32 - (b % 32))

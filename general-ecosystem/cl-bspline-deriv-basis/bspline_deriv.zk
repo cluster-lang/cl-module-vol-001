@@ -1,0 +1,13 @@
+// cl-bspline-deriv-basis: B-Spline Basis Derivative Calculator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bspline_basis_deriv(p: int, n1: float, d1: float, n2: float, d2: float) -> float:
+    // N'_{i, p} = (p / d1) * N_{i, p-1} - (p / d2) * N_{i+1, p-1}
+    term1 := 0.0
+    if d1 != 0.0:
+        term1 = (float(p) / d1) * n1
+    term2 := 0.0
+    if d2 != 0.0:
+        term2 = (float(p) / d2) * n2
+    return term1 - term2

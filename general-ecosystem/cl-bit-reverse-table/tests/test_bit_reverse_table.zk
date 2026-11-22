@@ -1,0 +1,13 @@
+// cl-bit-reverse-table: Test Suite
+import "../bit_rev.zk"
+
+fn test_bit_rev():
+    // 0b10000000 (128) reversed is 0b00000001 (1)
+    if reverse_byte(128) != 1: sys_exit(1)
+    // 0b11110000 (240) reversed is 0b00001111 (15)
+    if reverse_byte(240) != 15: sys_exit(1)
+    print("test_bit_rev passed: 8-bit reversal verified")
+
+fn main():
+    test_bit_rev()
+    print("✓ All tests passed for cl-bit-reverse-table!")

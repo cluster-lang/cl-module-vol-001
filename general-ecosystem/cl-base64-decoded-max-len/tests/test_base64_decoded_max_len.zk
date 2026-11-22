@@ -1,0 +1,11 @@
+// cl-base64-decoded-max-len: Test Suite
+import "../b64_dlen.zk"
+
+fn test_b64_dlen():
+    if base64_decoded_max_length(4) != 3: sys_exit(1)
+    if base64_decoded_max_length(8) != 6: sys_exit(1)
+    print("test_b64_dlen passed")
+
+fn main():
+    test_b64_dlen()
+    print("✓ All tests passed for cl-base64-decoded-max-len!")

@@ -1,0 +1,13 @@
+// cl-bit-span: Test Suite
+import "../bit_span.zk"
+
+fn test_bit_span():
+    w := bit_span_insert(0, 7, 4, 3) // insert 7 (binary 111) at bit 4
+    if w != 112: sys_exit(1) // 7 << 4 = 112
+    ext := bit_span_extract(w, 4, 3)
+    if ext != 7: sys_exit(1)
+    print("test_bit_span passed: bit extraction and insertion verified")
+
+fn main():
+    test_bit_span()
+    print("✓ All tests passed for cl-bit-span!")

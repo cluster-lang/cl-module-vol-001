@@ -1,0 +1,13 @@
+// cl-bezier-cubic-eval-point: Test Suite
+import "../bez_eval.zk"
+
+fn test_bez_eval():
+    pt := bezier_eval3d(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 0.5)
+    if pt[0] != 5.0: sys_exit(1)
+    if pt[1] != 5.0: sys_exit(2)
+    if pt[2] != 5.0: sys_exit(3)
+    print("test_bez_eval passed: 3D cubic Bezier midpoint verified")
+
+fn main():
+    test_bez_eval()
+    print("✓ All tests passed for cl-bezier-cubic-eval-point!")

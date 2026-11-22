@@ -1,0 +1,11 @@
+// cl-bloom-filter-intersect-ops: Test Suite
+import "../bloom_isect.zk"
+
+fn test_bloom_isect():
+    f := bloom_intersect_words(3, 2)
+    if f != 2: sys_exit(1)
+    print("test_bloom_isect passed: bitwise intersection verified")
+
+fn main():
+    test_bloom_isect()
+    print("✓ All tests passed for cl-bloom-filter-intersect-ops!")

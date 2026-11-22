@@ -1,0 +1,18 @@
+// cl-catmull-rom: Catmull-Rom Spline Interpolator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Fixed-point scaled by 1000
+fn catmull_rom_1d(p0: int, p1: int, p2: int, p3: int, t: int) -> int:
+    // t: 0..1000
+    // Q(t) = 0.5 * ( (2*P1) + (-P0 + P2)*t + (2*P0 - 5*P1 + 4*P2 - P3)*t^2 + (-P0 + 3*P1 - 3*P2 + P3)*t^3 )
+    t2 := (t * t) / 1000
+    t3 := (t2 * t) / 1000
+
+    c0 := 2 * p1
+    c1 := (0 - p0) + p2
+    c2 := ((2 * p0) - (5 * p1)) + ((4 * p2) - p3)
+    c3 := ((0 - p0) + (3 * p1)) - ((3 * p2) - p3)
+
+    num := (c0 * 1000) + (c1 * t) + ((c2 * t2) / 1000) + ((c3 * t3) / 1000)
+    return num / 2000

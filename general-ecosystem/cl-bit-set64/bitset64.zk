@@ -1,0 +1,20 @@
+// cl-bit-set64: 64-bit Bitset Operations
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bitset64_set(val: int, bit: int) -> int:
+    return val | (1 << bit)
+
+fn bitset64_test(val: int, bit: int) -> int:
+    return (val >> bit) & 1
+
+fn bitset64_popcount(val: int) -> int:
+    count := 0
+    v := val
+    i := 0
+    while i < 64:
+        if (v & 1) != 0:
+            count = count + 1
+        v = v >> 1
+        i = i + 1
+    return count

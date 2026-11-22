@@ -1,0 +1,17 @@
+// cl-bvh-aabb3d-intersection: Test Suite
+import "../bvh_isect.zk"
+
+fn test_bvh_isect():
+    min_a: vector[float] := [0.0, 0.0, 0.0]
+    max_a: vector[float] := [10.0, 10.0, 10.0]
+    min_b: vector[float] := [5.0, 5.0, 5.0]
+    max_b: vector[float] := [15.0, 15.0, 15.0]
+    if aabb3d_overlap(min_a, max_a, min_b, max_b) != 1: sys_exit(1)
+    min_c: vector[float] := [12.0, 0.0, 0.0]
+    max_c: vector[float] := [15.0, 10.0, 10.0]
+    if aabb3d_overlap(min_a, max_a, min_c, max_c) != 0: sys_exit(1)
+    print("test_bvh_isect passed: 3D AABB overlap verified")
+
+fn main():
+    test_bvh_isect()
+    print("✓ All tests passed for cl-bvh-aabb3d-intersection!")

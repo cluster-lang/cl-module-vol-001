@@ -1,0 +1,6 @@
+// cl-atmo-coriolis-parameter-stage-68: Coriolis Earth Planetary Acceleration Parameter Stage 68
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn coriolis_param_68(omega: float, sin_lat: float) -> float:
+    return (2.0 * omega * sin_lat) * 68.0

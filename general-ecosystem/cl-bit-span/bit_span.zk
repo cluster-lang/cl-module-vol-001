@@ -1,0 +1,12 @@
+// cl-bit-span: Arbitrary Bit-Range Extraction and Insertion in 64-bit Word
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bit_span_extract(val: int, pos: int, len_bits: int) -> int:
+    mask := (1 << len_bits) - 1
+    return (val >> pos) & mask
+
+fn bit_span_insert(val: int, subval: int, pos: int, len_bits: int) -> int:
+    mask := (1 << len_bits) - 1
+    cleared := val & (~(mask << pos))
+    return cleared | ((subval & mask) << pos)

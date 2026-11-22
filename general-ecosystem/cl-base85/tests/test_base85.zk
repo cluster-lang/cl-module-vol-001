@@ -1,0 +1,14 @@
+// cl-base85: Test Suite
+import "../base85.zk"
+
+fn test_b85():
+    u := ascii85_pack_u32(0, 0, 0, 0)
+    out: vector[int] := []
+    ascii85_encode_block(u, out)
+    if out.len() != 5: sys_exit(1)
+    if out[0] != 33: sys_exit(1) // '!'
+    print("test_b85 passed: zero block encoded to '!!!!!'")
+
+fn main():
+    test_b85()
+    print("✓ All tests passed for cl-base85!")

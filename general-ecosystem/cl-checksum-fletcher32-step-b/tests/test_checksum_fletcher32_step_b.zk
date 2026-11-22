@@ -1,0 +1,11 @@
+// cl-checksum-fletcher32-step-b: Test Suite
+import "../f32_b.zk"
+
+fn test_run():
+    res := fletcher32_step_b(100, 300)
+    if res != 400: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-checksum-fletcher32-step-b!")

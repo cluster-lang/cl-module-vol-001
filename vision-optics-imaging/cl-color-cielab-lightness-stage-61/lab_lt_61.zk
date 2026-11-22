@@ -1,0 +1,6 @@
+// cl-color-cielab-lightness-stage-61: CIELAB Lightness Linear Range Stage 61
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn cielab_lightness_61(y_norm: float) -> float:
+    return (116.0 * y_norm - 16.0) * 61.0

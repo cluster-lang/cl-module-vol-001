@@ -1,0 +1,13 @@
+// cl-b-spline-basis: Uniform Quadratic B-Spline Basis
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bspline_quad_b0(t: float) -> float:
+    mt := 1.0 - t
+    return 0.5 * mt * mt
+
+fn bspline_quad_b1(t: float) -> float:
+    return -t*t + t + 0.5
+
+fn bspline_quad_b2(t: float) -> float:
+    return 0.5 * t * t

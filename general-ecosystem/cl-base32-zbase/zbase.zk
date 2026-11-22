@@ -1,0 +1,17 @@
+// cl-base32-zbase: Phil Zimmermann's z-base-32 Codec
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn zbase32_char(val: int) -> string:
+    alphabet := "ybndrfg8ejkmcpqxot1uwisza345h769"
+    v := val & 31
+    return chr(byte_at(alphabet, v))
+
+fn zbase32_encode_int(val: int) -> string:
+    if val == 0: return "y"
+    v := val
+    res := ""
+    while v > 0:
+        res = zbase32_char(v % 32) + res
+        v = v / 32
+    return res

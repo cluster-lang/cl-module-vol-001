@@ -1,0 +1,16 @@
+// cl-bit-count-ones-fast: 32-bit Fast Hamming Weight / Population Count
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn popcount32(val: int) -> int:
+    mask32 := 4294967295
+    x := val & mask32
+    m1 := 1431655765 // 0x55555555
+    m2 := 858993459  // 0x33333333
+    m4 := 252645135  // 0x0F0F0F0F
+    x = (x - ((x >> 1) & m1)) & mask32
+    x = (((x & m2) + ((x >> 2) & m2))) & mask32
+    x = (((x + (x >> 4)) & m4)) & mask32
+    x = (x + (x >> 8)) & mask32
+    x = (x + (x >> 16)) & mask32
+    return x & 63

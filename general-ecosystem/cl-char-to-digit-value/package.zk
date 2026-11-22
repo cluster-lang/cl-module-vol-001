@@ -1,0 +1,10 @@
+// cl-char-to-digit-value Package Manifest
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+name := "cl-char-to-digit-value"
+version := "0.1.0"
+description := "Convert ASCII Digit Character [0-9] to Numeric Integer"
+main := "c_dval.zk"
+license := "CCFL-2.0"
+author := "zk-mohammad <ZaidKhan-alamgir@proton.me>"

@@ -1,0 +1,16 @@
+// cl-bit-stream: Bit-Level Sequential Stream Codec
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bitstream_pack2(val1: int, bits1: int, val2: int, bits2: int) -> int:
+    mask1 := (1 << bits1) - 1
+    mask2 := (1 << bits2) - 1
+    return ((val1 & mask1) << bits2) | (val2 & mask2)
+
+fn bitstream_unpack_first(packed: int, bits1: int, bits2: int) -> int:
+    mask1 := (1 << bits1) - 1
+    return (packed >> bits2) & mask1
+
+fn bitstream_unpack_second(packed: int, bits2: int) -> int:
+    mask2 := (1 << bits2) - 1
+    return packed & mask2

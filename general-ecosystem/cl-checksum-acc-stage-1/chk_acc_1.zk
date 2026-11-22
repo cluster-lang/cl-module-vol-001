@@ -1,0 +1,6 @@
+// cl-checksum-acc-stage-1: Checksum Accumulator Stage 1
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn chk_acc_stage_1(acc: int, b: int) -> int:
+    return (acc + (b & 255) * 1) & 65535

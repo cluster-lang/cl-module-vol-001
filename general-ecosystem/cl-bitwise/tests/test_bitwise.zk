@@ -1,0 +1,13 @@
+// cl-bitwise: Test Suite
+import "../bitwise.zk"
+
+fn test_bitwise():
+    if not is_power_of_two(64): sys_exit(1)
+    if is_power_of_two(65): sys_exit(1)
+    if popcount(7) != 3: sys_exit(1)
+    if count_trailing_zeros(8) != 3: sys_exit(1)
+    print("test_bitwise passed: bit hacks verified")
+
+fn main():
+    test_bitwise()
+    print("✓ All tests passed for cl-bitwise!")

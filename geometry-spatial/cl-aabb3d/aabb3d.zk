@@ -1,0 +1,24 @@
+// cl-aabb3d: Pure Cluster 3D Axis-Aligned Bounding Box
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+model AABB3D:
+    min_x: int
+    min_y: int
+    min_z: int
+    max_x: int
+    max_y: int
+    max_z: int
+
+fn aabb3d_intersects(a: AABB3D, b: AABB3D) -> bool:
+    if a.max_x < b.min_x or a.min_x > b.max_x: return false
+    if a.max_y < b.min_y or a.min_y > b.max_y: return false
+    if a.max_z < b.min_z or a.min_z > b.max_z: return false
+    return true
+
+fn aabb3d_volume(a: AABB3D) -> int:
+    dx := a.max_x - a.min_x
+    dy := a.max_y - a.min_y
+    dz := a.max_z - a.min_z
+    if dx < 0 or dy < 0 or dz < 0: return 0
+    return dx * dy * dz

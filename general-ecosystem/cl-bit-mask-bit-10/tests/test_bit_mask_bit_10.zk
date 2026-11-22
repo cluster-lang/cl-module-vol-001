@@ -1,0 +1,11 @@
+// cl-bit-mask-bit-10: Test Suite
+import "../bmask_10.zk"
+
+fn test_run():
+    res := get_bitmask_10()
+    if res != 1024: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-bit-mask-bit-10!")

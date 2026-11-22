@@ -1,0 +1,11 @@
+// cl-checksum-luhn-double-digit: Test Suite
+import "../luhn_d.zk"
+
+fn test_run():
+    res := luhn_double_digit(7)
+    if res != 5: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-checksum-luhn-double-digit!")

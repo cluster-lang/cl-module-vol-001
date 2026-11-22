@@ -1,0 +1,7 @@
+// cl-base58-val-to-char: Integer Value (0..8) to Base58 Character ('1'..'9')
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn base58_val_to_char(val: int) -> int:
+    if val >= 0 and val <= 8: return 49 + val
+    return 49

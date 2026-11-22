@@ -1,0 +1,13 @@
+// cl-color-d50-white-bias-stage-48: Test Suite
+import "../d50_bl_48.zk"
+
+fn test_run():
+    res := d50_white_balance_48(10.0)
+    diff := res - 396.1008
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-color-d50-white-bias-stage-48!")

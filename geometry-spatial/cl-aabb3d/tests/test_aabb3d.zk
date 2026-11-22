@@ -1,0 +1,13 @@
+// cl-aabb3d: Test Suite
+import "../aabb3d.zk"
+
+fn test_aabb3d():
+    b1 := AABB3D(0, 0, 0, 10, 10, 10)
+    b2 := AABB3D(5, 5, 5, 15, 15, 15)
+    if not aabb3d_intersects(b1, b2): sys_exit(1)
+    if aabb3d_volume(b1) != 1000: sys_exit(1)
+    print("test_aabb3d passed: 3D spatial bounding verified")
+
+fn main():
+    test_aabb3d()
+    print("✓ All tests passed for cl-aabb3d!")

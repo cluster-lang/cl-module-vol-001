@@ -1,0 +1,14 @@
+// cl-bezier-quadratic-bounding-box: Exact 1D Quadratic Extrema
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Returns extremum t for B(t) = (1-t)^2*p0 + 2*t*(1-t)*p1 + t^2*p2
+fn bezier_quad_extremum_t(p0: float, p1: float, p2: float) -> float:
+    denom := (p0 - (2.0 * p1)) + p2
+    abs_d := denom
+    if denom < 0.0: abs_d = -denom
+    if abs_d < 0.000001: return -1.0
+    t := (p0 - p1) / denom
+    if t < 0.0: return -1.0
+    if t > 1.0: return -1.0
+    return t

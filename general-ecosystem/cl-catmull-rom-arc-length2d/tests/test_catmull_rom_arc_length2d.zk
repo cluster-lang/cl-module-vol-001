@@ -1,0 +1,13 @@
+// cl-catmull-rom-arc-length2d: Test Suite
+import "../cr_len.zk"
+
+fn test_cr_len():
+    l := catmull_rom_length4(0.0, 0.0, 10.0, 0.0, 20.0, 0.0, 30.0, 0.0)
+    diff := l - 10.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.01: sys_exit(1)
+    print("test_cr_len passed: segment length 10.0 verified")
+
+fn main():
+    test_cr_len()
+    print("✓ All tests passed for cl-catmull-rom-arc-length2d!")

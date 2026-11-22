@@ -1,0 +1,14 @@
+// cl-bezier-cubic-deriv: Test Suite
+import "../bezier_d1c.zk"
+
+fn test_bezier_d1c():
+    // Linear curve p0=0, p1=1, p2=2, p3=3 -> constant derivative 3.0
+    v := bezier_cubic_deriv(0.0, 1.0, 2.0, 3.0, 0.5)
+    diff := v - 3.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.001: sys_exit(1)
+    print("test_bezier_d1c passed: constant derivative 3.0 verified")
+
+fn main():
+    test_bezier_d1c()
+    print("✓ All tests passed for cl-bezier-cubic-deriv!")

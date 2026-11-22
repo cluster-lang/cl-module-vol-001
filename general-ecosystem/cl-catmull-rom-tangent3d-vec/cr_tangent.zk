@@ -1,0 +1,11 @@
+// cl-catmull-rom-tangent3d-vec: 3D Catmull-Rom Tangent Vector Evaluator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn catmull_rom_tangent3d(p0x: float, p0y: float, p0z: float, p2x: float, p2y: float, p2z: float, tension: float) -> vector[float]:
+    factor := (1.0 - tension) * 0.5
+    tx := factor * (p2x - p0x)
+    ty := factor * (p2y - p0y)
+    tz := factor * (p2z - p0z)
+    res: vector[float] := [tx, ty, tz]
+    return res

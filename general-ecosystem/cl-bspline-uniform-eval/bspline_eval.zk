@@ -1,0 +1,10 @@
+// cl-bspline-uniform-eval: Uniform Quadratic B-Spline Evaluator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bspline_quad_eval(p0: float, p1: float, p2: float, t: float) -> float:
+    omt := 1.0 - t
+    w0 := 0.5 * omt * omt
+    w1 := 0.5 + t * omt
+    w2 := 0.5 * t * t
+    return w0 * p0 + w1 * p1 + w2 * p2

@@ -1,0 +1,18 @@
+// cl-base16: Test Suite
+import "../base16.zk"
+
+fn test_base16():
+    raw: vector[int] := [0, 15, 255, 128]
+    hex_str := base16_encode(raw)
+    if hex_str != "000fff80":
+        print("Base16 encode mismatch! Got: " + hex_str)
+        sys_exit(1)
+    dec := base16_decode(hex_str)
+    if dec.len() != 4 or dec[2] != 255:
+        print("Base16 decode mismatch!")
+        sys_exit(1)
+    print("test_base16 passed: RFC 4648 hex codec verified")
+
+fn main():
+    test_base16()
+    print("✓ All tests passed for cl-base16!")

@@ -1,0 +1,12 @@
+// cl-clamp2d: Test Suite
+import "../clamp2d.zk"
+
+fn test_c2d():
+    p := Point2D(150, -50)
+    clamped := clamp2d(p, 0, 0, 100, 100)
+    if clamped.x != 100 or clamped.y != 0: sys_exit(1)
+    print("test_c2d passed: 2D clamping verified")
+
+fn main():
+    test_c2d()
+    print("✓ All tests passed for cl-clamp2d!")

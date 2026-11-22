@@ -1,0 +1,12 @@
+// cl-bit-parity-8bit: 8-Bit Even Parity Check (1 if odd number of 1s)
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn parity_u8(b: int) -> int:
+    val := b & 255
+    c := 0
+    i := 0
+    while i < 8:
+        if (val & (1 << i)) != 0: c = c + 1
+        i = i + 1
+    return c % 2

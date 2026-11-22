@@ -1,0 +1,12 @@
+// cl-bloom-filter-clear-bits: Test Suite
+import "../bf_clear.zk"
+
+fn test_bf_clear():
+    bits: vector[int] := [123, 456, 789]
+    bloom_clear(bits)
+    if bits[0] != 0 or bits[1] != 0 or bits[2] != 0: sys_exit(1)
+    print("test_bf_clear passed")
+
+fn main():
+    test_bf_clear()
+    print("✓ All tests passed for cl-bloom-filter-clear-bits!")

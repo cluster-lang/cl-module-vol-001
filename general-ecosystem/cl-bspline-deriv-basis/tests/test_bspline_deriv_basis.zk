@@ -1,0 +1,12 @@
+// cl-bspline-deriv-basis: Test Suite
+import "../bspline_deriv.zk"
+
+fn test_bspline_deriv():
+    // Linear basis hat derivative: p=1, d1=1, n1=1, d2=1, n2=0 -> 1.0
+    d := bspline_basis_deriv(1, 1.0, 1.0, 0.0, 1.0)
+    if d != 1.0: sys_exit(1)
+    print("test_bspline_deriv passed: basis derivative verified")
+
+fn main():
+    test_bspline_deriv()
+    print("✓ All tests passed for cl-bspline-deriv-basis!")

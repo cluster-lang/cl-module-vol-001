@@ -1,0 +1,47 @@
+// cl-base64: Pure Cluster RFC 4648 Base64 Codec Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn b64_char(v: int) -> string:
+    idx := v & 63
+    if idx < 26: return chr(idx + 65)
+    if idx < 52: return chr(idx - 26 + 97)
+    if idx < 62: return chr(idx - 52 + 48)
+    if idx == 62: return "+"
+    return "/"
+
+fn base64_encode(bytes: vector[int]) -> string:
+    res := ""
+    blen := bytes.len()
+    i := 0
+    while i < blen:
+        chunk_len := blen - i
+        if chunk_len > 3: chunk_len = 3
+        b0 := bytes[i] & 255
+        b1 := 0; b2 := 0
+        if chunk_len > 1: b1 = bytes[i + 1] & 255
+        if chunk_len > 2: b2 = bytes[i + 2] & 255
+
+        c0 := (b0 >> 2) & 63
+        c1 := ((b0 & 3) << 4) | ((b1 >> 4) & 15)
+        c2 := ((b1 & 15) << 2) | ((b2 >> 6) & 3)
+        c3 := b2 & 63
+
+        res = res + b64_char(c0) + b64_char(c1)
+        if chunk_len == 1:
+            res = res + "=="
+        elif chunk_len == 2:
+            res = res + b64_char(c2) + "="
+        else:
+            res = res + b64_char(c2) + b64_char(c3)
+        i = i + 3
+    return res
+
+fn base64_encode_str(s: string) -> string:
+    bytes: vector[int] := []
+    i := 0
+    slen := len(s)
+    while i < slen:
+        bytes.push(byte_at(s, i))
+        i = i + 1
+    return base64_encode(bytes)

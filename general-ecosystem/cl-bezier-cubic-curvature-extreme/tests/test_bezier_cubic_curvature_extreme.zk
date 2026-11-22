@@ -1,0 +1,11 @@
+// cl-bezier-cubic-curvature-extreme: Test Suite
+import "../bez_curv.zk"
+
+fn test_bez_curv():
+    if bezier_extreme_curvature(0.0, 0.0, 1.0, 0.0, 2.0, 0.0, 3.0, 0.0) != 0.0: sys_exit(1)
+    if bezier_extreme_curvature(0.0, 0.0, 1.0, 2.0, 2.0, -2.0, 3.0, 0.0) != 1.0: sys_exit(2)
+    print("test_bez_curv passed: curvature extreme estimator verified")
+
+fn main():
+    test_bez_curv()
+    print("✓ All tests passed for cl-bezier-cubic-curvature-extreme!")

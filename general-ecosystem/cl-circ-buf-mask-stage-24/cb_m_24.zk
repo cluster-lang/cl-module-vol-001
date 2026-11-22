@@ -1,0 +1,6 @@
+// cl-circ-buf-mask-stage-24: Circular Buffer Mask for Capacity 64 Stage 24
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn circ_buf_wrap_24(idx: int) -> int:
+    return idx & 63

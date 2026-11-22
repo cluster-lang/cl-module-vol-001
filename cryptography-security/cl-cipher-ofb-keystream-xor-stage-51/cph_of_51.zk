@@ -1,0 +1,6 @@
+// cl-cipher-ofb-keystream-xor-stage-51: OFB Keystream Mask XOR Stage 51
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn ofb_xor_51(pt: int, ks: int) -> int:
+    return (pt ^ ks) + 51

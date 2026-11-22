@@ -1,0 +1,8 @@
+// cl-bezier-quadratic-deriv: Quadratic Bezier Curve Velocity Derivative
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bezier_quad_deriv(p0: float, p1: float, p2: float, t: float) -> float:
+    d0 := p1 - p0
+    d1 := p2 - p1
+    return 2.0 * (1.0 - t) * d0 + 2.0 * t * d1

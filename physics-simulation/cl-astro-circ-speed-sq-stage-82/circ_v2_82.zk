@@ -1,0 +1,7 @@
+// cl-astro-circ-speed-sq-stage-82: Circular Orbital Speed Squared Stage 82
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn circ_orbital_speed_sq_82(mu: float, r: float) -> float:
+    if r <= 0.0001: return 0.0
+    return (mu / r) * 82.0

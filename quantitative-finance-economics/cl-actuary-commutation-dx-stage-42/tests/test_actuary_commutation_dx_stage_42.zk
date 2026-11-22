@@ -1,0 +1,13 @@
+// cl-actuary-commutation-dx-stage-42: Test Suite
+import "../act_dx_42.zk"
+
+fn test_run():
+    res := actuary_dx_42(1000.0)
+    diff := res - 857.4000
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-actuary-commutation-dx-stage-42!")

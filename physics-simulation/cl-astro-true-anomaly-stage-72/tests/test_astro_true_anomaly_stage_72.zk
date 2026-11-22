@@ -1,0 +1,13 @@
+// cl-astro-true-anomaly-stage-72: Test Suite
+import "../ast_ta_72.zk"
+
+fn test_run():
+    res := true_anomaly_scale_72(0.2)
+    diff := res - 87.8400
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-astro-true-anomaly-stage-72!")

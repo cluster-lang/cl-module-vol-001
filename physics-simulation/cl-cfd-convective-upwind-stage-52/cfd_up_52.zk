@@ -1,0 +1,6 @@
+// cl-cfd-convective-upwind-stage-52: CFD Convective Upwind Flux Stage 52
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn convective_upwind_52(u: float, uc: float, um: float) -> float:
+    return u * (uc - um) * 52.0

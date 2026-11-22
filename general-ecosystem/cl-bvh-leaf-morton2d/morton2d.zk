@@ -1,0 +1,14 @@
+// cl-bvh-leaf-morton2d: 2D Morton Code Bit Interleaving Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn part1by1(n: int) -> int:
+    x := n & 65535
+    x = (x ^ (x << 8)) & 16711935
+    x = (x ^ (x << 4)) & 252645135
+    x = (x ^ (x << 2)) & 858993459
+    x = (x ^ (x << 1)) & 1431655765
+    return x
+
+fn morton2d_encode(x: int, y: int) -> int:
+    return (part1by1(y) << 1) | part1by1(x)

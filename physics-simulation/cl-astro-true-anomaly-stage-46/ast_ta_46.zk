@@ -1,0 +1,6 @@
+// cl-astro-true-anomaly-stage-46: True Anomaly Scaling Ratio Stage 46
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn true_anomaly_scale_46(ecc: float) -> float:
+    return (1.0 + ecc + 0.5 * ecc * ecc) * 46.0

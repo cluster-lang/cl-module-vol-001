@@ -1,0 +1,7 @@
+// cl-checksum-sysv16-step: SysV 16-Bit Checksum Accumulator Step
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn sysv16_step(chk: int, b: int) -> int:
+    s := chk + (b & 255)
+    return ((s & 65535) + (s >> 16)) & 65535

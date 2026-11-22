@@ -1,0 +1,11 @@
+// cl-base32-zbase-valid-char: Test Suite
+import "../zbase_valid.zk"
+
+fn test_zbase_valid():
+    if is_zbase32_char(121) != 1: sys_exit(1) // 'y'
+    if is_zbase32_char(48) != 0: sys_exit(1)  // '0'
+    print("test_zbase_valid passed: character validity verified")
+
+fn main():
+    test_zbase_valid()
+    print("✓ All tests passed for cl-base32-zbase-valid-char!")

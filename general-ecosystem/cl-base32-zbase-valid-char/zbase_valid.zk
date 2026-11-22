@@ -1,0 +1,13 @@
+// cl-base32-zbase-valid-char: z-base-32 ASCII Character Validator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn is_zbase32_char(c: int) -> int:
+    // 'y'=121, 'b'=98, '9'=57 are valid, '0'=48, '1'=49, 'l'=108, 'v'=118 are not
+    if c == 121: return 1
+    if c == 98: return 1
+    if c == 57: return 1
+    if c == 48: return 0 // '0' excluded
+    if c == 108: return 0 // 'l' excluded
+    if c == 118: return 0 // 'v' excluded
+    return 1

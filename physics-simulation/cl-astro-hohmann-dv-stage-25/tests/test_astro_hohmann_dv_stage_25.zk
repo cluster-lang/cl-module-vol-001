@@ -1,0 +1,13 @@
+// cl-astro-hohmann-dv-stage-25: Test Suite
+import "../hoh_dv_25.zk"
+
+fn test_run():
+    res := hohmann_factor_25(10.0, 30.0)
+    diff := res - 37.5000
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-astro-hohmann-dv-stage-25!")

@@ -1,0 +1,13 @@
+// cl-bloom-filter-simd: Test Suite
+import "../bloom.zk"
+
+fn test_bloom():
+    idx0 := bloom_get_index(1234, 5678, 0, 1000)
+    idx1 := bloom_get_index(1234, 5678, 1, 1000)
+    if idx0 != 234: sys_exit(1)
+    if idx1 != 912: sys_exit(1)
+    print("test_bloom passed: double hashing index generation verified")
+
+fn main():
+    test_bloom()
+    print("✓ All tests passed for cl-bloom-filter-simd!")

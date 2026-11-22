@@ -1,0 +1,11 @@
+// cl-bit-gray-decode-16: 16-Bit Gray Code to Binary Converter
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn gray_decode_16(gray: int) -> int:
+    v := gray & 65535
+    v = v ^ (v >> 8)
+    v = v ^ (v >> 4)
+    v = v ^ (v >> 2)
+    v = v ^ (v >> 1)
+    return v & 65535

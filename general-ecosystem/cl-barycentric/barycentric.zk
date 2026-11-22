@@ -1,0 +1,27 @@
+// cl-barycentric: 2D Triangle Barycentric Coordinates Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Returns [u, v, w] scaled by 1000 where u + v + w = 1000
+fn barycentric_coords(ax: int, ay: int, bx: int, by: int, cx: int, cy: int, px: int, py: int) -> vector[int]:
+    v0x := bx - ax; v0y := by - ay
+    v1x := cx - ax; v1y := cy - ay
+    v2x := px - ax; v2y := py - ay
+
+    d00 := (v0x * v0x) + (v0y * v0y)
+    d01 := (v0x * v1x) + (v0y * v1y)
+    d11 := (v1x * v1x) + (v1y * v1y)
+    d20 := (v2x * v0x) + (v2y * v0y)
+    d21 := (v2x * v1x) + (v2y * v1y)
+
+    denom := (d00 * d11) - (d01 * d01)
+    res: vector[int] := []
+    if denom == 0:
+        res.push(0); res.push(0); res.push(0)
+        return res
+
+    v := ((d11 * d20) - (d01 * d21)) * 1000 / denom
+    w := ((d00 * d21) - (d01 * d20)) * 1000 / denom
+    u := 1000 - v - w
+    res.push(u); res.push(v); res.push(w)
+    return res

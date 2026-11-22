@@ -1,0 +1,18 @@
+// cl-adler32: Test Suite
+import "../adler32.zk"
+
+fn test_adler32():
+    empty_chk := adler32("")
+    if empty_chk != 1:
+        print("Empty Adler-32 mismatch! Expected 1, Got: " + to_text(empty_chk))
+        sys_exit(1)
+
+    wiki_chk := adler32("Wikipedia")
+    if wiki_chk != 300286872:
+        print("Wikipedia Adler-32 mismatch! Expected 300286872, Got: " + to_text(wiki_chk))
+        sys_exit(1)
+    print("test_adler32 passed: 300286872 verified")
+
+fn main():
+    test_adler32()
+    print("✓ All tests passed for cl-adler32!")

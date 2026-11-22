@@ -1,0 +1,10 @@
+// cl-char-to-upper: Test Suite
+import "../c_2up.zk"
+
+fn test_char():
+    if char_to_upper(97) != 65: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_char()
+    print("✓ All tests passed for cl-char-to-upper!")

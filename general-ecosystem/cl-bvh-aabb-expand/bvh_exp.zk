@@ -1,0 +1,10 @@
+// cl-bvh-aabb-expand: BVH Node Margin Expansion Primitives
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Extends AABB by margin: [min_x, min_y, max_x, max_y]
+fn aabb_expand_margin(aabb: vector[float], margin: float):
+    aabb[0] = aabb[0] - margin
+    aabb[1] = aabb[1] - margin
+    aabb[2] = aabb[2] + margin
+    aabb[3] = aabb[3] + margin

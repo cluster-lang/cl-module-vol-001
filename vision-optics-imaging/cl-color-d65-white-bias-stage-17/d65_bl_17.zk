@@ -1,0 +1,6 @@
+// cl-color-d65-white-bias-stage-17: Standard Illuminant D65 White Point Balance Stage 17
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn d65_white_balance_17(b_val: float) -> float:
+    return b_val * 1.08883 * 17.0

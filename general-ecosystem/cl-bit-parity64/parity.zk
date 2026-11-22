@@ -1,0 +1,17 @@
+// cl-bit-parity64: 64-bit Parity (Odd/Even 1-bit count) Calculator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn lshr64(x: int, n: int) -> int:
+    mask := (1 << (64 - n)) - 1
+    return (x >> n) & mask
+
+fn bit_parity64(val: int) -> int:
+    v := val
+    v = v ^ lshr64(v, 32)
+    v = v ^ lshr64(v, 16)
+    v = v ^ lshr64(v, 8)
+    v = v ^ lshr64(v, 4)
+    v = v ^ lshr64(v, 2)
+    v = v ^ lshr64(v, 1)
+    return v & 1

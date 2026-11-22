@@ -1,0 +1,12 @@
+// cl-bvh-volume-metric: Test Suite
+import "../sah.zk"
+
+fn test_sah():
+    // 1x2x3 box -> area = 2*(2 + 6 + 3) = 22.0
+    sa := aabb3d_surface_area(0.0, 0.0, 0.0, 1.0, 2.0, 3.0)
+    if sa != 22.0: sys_exit(1)
+    print("test_sah passed: 3D surface area heuristic metric verified")
+
+fn main():
+    test_sah()
+    print("✓ All tests passed for cl-bvh-volume-metric!")

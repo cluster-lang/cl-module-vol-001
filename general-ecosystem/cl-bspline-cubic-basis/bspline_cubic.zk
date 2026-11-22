@@ -1,0 +1,10 @@
+// cl-bspline-cubic-basis: Cubic Uniform B-Spline Basis Weight Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bspline_cubic_weight0(t: float) -> float:
+    omt := 1.0 - t
+    return (omt * omt * omt) / 6.0
+
+fn bspline_cubic_weight3(t: float) -> float:
+    return (t * t * t) / 6.0

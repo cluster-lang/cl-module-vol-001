@@ -1,0 +1,10 @@
+// cl-bit-clear-bit-index: Test Suite
+import "../bit_4.zk"
+
+fn test_4():
+    if clear_bit_at(15, 2) != 11: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_4()
+    print("✓ All tests passed for cl-bit-clear-bit-index!")

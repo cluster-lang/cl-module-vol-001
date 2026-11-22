@@ -1,0 +1,14 @@
+// cl-base16-hex-char-to-nibble: Test Suite
+import "../hex_nib.zk"
+
+fn test_h2n():
+    if hex_to_nibble(48) != 0: sys_exit(1) // '0' -> 0
+    if hex_to_nibble(57) != 9: sys_exit(1) // '9' -> 9
+    if hex_to_nibble(65) != 10: sys_exit(1) // 'A' -> 10
+    if hex_to_nibble(102) != 15: sys_exit(1) // 'f' -> 15
+    if hex_to_nibble(33) != (0 - 1): sys_exit(1) // '!' -> -1
+    print("test_h2n passed")
+
+fn main():
+    test_h2n()
+    print("✓ All tests passed for cl-base16-hex-char-to-nibble!")

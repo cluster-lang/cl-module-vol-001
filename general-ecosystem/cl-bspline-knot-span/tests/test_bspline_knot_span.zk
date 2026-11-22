@@ -1,0 +1,12 @@
+// cl-bspline-knot-span: Test Suite
+import "../bspline_span.zk"
+
+fn test_bspline_span():
+    knots: vector[float] := [0.0, 1.0, 2.0, 3.0, 4.0]
+    span := find_knot_span(knots, 2.5, 4)
+    if span != 2: sys_exit(1)
+    print("test_bspline_span passed: knot span index 2 verified")
+
+fn main():
+    test_bspline_span()
+    print("✓ All tests passed for cl-bspline-knot-span!")

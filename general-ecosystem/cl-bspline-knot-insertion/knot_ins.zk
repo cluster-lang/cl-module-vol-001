@@ -1,0 +1,6 @@
+// cl-bspline-knot-insertion: Boehm's Single Knot Insertion Weight
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn boehm_alpha(knot_new: float, knot_i: float, knot_deg: float) -> float:
+    return (knot_new - knot_i) / (knot_deg - knot_i)

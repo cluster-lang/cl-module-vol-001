@@ -1,0 +1,14 @@
+// cl-bspline-uniform-eval: Test Suite
+import "../bspline_eval.zk"
+
+fn test_bspline_eval():
+    // At t=0, midpoint between p0 and p1 is 0.5*p0 + 0.5*p1
+    val := bspline_quad_eval(0.0, 10.0, 20.0, 0.0)
+    diff := val - 5.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.001: sys_exit(1)
+    print("test_bspline_eval passed: quadratic B-spline evaluation verified")
+
+fn main():
+    test_bspline_eval()
+    print("✓ All tests passed for cl-bspline-uniform-eval!")

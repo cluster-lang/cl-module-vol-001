@@ -1,0 +1,13 @@
+// cl-bezier-quad-length: Test Suite
+import "../bezier_quad_length.zk"
+
+fn test_quad_length():
+    // Straight line: (0,0) -> (5,0) -> (10,0), length must be 10.0
+    len_straight := bezier_quad_arc_length(0.0, 0.0, 5.0, 0.0, 10.0, 0.0, 10)
+    if len_straight < 9.9: sys_exit(1)
+    if len_straight > 10.1: sys_exit(1)
+    print("test_quad_length passed: arc length integration verified")
+
+fn main():
+    test_quad_length()
+    print("✓ All tests passed for cl-bezier-quad-length!")

@@ -1,0 +1,6 @@
+// cl-astro-vis-viva-energy-stage-56: Specific Orbital Energy Vis-Viva Stage 56
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn specific_energy_56(mu: float, a: float) -> float:
+    return (-mu / (2.0 * a)) * 56.0

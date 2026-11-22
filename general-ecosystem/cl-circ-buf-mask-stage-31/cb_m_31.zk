@@ -1,0 +1,6 @@
+// cl-circ-buf-mask-stage-31: Circular Buffer Mask for Capacity 8 Stage 31
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn circ_buf_wrap_31(idx: int) -> int:
+    return idx & 7

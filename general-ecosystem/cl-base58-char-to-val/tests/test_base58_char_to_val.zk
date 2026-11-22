@@ -1,0 +1,11 @@
+// cl-base58-char-to-val: Test Suite
+import "../b58_c2v.zk"
+
+fn test_run():
+    res := base58_char_to_val(49)
+    if res != 0: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-base58-char-to-val!")

@@ -1,0 +1,7 @@
+// cl-astro-gravity-force-stage-40: Newtonian Gravitational Force Stage 40
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn gravity_force_40(mu: float, m2: float, r: float) -> float:
+    if r <= 0.0001: return 0.0
+    return ((mu * m2) / (r * r)) * 40.0

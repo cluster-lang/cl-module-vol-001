@@ -1,0 +1,18 @@
+// cl-base62: Pure Cluster Base62 Token Encoder
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn b62_char(v: int) -> string:
+    if v < 10: return chr(v + 48)
+    if v < 36: return chr(v - 10 + 65)
+    return chr(v - 36 + 97)
+
+fn base62_encode(n: int) -> string:
+    if n == 0: return "0"
+    res := ""
+    val := n
+    while val > 0:
+        rem := val % 62
+        res = b62_char(rem) + res
+        val = val / 62
+    return res

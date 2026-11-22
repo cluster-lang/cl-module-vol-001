@@ -1,0 +1,13 @@
+// cl-bit-swap-bytes32: Test Suite
+import "../bswap32.zk"
+
+fn test_bswap32():
+    // 0x12345678 (305419896) swapped is 0x78563412 (2018915346)
+    v := 305419896
+    swapped := bit_swap_bytes32(v)
+    if swapped != 2018915346: sys_exit(1)
+    print("test_bswap32 passed: 0x12345678 -> 0x78563412 verified")
+
+fn main():
+    test_bswap32()
+    print("✓ All tests passed for cl-bit-swap-bytes32!")

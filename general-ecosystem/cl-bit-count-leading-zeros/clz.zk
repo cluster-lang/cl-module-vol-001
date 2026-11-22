@@ -1,0 +1,13 @@
+// cl-bit-count-leading-zeros: 64-bit Count Leading Zeros
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn count_leading_zeros(x: int) -> int:
+    if x == 0: return 64
+    count := 0
+    val := x
+    mask_high := -9223372036854775808 // 0x8000000000000000
+    while (val & mask_high) == 0:
+        count = count + 1
+        val = val << 1
+    return count

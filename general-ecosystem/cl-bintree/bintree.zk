@@ -1,0 +1,111 @@
+// cl-bintree: Pure Cluster Binary Search Tree (BST) Container
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+model TreeNode:
+    val: int
+    left: int
+    right: int
+    height: int
+
+model BinaryTree:
+    nodes: vector[TreeNode]
+    root: int
+
+fn bintree_new() -> BinaryTree:
+    ns: vector[TreeNode] := []
+    return BinaryTree(ns, -1)
+
+fn bintree_size(t: BinaryTree) -> int:
+    return t.nodes.len()
+
+fn bintree_is_empty(t: BinaryTree) -> bool:
+    return t.root == -1
+
+fn bintree_insert(&t: BinaryTree, val: int):
+    new_idx := t.nodes.len()
+    node := TreeNode(val, -1, -1, 1)
+    t.nodes.push(node)
+
+    if t.root == -1:
+        t.root = new_idx
+        return
+
+    curr := t.root
+    while curr != -1:
+        if val < t.nodes[curr].val:
+            if t.nodes[curr].left == -1:
+                t.nodes[curr].left = new_idx
+                curr = -1
+            else:
+                curr = t.nodes[curr].left
+        elif val > t.nodes[curr].val:
+            if t.nodes[curr].right == -1:
+                t.nodes[curr].right = new_idx
+                curr = -1
+            else:
+                curr = t.nodes[curr].right
+        else:
+            // duplicate
+            curr = -1
+
+fn bintree_contains(t: BinaryTree, val: int) -> bool:
+    curr := t.root
+    while curr != -1:
+        if val == t.nodes[curr].val:
+            return true
+        if val < t.nodes[curr].val:
+            curr = t.nodes[curr].left
+        else:
+            curr = t.nodes[curr].right
+    return false
+
+fn bintree_min(t: BinaryTree) -> int:
+    if t.root == -1:
+        return 0
+    curr := t.root
+    while t.nodes[curr].left != -1:
+        curr = t.nodes[curr].left
+    return t.nodes[curr].val
+
+fn bintree_max(t: BinaryTree) -> int:
+    if t.root == -1:
+        return 0
+    curr := t.root
+    while t.nodes[curr].right != -1:
+        curr = t.nodes[curr].right
+    return t.nodes[curr].val
+
+fn bintree_inorder(t: BinaryTree) -> vector[int]:
+    res: vector[int] := []
+    if t.root == -1:
+        return res
+
+    stack: vector[int] := []
+    curr := t.root
+
+    while curr != -1 or stack.len() > 0:
+        while curr != -1:
+            stack.push(curr)
+            curr = t.nodes[curr].left
+
+        // pop from stack
+        last_idx := stack.len() - 1
+        node_idx := stack[last_idx]
+
+        new_stack: vector[int] := []
+        si := 0
+        while si < last_idx:
+            new_stack.push(stack[si])
+            si = si + 1
+        stack = new_stack
+
+        res.push(t.nodes[node_idx].val)
+        curr = t.nodes[node_idx].right
+
+    return res
+
+fn bintree_clear(&t: BinaryTree):
+    empty_nodes: vector[TreeNode] := []
+    t.nodes = empty_nodes
+    t.root = -1

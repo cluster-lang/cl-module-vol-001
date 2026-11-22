@@ -1,0 +1,6 @@
+// cl-chem-lennard-jones-force-stage-80: Lennard-Jones Intermolecular Force Magnitude Stage 80
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn lj_force_80(eps: float, sig: float, r: float) -> float:
+    return (eps * sig / r) * 80.0

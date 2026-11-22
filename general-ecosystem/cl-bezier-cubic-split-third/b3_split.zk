@@ -1,0 +1,17 @@
+// cl-bezier-cubic-split-third: de Casteljau Cubic Bezier Subdivider
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bezier_cubic_split_mid(out_mid: vector[float], p0: vector[float], p1: vector[float], p2: vector[float], p3: vector[float]):
+    // Evaluate midpoint s0 at t = 0.5
+    t := 0.5
+    q0_x := p0[0] + t * (p1[0] - p0[0]); q0_y := p0[1] + t * (p1[1] - p0[1])
+    q1_x := p1[0] + t * (p2[0] - p1[0]); q1_y := p1[1] + t * (p2[1] - p1[1])
+    q2_x := p2[0] + t * (p3[0] - p2[0]); q2_y := p2[1] + t * (p3[1] - p2[1])
+
+    r0_x := q0_x + t * (q1_x - q0_x);   r0_y := q0_y + t * (q1_y - q0_y)
+    r1_x := q1_x + t * (q2_x - q1_x);   r1_y := q1_y + t * (q2_y - q1_y)
+
+    s0_x := r0_x + t * (r1_x - r0_x);   s0_y := r0_y + t * (r1_y - r0_y)
+    out_mid[0] = s0_x
+    out_mid[1] = s0_y

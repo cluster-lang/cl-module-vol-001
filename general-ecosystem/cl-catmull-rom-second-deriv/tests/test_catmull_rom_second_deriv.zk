@@ -1,0 +1,13 @@
+// cl-catmull-rom-second-deriv: Test Suite
+import "../catmull_d2.zk"
+
+fn test_catmull_d2():
+    v := catmull_rom_d2(0.0, 1.0, 4.0, 9.0, 0.0)
+    diff := v - 2.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.001: sys_exit(1)
+    print("test_catmull_d2 passed: spline acceleration 2.0 verified")
+
+fn main():
+    test_catmull_d2()
+    print("✓ All tests passed for cl-catmull-rom-second-deriv!")

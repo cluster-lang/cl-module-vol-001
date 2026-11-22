@@ -1,0 +1,21 @@
+// cl-bspline-clamped-knot-vector: Clamped B-Spline Knot Vector Generator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn generate_clamped_knots(out: vector[float], degree: int, num_control_pts: int):
+    // Clamped knot vector has (degree + 1) zeros, then interior knots, then (degree + 1) ones
+    i := 0
+    k := degree + 1
+    while i < k:
+        out.push(0.0)
+        i = i + 1
+    interior := num_control_pts - degree - 1
+    j := 1
+    while j <= interior:
+        step := (j * 1.0) / ((interior + 1) * 1.0)
+        out.push(step)
+        j = j + 1
+    m := 0
+    while m < k:
+        out.push(1.0)
+        m = m + 1

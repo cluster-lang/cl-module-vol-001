@@ -1,0 +1,23 @@
+// cl-bit-rotate-right64-fast: Fast 64-bit Circular Right Shift
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn lshr64(val: int, shift: int) -> int:
+    if shift == 0:
+        return val
+    mask64 := 9223372036854775807
+    pos := (val >> 1) & mask64
+    return pos >> (shift - 1)
+
+fn bit_rotate_right64(val: int, shift: int) -> int:
+    s := shift % 64
+    if s == 0:
+        return val
+    mask64 := 9223372036854775807
+    right_part := lshr64(val, s)
+    low_mask := (1 << s) - 1
+    low_bits := val & low_mask
+    left_part := 0
+    if s < 64:
+        left_part = (low_bits << (64 - s)) & mask64
+    return (right_part | left_part) & mask64

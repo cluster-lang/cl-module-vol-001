@@ -1,0 +1,36 @@
+// cl-catmull-rom-arc-length-approx: Numerical Spline Arc Length Integrator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn float_sqrt_cr(x: float) -> float:
+    if x <= 0.0: return 0.0
+    g := x
+    i := 0
+    while i < 10:
+        g = (g + x / g) * 0.5
+        i = i + 1
+    return g
+
+fn catmull_rom_arc_length(p0: vector[float], p1: vector[float], p2: vector[float], p3: vector[float], samples: int) -> float:
+    total_len := 0.0
+    dt := 1.0 / float(samples)
+    prev_x := p1[0]
+    prev_y := p1[1]
+    m1_x := (p2[0] - p0[0]) * 0.5; m1_y := (p2[1] - p0[1]) * 0.5
+    m2_x := (p3[0] - p1[0]) * 0.5; m2_y := (p3[1] - p1[1]) * 0.5
+    i := 1
+    while i <= samples:
+        t := float(i) * dt
+        h00 := 2.0*t*t*t - 3.0*t*t + 1.0
+        h10 := t*t*t - 2.0*t*t + t
+        h01 := (0.0 - 2.0)*t*t*t + 3.0*t*t
+        h11 := t*t*t - t*t
+        curr_x := h00*p1[0] + h10*m1_x + h01*p2[0] + h11*m2_x
+        curr_y := h00*p1[1] + h10*m1_y + h01*p2[1] + h11*m2_y
+        dx := curr_x - prev_x
+        dy := curr_y - prev_y
+        total_len = total_len + float_sqrt_cr(dx * dx + dy * dy)
+        prev_x = curr_x
+        prev_y = curr_y
+        i = i + 1
+    return total_len

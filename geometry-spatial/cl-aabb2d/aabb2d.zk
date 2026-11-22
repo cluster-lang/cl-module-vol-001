@@ -1,0 +1,23 @@
+// cl-aabb2d: Pure Cluster 2D Axis-Aligned Bounding Box
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+model AABB2D:
+    min_x: int
+    min_y: int
+    max_x: int
+    max_y: int
+
+fn aabb2d_intersects(a: AABB2D, b: AABB2D) -> bool:
+    if a.max_x < b.min_x or a.min_x > b.max_x: return false
+    if a.max_y < b.min_y or a.min_y > b.max_y: return false
+    return true
+
+fn aabb2d_contains_point(a: AABB2D, px: int, py: int) -> bool:
+    return px >= a.min_x and px <= a.max_x and py >= a.min_y and py <= a.max_y
+
+fn aabb2d_area(a: AABB2D) -> int:
+    w := a.max_x - a.min_x
+    h := a.max_y - a.min_y
+    if w < 0 or h < 0: return 0
+    return w * h

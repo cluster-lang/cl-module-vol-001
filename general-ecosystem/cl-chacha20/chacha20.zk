@@ -1,0 +1,175 @@
+// cl-chacha20: Pure Cluster RFC 8439 ChaCha20 Stream Cipher
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn rol32(x: int, n: int) -> int:
+    mask32 := 4294967295
+    v := x & mask32
+    left := (v << n) & mask32
+    right := (v >> (32 - n)) & mask32
+    return (left | right) & mask32
+
+fn chacha20_qr(s: vector[int], a: int, b: int, c: int, d: int):
+    mask32 := 4294967295
+    s[a] = (s[a] + s[b]) & mask32
+    s[d] = rol32(s[d] ^ s[a], 16)
+    s[c] = (s[c] + s[d]) & mask32
+    s[b] = rol32(s[b] ^ s[c], 12)
+    s[a] = (s[a] + s[b]) & mask32
+    s[d] = rol32(s[d] ^ s[a], 8)
+    s[c] = (s[c] + s[d]) & mask32
+    s[b] = rol32(s[b] ^ s[c], 7)
+
+fn key_words_from_bytes(key_bytes: vector[int]) -> vector[int]:
+    mask32 := 4294967295
+    words: vector[int] := []
+    w := 0
+    while w < 8:
+        base := w * 4
+        b0 := 0; b1 := 0; b2 := 0; b3 := 0
+        if base < key_bytes.len(): b0 = key_bytes[base] & 255
+        if (base + 1) < key_bytes.len(): b1 = key_bytes[base + 1] & 255
+        if (base + 2) < key_bytes.len(): b2 = key_bytes[base + 2] & 255
+        if (base + 3) < key_bytes.len(): b3 = key_bytes[base + 3] & 255
+        words.push((b0 | (b1 << 8) | (b2 << 16) | (b3 << 24)) & mask32)
+        w = w + 1
+    return words
+
+fn nonce_words_from_bytes(nonce_bytes: vector[int]) -> vector[int]:
+    mask32 := 4294967295
+    words: vector[int] := []
+    w := 0
+    while w < 3:
+        base := w * 4
+        b0 := 0; b1 := 0; b2 := 0; b3 := 0
+        if base < nonce_bytes.len(): b0 = nonce_bytes[base] & 255
+        if (base + 1) < nonce_bytes.len(): b1 = nonce_bytes[base + 1] & 255
+        if (base + 2) < nonce_bytes.len(): b2 = nonce_bytes[base + 2] & 255
+        if (base + 3) < nonce_bytes.len(): b3 = nonce_bytes[base + 3] & 255
+        words.push((b0 | (b1 << 8) | (b2 << 16) | (b3 << 24)) & mask32)
+        w = w + 1
+    return words
+
+fn chacha20_block(key_words: vector[int], counter: int, nonce_words: vector[int]) -> vector[int]:
+    mask32 := 4294967295
+    state: vector[int] := []
+    // 4 constant words: "expand 32-byte k"
+    state.push(1634760805) // 0x61707865
+    state.push(857760878)  // 0x3320646e
+    state.push(2036477234) // 0x79622d32
+    state.push(1797285236) // 0x6b206574
+    // 8 key words
+    i := 0
+    while i < 8:
+        state.push(key_words[i] & mask32)
+        i = i + 1
+    // 1 counter word
+    state.push(counter & mask32)
+    // 3 nonce words
+    i = 0
+    while i < 3:
+        state.push(nonce_words[i] & mask32)
+        i = i + 1
+
+    initial: vector[int] := []
+    i = 0
+    while i < 16:
+        initial.push(state[i])
+        i = i + 1
+
+    // 10 double-rounds = 20 rounds
+    rnd := 0
+    while rnd < 10:
+        // Column round
+        chacha20_qr(state, 0, 4, 8, 12)
+        chacha20_qr(state, 1, 5, 9, 13)
+        chacha20_qr(state, 2, 6, 10, 14)
+        chacha20_qr(state, 3, 7, 11, 15)
+        // Diagonal round
+        chacha20_qr(state, 0, 5, 10, 15)
+        chacha20_qr(state, 1, 6, 11, 12)
+        chacha20_qr(state, 2, 7, 8, 13)
+        chacha20_qr(state, 3, 4, 9, 14)
+        rnd = rnd + 1
+
+    // Output 64 bytes little-endian
+    out_bytes: vector[int] := []
+    w_idx := 0
+    while w_idx < 16:
+        sum_word := (state[w_idx] + initial[w_idx]) & mask32
+        out_bytes.push(sum_word & 255)
+        out_bytes.push((sum_word >> 8) & 255)
+        out_bytes.push((sum_word >> 16) & 255)
+        out_bytes.push((sum_word >> 24) & 255)
+        w_idx = w_idx + 1
+
+    return out_bytes
+
+fn chacha20_crypt(key_bytes: vector[int], counter: int, nonce_bytes: vector[int], input_bytes: vector[int]) -> vector[int]:
+    key_words := key_words_from_bytes(key_bytes)
+    nonce_words := nonce_words_from_bytes(nonce_bytes)
+    total_len := input_bytes.len()
+    out_bytes: vector[int] := []
+    block_idx := 0
+    while (block_idx * 64) < total_len:
+        curr_counter := counter + block_idx
+        keystream := chacha20_block(key_words, curr_counter, nonce_words)
+        byte_idx := 0
+        while byte_idx < 64:
+            curr_pos := (block_idx * 64) + byte_idx
+            if curr_pos < total_len:
+                xored := (input_bytes[curr_pos] ^ keystream[byte_idx]) & 255
+                out_bytes.push(xored)
+            byte_idx = byte_idx + 1
+        block_idx = block_idx + 1
+    return out_bytes
+
+fn chacha20_encrypt_string(key_bytes: vector[int], counter: int, nonce_bytes: vector[int], text: string) -> vector[int]:
+    bytes: vector[int] := []
+    i := 0
+    slen := len(text)
+    while i < slen:
+        bytes.push(byte_at(text, i))
+        i = i + 1
+    return chacha20_crypt(key_bytes, counter, nonce_bytes, bytes)
+
+fn chacha20_decrypt_string(key_bytes: vector[int], counter: int, nonce_bytes: vector[int], cipher_bytes: vector[int]) -> string:
+    decrypted := chacha20_crypt(key_bytes, counter, nonce_bytes, cipher_bytes)
+    res := ""
+    i := 0
+    dlen := decrypted.len()
+    while i < dlen:
+        res = res + chr(decrypted[i])
+        i = i + 1
+    return res
+
+fn hex_nibble_str(n: int) -> string:
+    v := n & 15
+    if v == 0: return "0"
+    if v == 1: return "1"
+    if v == 2: return "2"
+    if v == 3: return "3"
+    if v == 4: return "4"
+    if v == 5: return "5"
+    if v == 6: return "6"
+    if v == 7: return "7"
+    if v == 8: return "8"
+    if v == 9: return "9"
+    if v == 10: return "a"
+    if v == 11: return "b"
+    if v == 12: return "c"
+    if v == 13: return "d"
+    if v == 14: return "e"
+    return "f"
+
+fn chacha20_bytes_to_hex(bytes: vector[int]) -> string:
+    h := ""
+    i := 0
+    blen := bytes.len()
+    while i < blen:
+        v := bytes[i] & 255
+        hi := (v >> 4) & 15
+        lo := v & 15
+        h = h + hex_nibble_str(hi) + hex_nibble_str(lo)
+        i = i + 1
+    return h

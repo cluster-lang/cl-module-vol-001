@@ -1,0 +1,10 @@
+// cl-bloom-filter-clear: Bloom Filter Zero Bitset Reset Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bloom_clear(filter: vector[int]):
+    n := filter.len()
+    i := 0
+    while i < n:
+        filter[i] = 0
+        i = i + 1

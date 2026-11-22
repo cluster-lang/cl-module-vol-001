@@ -1,0 +1,8 @@
+// cl-base32-zbase-decoded-length: z-base-32 Max Decoded Byte Length
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn zbase32_decoded_max_length(char_len: int) -> int:
+    if char_len <= 0:
+        return 0
+    return (char_len * 5) / 8

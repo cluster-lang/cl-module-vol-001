@@ -1,0 +1,14 @@
+// cl-capsule: Test Suite
+import "../capsule.zk"
+
+fn test_capsule():
+    // Capsule along X-axis from (0,0,0) to (10,0,0), radius 2
+    if capsule_contains(0, 0, 0, 10, 0, 0, 2, 5, 1, 0) != 1: sys_exit(1)
+    if capsule_contains(0, 0, 0, 10, 0, 0, 2, 5, 3, 0) != 0: sys_exit(1)
+    if capsule_contains(0, 0, 0, 10, 0, 0, 2, 11, 0, 0) != 1: sys_exit(1) // End cap
+    if capsule_contains(0, 0, 0, 10, 0, 0, 2, 13, 0, 0) != 0: sys_exit(1)
+    print("test_capsule passed: capsule collision test verified")
+
+fn main():
+    test_capsule()
+    print("✓ All tests passed for cl-capsule!")

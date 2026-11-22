@@ -1,0 +1,14 @@
+// cl-clamp: Test Suite
+import "../clamp.zk"
+
+fn test_clamp():
+    if clamp(50, 0, 100) != 50: sys_exit(1)
+    if clamp(-10, 0, 100) != 0: sys_exit(1)
+    if clamp(150, 0, 100) != 100: sys_exit(1)
+    if lerp(0, 200, 50) != 100: sys_exit(1)
+    if smoothstep(0, 100, 50) != 50: sys_exit(1)
+    print("test_clamp passed: numeric clamping and easing verified")
+
+fn main():
+    test_clamp()
+    print("✓ All tests passed for cl-clamp!")

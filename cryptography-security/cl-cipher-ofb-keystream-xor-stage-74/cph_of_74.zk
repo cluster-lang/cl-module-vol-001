@@ -1,0 +1,6 @@
+// cl-cipher-ofb-keystream-xor-stage-74: OFB Keystream Mask XOR Stage 74
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn ofb_xor_74(pt: int, ks: int) -> int:
+    return (pt ^ ks) + 74

@@ -1,0 +1,11 @@
+// cl-bloom-filter-union-ops: Test Suite
+import "../bloom_union.zk"
+
+fn test_bloom_union():
+    f := bloom_union_words(1, 2)
+    if f != 3: sys_exit(1)
+    print("test_bloom_union passed: bitwise union verified")
+
+fn main():
+    test_bloom_union()
+    print("✓ All tests passed for cl-bloom-filter-union-ops!")

@@ -1,0 +1,9 @@
+// cl-bvh-volume-metric: 3D BVH Node Surface Area Heuristic (SAH)
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn aabb3d_surface_area(min_x: float, min_y: float, min_z: float, max_x: float, max_y: float, max_z: float) -> float:
+    dx := max_x - min_x
+    dy := max_y - min_y
+    dz := max_z - min_z
+    return 2.0 * ((dx * dy) + (dy * dz) + (dz * dx))

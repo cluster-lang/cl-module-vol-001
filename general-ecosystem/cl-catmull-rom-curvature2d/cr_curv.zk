@@ -1,0 +1,27 @@
+// cl-catmull-rom-curvature2d: 2D Curve Curvature Calculator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn sqrt_approx(val: float) -> float:
+    if val <= 0.0:
+        return 0.0
+    x := val
+    i := 0
+    while i < 15:
+        x = 0.5 * (x + val / x)
+        i = i + 1
+    return x
+
+fn curve_curvature2d(vx: float, vy: float, ax: float, ay: float) -> float:
+    // kappa = |vx * ay - vy * ax| / (vx^2 + vy^2)^1.5
+    num := vx * ay - vy * ax
+    if num < 0.0:
+        num = 0.0 - num
+
+    speed_sq := vx * vx + vy * vy
+    if speed_sq == 0.0:
+        return 0.0
+
+    speed := sqrt_approx(speed_sq)
+    den := speed_sq * speed
+    return num / den

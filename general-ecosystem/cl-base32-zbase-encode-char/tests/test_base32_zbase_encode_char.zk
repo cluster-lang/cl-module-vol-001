@@ -1,0 +1,12 @@
+// cl-base32-zbase-encode-char: Test Suite
+import "../zbase_enc.zk"
+
+fn test_zbase_enc():
+    if zbase32_char_at(0) != 121: sys_exit(1) // 'y'
+    if zbase32_char_at(1) != 98: sys_exit(1)  // 'b'
+    if zbase32_char_at(31) != 57: sys_exit(1) // '9'
+    print("test_zbase_enc passed: z-base-32 characters verified")
+
+fn main():
+    test_zbase_enc()
+    print("✓ All tests passed for cl-base32-zbase-encode-char!")

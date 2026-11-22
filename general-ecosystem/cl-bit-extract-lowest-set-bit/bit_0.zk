@@ -1,0 +1,6 @@
+// cl-bit-extract-lowest-set-bit: Isolate Lowest Set Bit in 32-bit Integer
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn extract_lowest_set_bit(val: int) -> int:
+    return val & (0 - val)

@@ -1,0 +1,14 @@
+// cl-base32-crockford-decode: Test Suite
+import "../crock_dec.zk"
+
+fn test_crock_dec():
+    if crockford_decode_digit(48) != 0: sys_exit(1)  // '0'
+    if crockford_decode_digit(79) != 0: sys_exit(1)  // 'O' -> 0
+    if crockford_decode_digit(73) != 1: sys_exit(1)  // 'I' -> 1
+    if crockford_decode_digit(76) != 1: sys_exit(1)  // 'L' -> 1
+    if crockford_decode_digit(90) != 31: sys_exit(1) // 'Z' -> 31
+    print("test_crock_dec passed: Crockford Base32 decoding with aliases verified")
+
+fn main():
+    test_crock_dec()
+    print("✓ All tests passed for cl-base32-crockford-decode!")

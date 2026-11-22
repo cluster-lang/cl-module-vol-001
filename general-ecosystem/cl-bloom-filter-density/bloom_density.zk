@@ -1,0 +1,18 @@
+// cl-bloom-filter-density: Bloom Filter Bit Saturation Ratio Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn lshr64(val: int, shift: int) -> int:
+    if shift == 0: return val
+    mask := (1 << (64 - shift)) - 1
+    return (val >> shift) & mask
+
+fn bloom_density_ratio(filter: int) -> float:
+    count := 0
+    v := filter
+    i := 0
+    while i < 64:
+        if (v & 1) == 1: count = count + 1
+        v = lshr64(v, 1)
+        i = i + 1
+    return (count * 1.0) / 64.0

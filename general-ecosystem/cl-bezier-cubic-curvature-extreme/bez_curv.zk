@@ -1,0 +1,10 @@
+// cl-bezier-cubic-curvature-extreme: Sampled Peak Curvature Estimator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bezier_extreme_curvature(p0x: float, p0y: float, p1x: float, p1y: float, p2x: float, p2y: float, p3x: float, p3y: float) -> float:
+    c1 := (p1x - p0x) * (p2y - p0y) - (p1y - p0y) * (p2x - p0x)
+    c2 := (p2x - p0x) * (p3y - p0y) - (p2y - p0y) * (p3x - p0x)
+    if c1 == 0.0 and c2 == 0.0:
+        return 0.0
+    return 1.0

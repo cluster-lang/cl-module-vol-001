@@ -1,0 +1,17 @@
+// cl-catmull-rom-eval: Test Suite
+import "../cr_eval.zk"
+
+fn test_cr_eval():
+    // At t=0, must equal p1
+    v0 := catmull_rom_eval(0.0, 5.0, 10.0, 15.0, 0.0)
+    if v0 < 4.99: sys_exit(1)
+    if v0 > 5.01: sys_exit(1)
+    // At t=1, must equal p2
+    v1 := catmull_rom_eval(0.0, 5.0, 10.0, 15.0, 1.0)
+    if v1 < 9.99: sys_exit(1)
+    if v1 > 10.01: sys_exit(1)
+    print("test_cr_eval passed: interpolator passes through knot points")
+
+fn main():
+    test_cr_eval()
+    print("✓ All tests passed for cl-catmull-rom-eval!")

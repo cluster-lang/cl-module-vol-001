@@ -1,0 +1,16 @@
+// cl-base32-zbase-encode-string: Test Suite
+import "../zbase_enc_str.zk"
+
+fn test_zbase_enc_str():
+    indices: vector[int] := [0, 1, 2, 3, 4]
+    chars := zbase32_encode_indices(indices)
+    if chars[0] != 121: sys_exit(1)
+    if chars[1] != 98:  sys_exit(2)
+    if chars[2] != 110: sys_exit(3)
+    if chars[3] != 100: sys_exit(4)
+    if chars[4] != 114: sys_exit(5)
+    print("test_zbase_enc_str passed: 'ybndr' encoded successfully")
+
+fn main():
+    test_zbase_enc_str()
+    print("✓ All tests passed for cl-base32-zbase-encode-string!")

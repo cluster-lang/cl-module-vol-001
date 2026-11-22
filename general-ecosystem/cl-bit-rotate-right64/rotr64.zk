@@ -1,0 +1,11 @@
+// cl-bit-rotate-right64: 64-bit Rotate Right Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn rotr64(x: int, b: int) -> int:
+    shift := b & 63
+    if shift == 0: return x
+    mask := (1 << (64 - shift)) - 1
+    right := (x >> shift) & mask
+    left := x << (64 - shift)
+    return left | right

@@ -1,0 +1,17 @@
+// cl-bitset: Test Suite
+import "../bitset.zk"
+
+fn test_bitset():
+    bs := bitset_new(128)
+    bitset_set(bs, 42)
+    bitset_set(bs, 100)
+    if bitset_get(bs, 42) != 1: sys_exit(1)
+    if bitset_get(bs, 43) != 0: sys_exit(1)
+    if bitset_get(bs, 100) != 1: sys_exit(1)
+    bitset_clear(bs, 42)
+    if bitset_get(bs, 42) != 0: sys_exit(1)
+    print("test_bitset passed: dynamic bit vector verified")
+
+fn main():
+    test_bitset()
+    print("✓ All tests passed for cl-bitset!")

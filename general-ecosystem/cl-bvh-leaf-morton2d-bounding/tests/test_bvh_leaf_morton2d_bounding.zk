@@ -1,0 +1,16 @@
+// cl-bvh-leaf-morton2d-bounding: Test Suite
+import "../morton_box.zk"
+
+fn test_morton_box():
+    xs: vector[float] := [2.0, 8.0, 1.0, 9.0]
+    ys: vector[float] := [3.0, 7.0, 2.0, 10.0]
+    b := morton2d_slice_bounds(xs, ys, 0, 3)
+    if b[0] != 1.0: sys_exit(1)
+    if b[1] != 2.0: sys_exit(2)
+    if b[2] != 9.0: sys_exit(3)
+    if b[3] != 10.0: sys_exit(4)
+    print("test_morton_box passed: AABB [1, 2, 9, 10] verified")
+
+fn main():
+    test_morton_box()
+    print("✓ All tests passed for cl-bvh-leaf-morton2d-bounding!")

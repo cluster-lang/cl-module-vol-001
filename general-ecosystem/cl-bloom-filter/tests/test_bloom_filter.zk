@@ -1,0 +1,49 @@
+// cl-bloom-filter: Test Suite
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+import "../bloom_filter.zk"
+
+fn test_bloom_membership():
+    bf := bloom_new(2048, 4)
+    assert bloom_count(bf) == 0, "initial count must be 0"
+
+    bloom_add(bf, "apple")
+    bloom_add(bf, "banana")
+    bloom_add(bf, "cherry")
+    bloom_add(bf, "dragonfruit")
+    bloom_add(bf, "elderberry")
+
+    assert bloom_count(bf) == 5, "count must be 5"
+
+    // Positive checks (must never produce false negatives!)
+    assert bloom_contains(bf, "apple") == true, "'apple' must be in filter"
+    assert bloom_contains(bf, "banana") == true, "'banana' must be in filter"
+    assert bloom_contains(bf, "cherry") == true, "'cherry' must be in filter"
+    assert bloom_contains(bf, "dragonfruit") == true, "'dragonfruit' must be in filter"
+    assert bloom_contains(bf, "elderberry") == true, "'elderberry' must be in filter"
+
+    // Negative checks
+    assert bloom_contains(bf, "watermelon") == false, "'watermelon' should not be in filter"
+    assert bloom_contains(bf, "unknown_item_999") == false, "'unknown_item_999' should not be in filter"
+    assert bloom_contains(bf, "cluster_lang_sovereign") == false, "'cluster_lang_sovereign' should not be in filter"
+
+    print("test_bloom_membership passed: zero false negatives verified")
+
+fn test_bloom_clear():
+    bf := bloom_new(512, 3)
+    bloom_add(bf, "test_token_1")
+    bloom_add(bf, "test_token_2")
+    assert bloom_contains(bf, "test_token_1") == true, "token 1 must exist"
+
+    bloom_clear(bf)
+    assert bloom_count(bf) == 0, "count must be 0 after clear"
+    assert bloom_contains(bf, "test_token_1") == false, "token 1 must not exist after clear"
+
+    print("test_bloom_clear passed")
+
+fn main():
+    print("Testing cl-bloom-filter (Pure Cluster Probabilistic Bloom Filter)...")
+    test_bloom_membership()
+    test_bloom_clear()
+    print("✓ All tests passed for cl-bloom-filter!")

@@ -1,0 +1,7 @@
+// cl-astro-escape-vel-sq-stage-14: Orbital Escape Velocity Squared Stage 14
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn escape_vel_sq_14(mu: float, r: float) -> float:
+    if r <= 0.0001: return 0.0
+    return (2.0 * mu / r) * 14.0

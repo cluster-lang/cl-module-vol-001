@@ -1,0 +1,12 @@
+// cl-bit-swap64: Test Suite
+import "../bit_swap.zk"
+
+fn test_bit_swap():
+    // 0x12 -> 0x21 (18 -> 33)
+    swapped := swap_nibbles_byte(18)
+    if swapped != 33: sys_exit(1)
+    print("test_bit_swap passed: nibble swap verified")
+
+fn main():
+    test_bit_swap()
+    print("✓ All tests passed for cl-bit-swap64!")

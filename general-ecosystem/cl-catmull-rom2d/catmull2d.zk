@@ -1,0 +1,19 @@
+// cl-catmull-rom2d: 2D Catmull-Rom Trajectory Interpolator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn catmull_1d_eval(p0: int, p1: int, p2: int, p3: int, t: int) -> int:
+    t2 := (t * t) / 1000
+    t3 := (t2 * t) / 1000
+    c0 := 2 * p1
+    c1 := (0 - p0) + p2
+    c2 := ((2 * p0) - (5 * p1)) + ((4 * p2) - p3)
+    c3 := ((0 - p0) + (3 * p1)) - ((3 * p2) - p3)
+    num := (c0 * 1000) + (c1 * t) + ((c2 * t2) / 1000) + ((c3 * t3) / 1000)
+    return num / 2000
+
+fn catmull_rom_2d_eval(p0x: int, p0y: int, p1x: int, p1y: int, p2x: int, p2y: int, p3x: int, p3y: int, t: int) -> vector[int]:
+    res: vector[int] := []
+    res.push(catmull_1d_eval(p0x, p1x, p2x, p3x, t))
+    res.push(catmull_1d_eval(p0y, p1y, p2y, p3y, t))
+    return res

@@ -1,0 +1,13 @@
+// cl-binary-search-lower-bound: Test Suite
+import "../lower_bound.zk"
+
+fn test_lower_bound():
+    a: vector[int] := [10, 20, 30, 30, 40, 50]
+    if lower_bound(a, 30) != 2: sys_exit(1)
+    if lower_bound(a, 25) != 2: sys_exit(1)
+    if lower_bound(a, 60) != 6: sys_exit(1)
+    print("test_lower_bound passed: lower bound index search verified")
+
+fn main():
+    test_lower_bound()
+    print("✓ All tests passed for cl-binary-search-lower-bound!")

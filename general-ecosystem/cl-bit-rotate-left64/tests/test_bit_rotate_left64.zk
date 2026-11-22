@@ -1,0 +1,13 @@
+// cl-bit-rotate-left64: Test Suite
+import "../rotl64.zk"
+
+fn test_rotl64():
+    v := rotl64(1, 4)
+    if v != 16: sys_exit(1)
+    v0 := rotl64(123456, 0)
+    if v0 != 123456: sys_exit(1)
+    print("test_rotl64 passed: 64-bit circular left rotation verified")
+
+fn main():
+    test_rotl64()
+    print("✓ All tests passed for cl-bit-rotate-left64!")

@@ -1,0 +1,11 @@
+// cl-cipher-cbc-xor-block-stage-51: Test Suite
+import "../cph_cb_51.zk"
+
+fn test_run():
+    res := cbc_xor_51(12345, 67890)
+    if res != 80190: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cipher-cbc-xor-block-stage-51!")

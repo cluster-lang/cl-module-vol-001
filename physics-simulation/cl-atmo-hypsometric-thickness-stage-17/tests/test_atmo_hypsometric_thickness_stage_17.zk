@@ -1,0 +1,13 @@
+// cl-atmo-hypsometric-thickness-stage-17: Test Suite
+import "../at_hp_17.zk"
+
+fn test_run():
+    res := layer_thickness_17(287.05, 250.0, 9.80665, 0.6931)
+    diff := res - 86222.7171
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-atmo-hypsometric-thickness-stage-17!")

@@ -1,0 +1,12 @@
+// cl-bit-count-leading-zeros64: Test Suite
+import "../clz64.zk"
+
+fn test_clz64():
+    if clz64(0) != 64: sys_exit(1)
+    if clz64(1) != 63: sys_exit(1)
+    if clz64(2) != 62: sys_exit(1)
+    print("test_clz64 passed: 64-bit leading zeros count verified")
+
+fn main():
+    test_clz64()
+    print("✓ All tests passed for cl-bit-count-leading-zeros64!")

@@ -1,0 +1,12 @@
+// cl-bloom-filter-optimal-k: Test Suite
+import "../bloom_k.zk"
+
+fn test_bloom_k():
+    // 10000 bits for 1000 items -> ~6.93 -> 6 or 7
+    k := optimal_k(10000, 1000)
+    if k != 6: sys_exit(1)
+    print("test_bloom_k passed: optimal hash count k verified")
+
+fn main():
+    test_bloom_k()
+    print("✓ All tests passed for cl-bloom-filter-optimal-k!")

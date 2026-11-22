@@ -1,0 +1,17 @@
+// cl-b-spline: Uniform Cubic B-Spline Evaluator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Fixed-point scaled by 1000
+fn bspline_cubic_1d(p0: int, p1: int, p2: int, p3: int, t: int) -> int:
+    // t: 0..1000
+    t2 := (t * t) / 1000
+    t3 := (t2 * t) / 1000
+
+    b0 := (((0 - t3) + (3 * t2)) - (3 * t)) + 1000
+    b1 := ((3 * t3) - (6 * t2)) + 4000
+    b2 := (((0 - (3 * t3)) + (3 * t2)) + (3 * t)) + 1000
+    b3 := t3
+
+    num := (b0 * p0) + (b1 * p1) + (b2 * p2) + (b3 * p3)
+    return num / 6000

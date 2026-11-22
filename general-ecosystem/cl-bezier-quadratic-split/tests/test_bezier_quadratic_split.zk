@@ -1,0 +1,14 @@
+// cl-bezier-quadratic-split: Test Suite
+import "../bezier_split.zk"
+
+fn test_bezier_split():
+    l: vector[float] := []
+    r: vector[float] := []
+    bezier_quad_split_half(l, r, 0.0, 10.0, 20.0)
+    if l[2] != 10.0: sys_exit(1)
+    if r[0] != 10.0: sys_exit(1)
+    print("test_bezier_split passed: de Casteljau midpoint split verified")
+
+fn main():
+    test_bezier_split()
+    print("✓ All tests passed for cl-bezier-quadratic-split!")

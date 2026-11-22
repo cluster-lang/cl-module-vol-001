@@ -1,0 +1,31 @@
+// cl-bvh-leaf-morton2d-split: Morton Prefix Split Bit Finder Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn lshr64(val: int, shift: int) -> int:
+    if shift == 0: return val
+    mask := (1 << (64 - shift)) - 1
+    return (val >> shift) & mask
+
+fn clz32(val: int) -> int:
+    mask32 := 4294967295
+    v := val & mask32
+    if v == 0: return 32
+    count := 0
+    i := 31
+    cont := 1
+    while cont == 1:
+        if i >= 0:
+            bit := (v >> i) & 1
+            if bit == 0:
+                count = count + 1
+                i = i - 1
+            else:
+                cont = 0
+        else:
+            cont = 0
+    return count
+
+fn common_prefix_morton(code_a: int, code_b: int) -> int:
+    xor_code := code_a ^ code_b
+    return clz32(xor_code)

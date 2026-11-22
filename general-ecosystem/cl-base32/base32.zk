@@ -1,0 +1,54 @@
+// cl-base32: Pure Cluster RFC 4648 Base32 Codec
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn b32_char(idx: int) -> string:
+    v := idx & 31
+    if v < 26: return chr(v + 65)
+    return chr(v - 26 + 50)
+
+fn base32_encode(bytes: vector[int]) -> string:
+    res := ""
+    blen := bytes.len()
+    i := 0
+    while i < blen:
+        chunk_len := blen - i
+        if chunk_len > 5: chunk_len = 5
+        b0 := bytes[i] & 255
+        b1 := 0; b2 := 0; b3 := 0; b4 := 0
+        if chunk_len > 1: b1 = bytes[i + 1] & 255
+        if chunk_len > 2: b2 = bytes[i + 2] & 255
+        if chunk_len > 3: b3 = bytes[i + 3] & 255
+        if chunk_len > 4: b4 = bytes[i + 4] & 255
+
+        c0 := (b0 >> 3) & 31
+        c1 := ((b0 & 7) << 2) | ((b1 >> 6) & 3)
+        c2 := (b1 >> 1) & 31
+        c3 := ((b1 & 1) << 4) | ((b2 >> 4) & 15)
+        c4 := ((b2 & 15) << 1) | ((b3 >> 7) & 1)
+        c5 := (b3 >> 2) & 31
+        c6 := ((b3 & 3) << 3) | ((b4 >> 5) & 7)
+        c7 := b4 & 31
+
+        res = res + b32_char(c0) + b32_char(c1)
+        if chunk_len == 1:
+            res = res + "======"
+        elif chunk_len == 2:
+            res = res + b32_char(c2) + b32_char(c3) + "===="
+        elif chunk_len == 3:
+            res = res + b32_char(c2) + b32_char(c3) + b32_char(c4) + "==="
+        elif chunk_len == 4:
+            res = res + b32_char(c2) + b32_char(c3) + b32_char(c4) + b32_char(c5) + b32_char(c6) + "="
+        else:
+            res = res + b32_char(c2) + b32_char(c3) + b32_char(c4) + b32_char(c5) + b32_char(c6) + b32_char(c7)
+        i = i + 5
+    return res
+
+fn base32_encode_str(s: string) -> string:
+    bytes: vector[int] := []
+    i := 0
+    slen := len(s)
+    while i < slen:
+        bytes.push(byte_at(s, i))
+        i = i + 1
+    return base32_encode(bytes)

@@ -1,0 +1,18 @@
+// cl-bezier-cubic-velocity: Test Suite
+import "../bezier_vel.zk"
+
+fn test_bezier_vel():
+    p0: vector[float] := [0.0, 0.0]
+    p1: vector[float] := [1.0, 0.0]
+    p2: vector[float] := [2.0, 0.0]
+    p3: vector[float] := [3.0, 0.0]
+    out: vector[float] := []
+    bezier_cubic_velocity2d(out, p0, p1, p2, p3, 0.5)
+    diff := out[0] - 3.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.001: sys_exit(1)
+    print("test_bezier_vel passed: cubic velocity vector verified")
+
+fn main():
+    test_bezier_vel()
+    print("✓ All tests passed for cl-bezier-cubic-velocity!")

@@ -1,0 +1,11 @@
+// cl-cipher-ofb-keystream-xor-stage-29: Test Suite
+import "../cph_of_29.zk"
+
+fn test_run():
+    res := ofb_xor_29(98765, 43210)
+    if res != 76068: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cipher-ofb-keystream-xor-stage-29!")

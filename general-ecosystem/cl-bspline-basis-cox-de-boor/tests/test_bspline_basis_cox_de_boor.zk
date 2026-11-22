@@ -1,0 +1,14 @@
+// cl-bspline-basis-cox-de-boor: Test Suite
+import "../bspline_basis.zk"
+
+fn test_bspline_basis():
+    knots: vector[float] := [0.0, 1.0, 2.0, 3.0]
+    val := cox_de_boor_basis(1, 1, 1.5, knots)
+    diff := val - 0.5
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.01: sys_exit(1)
+    print("test_bspline_basis passed: Cox-de Boor value 0.5 verified")
+
+fn main():
+    test_bspline_basis()
+    print("✓ All tests passed for cl-bspline-basis-cox-de-boor!")

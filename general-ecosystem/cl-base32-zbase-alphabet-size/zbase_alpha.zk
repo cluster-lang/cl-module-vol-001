@@ -1,0 +1,9 @@
+// cl-base32-zbase-alphabet-size: z-base-32 Constant Metadata Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn zbase32_bits_per_char() -> int:
+    return 5
+
+fn zbase32_alphabet_cardinality() -> int:
+    return 32

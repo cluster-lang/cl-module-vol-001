@@ -1,0 +1,12 @@
+// cl-bit-rotate-right32: 32-bit Circular Right Bit Rotation Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn rotr32(x: int, r: int) -> int:
+    mask32 := 4294967295
+    val := x & mask32
+    shift := r & 31
+    if shift == 0: return val
+    right := val >> shift
+    left := (val << (32 - shift)) & mask32
+    return right | left

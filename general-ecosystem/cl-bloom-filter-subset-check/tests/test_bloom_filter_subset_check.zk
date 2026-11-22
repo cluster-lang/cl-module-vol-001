@@ -1,0 +1,13 @@
+// cl-bloom-filter-subset-check: Test Suite
+import "../bloom_sub.zk"
+
+fn test_bloom_sub():
+    fa: vector[int] := [3]
+    fb: vector[int] := [7]
+    if bloom_is_subset(fa, fb) != 1: sys_exit(1)
+    if bloom_is_subset(fb, fa) != 0: sys_exit(2)
+    print("test_bloom_sub passed: subset relation verified")
+
+fn main():
+    test_bloom_sub()
+    print("✓ All tests passed for cl-bloom-filter-subset-check!")

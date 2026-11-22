@@ -1,0 +1,6 @@
+// cl-cipher-cbc-xor-block-stage-46: CBC Cipher Block Initialization XOR Stage 46
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn cbc_xor_46(pt: int, iv: int) -> int:
+    return (pt ^ iv) + 46

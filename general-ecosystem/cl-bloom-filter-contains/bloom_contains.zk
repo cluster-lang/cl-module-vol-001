@@ -1,0 +1,10 @@
+// cl-bloom-filter-contains: Double-Hash Bloom Filter Membership Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bloom_check_double(filter: int, h1: int, h2: int) -> int:
+    m1 := 1 << (h1 & 63)
+    m2 := 1 << (h2 & 63)
+    if (filter & m1) == 0: return 0
+    if (filter & m2) == 0: return 0
+    return 1

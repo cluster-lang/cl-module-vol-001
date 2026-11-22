@@ -1,0 +1,14 @@
+// cl-bloom-filter-difference-ops: Test Suite
+import "../bloom_diff.zk"
+
+fn test_bloom_diff():
+    fa: vector[int] := [15]
+    fb: vector[int] := [3]
+    d := bloom_difference(fa, fb)
+    if d[0] != 12: sys_exit(1)
+    if bloom_diff_count(d) != 2: sys_exit(2)
+    print("test_bloom_diff passed: bitwise difference verified")
+
+fn main():
+    test_bloom_diff()
+    print("✓ All tests passed for cl-bloom-filter-difference-ops!")

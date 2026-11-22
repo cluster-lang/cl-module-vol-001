@@ -1,0 +1,25 @@
+// cl-bloom-filter-hamming-weight: Bloom Filter Bitset Population Count
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn popcount32(val: int) -> int:
+    mask32 := 4294967295
+    x := val & mask32
+    m1 := 1431655765
+    m2 := 858993459
+    m4 := 252645135
+    x = (x - ((x >> 1) & m1)) & mask32
+    x = (((x & m2) + ((x >> 2) & m2))) & mask32
+    x = (((x + (x >> 4)) & m4)) & mask32
+    x = (x + (x >> 8)) & mask32
+    x = (x + (x >> 16)) & mask32
+    return x & 63
+
+fn bloom_total_set_bits(bits: vector[int]) -> int:
+    n := bits.len()
+    total := 0
+    i := 0
+    while i < n:
+        total = total + popcount32(bits[i])
+        i = i + 1
+    return total

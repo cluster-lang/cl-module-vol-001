@@ -1,0 +1,13 @@
+// cl-base32-crockford: Test Suite
+import "../crockford.zk"
+
+fn test_crockford():
+    // 1337 = 1*1024 + 9*32 + 25 = "19S"
+    s := crockford_encode_int(1337)
+    if s != "19S": sys_exit(1)
+    if crockford_encode_int(0) != "0": sys_exit(1)
+    print("test_crockford passed: Crockford Base32 1337 -> 19S verified")
+
+fn main():
+    test_crockford()
+    print("✓ All tests passed for cl-base32-crockford!")

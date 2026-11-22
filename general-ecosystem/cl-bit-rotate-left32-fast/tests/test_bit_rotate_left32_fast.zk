@@ -1,0 +1,13 @@
+// cl-bit-rotate-left32-fast: Test Suite
+import "../rotl32_fast.zk"
+
+fn test_rotl32_fast():
+    v := rotl32_fast(1, 4)
+    if v != 16: sys_exit(1)
+    v0 := rotl32_fast(1234, 0)
+    if v0 != 1234: sys_exit(1)
+    print("test_rotl32_fast passed: 32-bit circular left rotation verified")
+
+fn main():
+    test_rotl32_fast()
+    print("✓ All tests passed for cl-bit-rotate-left32-fast!")

@@ -1,0 +1,15 @@
+// cl-bloom: Test Suite
+import "../bloom.zk"
+
+fn test_bloom():
+    bf := bloom_new(1000)
+    bloom_add(bf, 12345)
+    bloom_add(bf, 67890)
+    if not bloom_contains(bf, 12345): sys_exit(1)
+    if not bloom_contains(bf, 67890): sys_exit(1)
+    if bloom_contains(bf, 99999): sys_exit(1)
+    print("test_bloom passed: dynamic membership filter verified")
+
+fn main():
+    test_bloom()
+    print("✓ All tests passed for cl-bloom!")

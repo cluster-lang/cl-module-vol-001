@@ -1,0 +1,13 @@
+// cl-bezier-cubic-arc: Test Suite
+import "../bezier_cubic_arc.zk"
+
+fn test_cubic_arc():
+    // Straight line: (0,0) -> (3.33, 0) -> (6.66, 0) -> (10.0, 0)
+    len_val := bezier_cubic_length(0.0, 0.0, 3.333, 0.0, 6.666, 0.0, 10.0, 0.0, 10)
+    if len_val < 9.9: sys_exit(1)
+    if len_val > 10.1: sys_exit(1)
+    print("test_cubic_arc passed: cubic arc length integration verified")
+
+fn main():
+    test_cubic_arc()
+    print("✓ All tests passed for cl-bezier-cubic-arc!")

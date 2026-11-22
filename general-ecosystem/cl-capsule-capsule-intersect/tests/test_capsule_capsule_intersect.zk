@@ -1,0 +1,11 @@
+// cl-capsule-capsule-intersect: Test Suite
+import "../cap_intersect.zk"
+
+fn test_capsules():
+    if capsules_intersect(0.0, 0.0, 0.0, 1.0, 1.5, 0.0, 0.0, 1.0) != 1: sys_exit(1)
+    if capsules_intersect(0.0, 0.0, 0.0, 1.0, 3.0, 0.0, 0.0, 1.0) != 0: sys_exit(1)
+    print("test_capsules passed: capsule sphere collision verified")
+
+fn main():
+    test_capsules()
+    print("✓ All tests passed for cl-capsule-capsule-intersect!")

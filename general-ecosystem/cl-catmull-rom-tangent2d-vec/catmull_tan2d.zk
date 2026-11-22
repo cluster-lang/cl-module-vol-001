@@ -1,0 +1,10 @@
+// cl-catmull-rom-tangent2d-vec: 2D Catmull-Rom Tangent Vector Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn catmull_tangent2d_vec(out: vector[float], p0: vector[float], p1: vector[float], p2: vector[float], p3: vector[float], t: float):
+    t2 := t * t
+    tx := 0.5 * (3.0 * t2 * (0.0 - p0[0] + 3.0 * p1[0] - 3.0 * p2[0] + p3[0]) + 2.0 * t * (2.0 * p0[0] - 5.0 * p1[0] + 4.0 * p2[0] - p3[0]) + (0.0 - p0[0] + p2[0]))
+    ty := 0.5 * (3.0 * t2 * (0.0 - p0[1] + 3.0 * p1[1] - 3.0 * p2[1] + p3[1]) + 2.0 * t * (2.0 * p0[1] - 5.0 * p1[1] + 4.0 * p2[1] - p3[1]) + (0.0 - p0[1] + p2[1]))
+    out.push(tx)
+    out.push(ty)

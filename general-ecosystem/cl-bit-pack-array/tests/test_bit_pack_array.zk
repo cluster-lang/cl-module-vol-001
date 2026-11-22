@@ -1,0 +1,14 @@
+// cl-bit-pack-array: Test Suite
+import "../nibble_array.zk"
+
+fn test_bpack():
+    p: vector[int] := [0]
+    nibble_set(p, 0, 9)
+    nibble_set(p, 1, 14)
+    if nibble_get(p, 0) != 9: sys_exit(1)
+    if nibble_get(p, 1) != 14: sys_exit(1)
+    print("test_bpack passed: 4-bit nibble packing verified")
+
+fn main():
+    test_bpack()
+    print("✓ All tests passed for cl-bit-pack-array!")

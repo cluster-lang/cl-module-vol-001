@@ -1,0 +1,14 @@
+// cl-barycentric: Test Suite
+import "../barycentric.zk"
+
+fn test_bary():
+    // Triangle (0,0), (10,0), (0,10) with test point (2,2)
+    b := barycentric_coords(0, 0, 10, 0, 0, 10, 2, 2)
+    if b[0] != 600: sys_exit(1) // u = 0.6
+    if b[1] != 200: sys_exit(1) // v = 0.2
+    if b[2] != 200: sys_exit(1) // w = 0.2
+    print("test_bary passed: exact barycentric weights verified")
+
+fn main():
+    test_bary()
+    print("✓ All tests passed for cl-barycentric!")

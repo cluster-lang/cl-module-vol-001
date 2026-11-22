@@ -1,0 +1,41 @@
+// cl-catmull-rom-curvature3d: 3D Catmull-Rom Spline Curvature Magnitude
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn catmull_rom_curvature3d(p0: vector[float], p1: vector[float], p2: vector[float], p3: vector[float], t: float) -> float:
+    m1_x := (p2[0] - p0[0]) * 0.5
+    m1_y := (p2[1] - p0[1]) * 0.5
+    m1_z := (p2[2] - p0[2]) * 0.5
+
+    m2_x := (p3[0] - p1[0]) * 0.5
+    m2_y := (p3[1] - p1[1]) * 0.5
+    m2_z := (p3[2] - p1[2]) * 0.5
+
+    h00_d := 6.0 * t * t - 6.0 * t
+    h10_d := 3.0 * t * t - 4.0 * t + 1.0
+    h01_d := (0.0 - 6.0) * t * t + 6.0 * t
+    h11_d := 3.0 * t * t - 2.0 * t
+
+    vx := h00_d * p1[0] + h10_d * m1_x + h01_d * p2[0] + h11_d * m2_x
+    vy := h00_d * p1[1] + h10_d * m1_y + h01_d * p2[1] + h11_d * m2_y
+    vz := h00_d * p1[2] + h10_d * m1_z + h01_d * p2[2] + h11_d * m2_z
+
+    h00_dd := 12.0 * t - 6.0
+    h10_dd := 6.0 * t - 4.0
+    h01_dd := (0.0 - 12.0) * t + 6.0
+    h11_dd := 6.0 * t - 2.0
+
+    ax := h00_dd * p1[0] + h10_dd * m1_x + h01_dd * p2[0] + h11_dd * m2_x
+    ay := h00_dd * p1[1] + h10_dd * m1_y + h01_dd * p2[1] + h11_dd * m2_y
+    az := h00_dd * p1[2] + h10_dd * m1_z + h01_dd * p2[2] + h11_dd * m2_z
+
+    cx := vy * az - vz * ay
+    cy := vz * ax - vx * az
+    cz := vx * ay - vy * ax
+
+    c_mag_sq := cx * cx + cy * cy + cz * cz
+    v_mag_sq := vx * vx + vy * vy + vz * vz
+    if v_mag_sq < 0.000001:
+        return 0.0
+    v_mag_cb := v_mag_sq * (v_mag_sq) // approximate or power
+    return c_mag_sq / v_mag_sq

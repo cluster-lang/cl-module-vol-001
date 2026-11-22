@@ -1,0 +1,23 @@
+// cl-bezier-cubic-split-at: Cubic Bezier Curve Subdivision via De Casteljau
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn lerp2d(p1x: float, p1y: float, p2x: float, p2y: float, t: float) -> vector[float]:
+    x := p1x + t * (p2x - p1x)
+    y := p1y + t * (p2y - p1y)
+    res: vector[float] := [x, y]
+    return res
+
+fn bezier_cubic_split2d(p0x: float, p0y: float, p1x: float, p1y: float, p2x: float, p2y: float, p3x: float, p3y: float, t: float) -> vector[float]:
+    q0 := lerp2d(p0x, p0y, p1x, p1y, t)
+    q1 := lerp2d(p1x, p1y, p2x, p2y, t)
+    q2 := lerp2d(p2x, p2y, p3x, p3y, t)
+    r0 := lerp2d(q0[0], q0[1], q1[0], q1[1], t)
+    r1 := lerp2d(q1[0], q1[1], q2[0], q2[1], t)
+    s0 := lerp2d(r0[0], r0[1], r1[0], r1[1], t)
+
+    res: vector[float] := [
+        p0x, p0y, q0[0], q0[1], r0[0], r0[1], s0[0], s0[1],
+        s0[0], s0[1], r1[0], r1[1], q2[0], q2[1], p3x, p3y
+    ]
+    return res

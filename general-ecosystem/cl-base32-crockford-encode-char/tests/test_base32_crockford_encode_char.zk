@@ -1,0 +1,13 @@
+// cl-base32-crockford-encode-char: Test Suite
+import "../crock_enc.zk"
+
+fn test_crock_enc():
+    if crockford_encode_5bit(0) != 48: sys_exit(1) // '0'
+    if crockford_encode_5bit(9) != 57: sys_exit(1) // '9'
+    if crockford_encode_5bit(10) != 65: sys_exit(1) // 'A'
+    if crockford_encode_5bit(31) != 90: sys_exit(1) // 'Z'
+    print("test_crock_enc passed: Crockford 5-bit character encoding verified")
+
+fn main():
+    test_crock_enc()
+    print("✓ All tests passed for cl-base32-crockford-encode-char!")

@@ -1,0 +1,6 @@
+// cl-bvh-leaf-morton2d-split-median: Spatial Median Splitting Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn morton2d_median_split(start_idx: int, end_idx: int) -> int:
+    return (start_idx + end_idx) / 2

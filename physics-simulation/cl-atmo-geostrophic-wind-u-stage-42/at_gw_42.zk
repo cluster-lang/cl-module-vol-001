@@ -1,0 +1,6 @@
+// cl-atmo-geostrophic-wind-u-stage-42: Geostrophic Wind Zonal Velocity Component Stage 42
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn geostrophic_u_42(g: float, f_param: float, dz_dy: float) -> float:
+    return ((g / f_param) * dz_dy) * 42.0

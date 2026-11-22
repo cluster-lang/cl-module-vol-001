@@ -1,0 +1,14 @@
+// cl-base32-zbase-pad-length: Test Suite
+import "../zpad.zk"
+
+fn test_zpad():
+    // 5 bytes = 40 bits = 8 chars
+    c1 := zbase32_encoded_length(5)
+    // 1 byte = 8 bits = (8 + 4)/5 = 2 chars
+    c2 := zbase32_encoded_length(1)
+    if c1 != 8 or c2 != 2: sys_exit(1)
+    print("test_zpad passed")
+
+fn main():
+    test_zpad()
+    print("✓ All tests passed for cl-base32-zbase-pad-length!")

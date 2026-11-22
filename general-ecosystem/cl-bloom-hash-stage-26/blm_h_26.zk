@@ -1,0 +1,6 @@
+// cl-bloom-hash-stage-26: Bloom Filter Double Hash Probe Stage 26
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bloom_probe_26(h1: int, h2: int) -> int:
+    return (h1 + 26 * h2) % 1000003

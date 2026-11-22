@@ -1,0 +1,17 @@
+// cl-chull-monotone-merge: Upper and Lower Hull Merger
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn merge_hull_chains(out: vector[int], lower: vector[int], upper: vector[int]):
+    n_low := lower.len() / 2
+    n_up := upper.len() / 2
+    i := 0
+    while i < (n_low - 1):
+        out.push(lower[i * 2])
+        out.push(lower[(i * 2) + 1])
+        i = i + 1
+    j := 0
+    while j < (n_up - 1):
+        out.push(upper[j * 2])
+        out.push(upper[(j * 2) + 1])
+        j = j + 1

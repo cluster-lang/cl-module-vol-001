@@ -1,0 +1,16 @@
+// cl-bezier-cubic-curvature-inflection: Test Suite
+import "../b3_infl.zk"
+
+fn test_b3_infl():
+    // S-curve with inflection
+    p0: vector[float] := [0.0, 0.0]
+    p1: vector[float] := [1.0, 2.0]
+    p2: vector[float] := [2.0, -2.0]
+    p3: vector[float] := [3.0, 0.0]
+    has_inf := bezier_has_inflection(p0, p1, p2, p3)
+    if has_inf != 1: sys_exit(1)
+    print("test_b3_infl passed")
+
+fn main():
+    test_b3_infl()
+    print("✓ All tests passed for cl-bezier-cubic-curvature-inflection!")

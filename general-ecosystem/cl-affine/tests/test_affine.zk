@@ -1,0 +1,15 @@
+// cl-affine: Test Suite
+import "../affine.zk"
+
+fn test_affine():
+    msg := "AFFINECIPHER"
+    // a = 5, b = 8 (a_inv for 5 mod 26 is 21)
+    enc := affine_encrypt(msg, 5, 8)
+    if enc != "IHHWVCSWFRCP": sys_exit(1)
+    dec := affine_decrypt(enc, 21, 8)
+    if dec != msg: sys_exit(1)
+    print("test_affine passed: affine cipher verified")
+
+fn main():
+    test_affine()
+    print("✓ All tests passed for cl-affine!")

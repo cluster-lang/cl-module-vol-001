@@ -1,0 +1,9 @@
+// cl-base32-crockford-checksum: Crockford Base32 Modulo-37 Check Character
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Check symbols: 0-9, A-Z (excluding I,L,O,U), *, ~, $, =, U
+fn crockford_check_symbol(val: int) -> int:
+    rem := val % 37
+    if rem < 10: return 48 + rem // '0'-'9'
+    return 65 + (rem - 10)       // 'A'+

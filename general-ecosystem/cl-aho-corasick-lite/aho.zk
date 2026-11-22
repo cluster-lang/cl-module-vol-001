@@ -1,0 +1,25 @@
+// cl-aho-corasick-lite: Multi-Pattern Dictionary String Matcher
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn aho_count_matches(keywords: vector[string], text: string) -> int:
+    count := 0
+    tlen := len(text)
+    k_idx := 0
+    klen := keywords.len()
+    while k_idx < klen:
+        kw := keywords[k_idx]
+        kw_len := len(kw)
+        i := 0
+        while i <= (tlen - kw_len):
+            is_match := 1
+            j := 0
+            while j < kw_len:
+                if byte_at(text, i + j) != byte_at(kw, j):
+                    is_match = 0
+                j = j + 1
+            if is_match == 1:
+                count = count + 1
+            i = i + 1
+        k_idx = k_idx + 1
+    return count

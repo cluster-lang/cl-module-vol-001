@@ -1,0 +1,12 @@
+// cl-bezier-cubic-bounding-box: 1D Cubic Extrema Coefficients
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Derivative coefficients for B'(t) = a*t^2 + b*t + c
+fn cubic_derivative_coeffs(out: vector[float], p0: float, p1: float, p2: float, p3: float):
+    a := (3.0 * (-p0 + (3.0 * p1) - (3.0 * p2) + p3))
+    b := (6.0 * (p0 - (2.0 * p1) + p2))
+    c := (3.0 * (p1 - p0))
+    out.push(a)
+    out.push(b)
+    out.push(c)

@@ -1,0 +1,10 @@
+// cl-base64-stream: Base64 3-to-4 Stream Tuple Packer
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn base64_pack_triplet(b0: int, b1: int, b2: int, out: vector[int]):
+    val := ((b0 & 255) << 16) | ((b1 & 255) << 8) | (b2 & 255)
+    out.push((val >> 18) & 63)
+    out.push((val >> 12) & 63)
+    out.push((val >> 6) & 63)
+    out.push(val & 63)

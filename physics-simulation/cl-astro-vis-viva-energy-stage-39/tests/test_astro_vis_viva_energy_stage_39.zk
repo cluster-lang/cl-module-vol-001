@@ -1,0 +1,13 @@
+// cl-astro-vis-viva-energy-stage-39: Test Suite
+import "../ast_se_39.zk"
+
+fn test_run():
+    res := specific_energy_39(398600.0, 7000.0)
+    diff := res - -1110.3857
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-astro-vis-viva-energy-stage-39!")

@@ -1,0 +1,18 @@
+// cl-atbash: Pure Cluster Atbash Mirror Substitution Cipher
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn atbash(s: string) -> string:
+    res := ""
+    i := 0
+    slen := len(s)
+    while i < slen:
+        b := byte_at(s, i)
+        if b >= 65 and b <= 90:
+            res = res + chr(90 - (b - 65))
+        elif b >= 97 and b <= 122:
+            res = res + chr(122 - (b - 97))
+        else:
+            res = res + chr(b)
+        i = i + 1
+    return res

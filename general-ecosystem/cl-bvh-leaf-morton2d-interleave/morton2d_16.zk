@@ -1,0 +1,14 @@
+// cl-bvh-leaf-morton2d-interleave: 2D 16-bit Morton Code Interleaver Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn expand_bits16(val: int) -> int:
+    v := val & 65535
+    v = (v ^ (v << 8)) & 16711935
+    v = (v ^ (v << 4)) & 252645135
+    v = (v ^ (v << 2)) & 858993459
+    v = (v ^ (v << 1)) & 1431655765
+    return v
+
+fn morton2d_interleave16(x: int, y: int) -> int:
+    return (expand_bits16(y) << 1) | expand_bits16(x)

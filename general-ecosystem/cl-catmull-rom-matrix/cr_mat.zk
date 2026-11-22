@@ -1,0 +1,12 @@
+// cl-catmull-rom-matrix: Basis Coefficients for Catmull-Rom
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Writes [a0, a1, a2, a3] such that P(t) = a0*p0 + a1*p1 + a2*p2 + a3*p3
+fn cr_basis_weights(out: vector[float], t: float):
+    t2 := t * t
+    t3 := t2 * t
+    out.push(-0.5*t3 + t2 - 0.5*t)
+    out.push(1.5*t3 - 2.5*t2 + 1.0)
+    out.push(-1.5*t3 + 2.0*t2 + 0.5*t)
+    out.push(0.5*t3 - 0.5*t2)

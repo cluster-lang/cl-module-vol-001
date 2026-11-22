@@ -1,0 +1,16 @@
+// cl-bezier-quadratic: Quadratic Bézier Curve Evaluator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Fixed-point scaled by 1000
+fn bezier_quadratic_1d(p0: int, p1: int, p2: int, t: int) -> int:
+    u := 1000 - t
+    u2 := (u * u) / 1000
+    t2 := (t * t) / 1000
+    ut2 := (2 * u * t) / 1000
+
+    term0 := (u2 * p0) / 1000
+    term1 := (ut2 * p1) / 1000
+    term2 := (t2 * p2) / 1000
+
+    return term0 + term1 + term2

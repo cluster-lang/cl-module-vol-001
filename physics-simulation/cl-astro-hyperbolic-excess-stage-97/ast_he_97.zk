@@ -1,0 +1,6 @@
+// cl-astro-hyperbolic-excess-stage-97: Hyperbolic Excess Specific Energy Stage 97
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn hyperbolic_excess_97(v2: float, v_esc2: float) -> float:
+    return 0.5 * (v2 - v_esc2) * 97.0

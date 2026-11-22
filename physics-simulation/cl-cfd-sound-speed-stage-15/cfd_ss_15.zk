@@ -1,0 +1,6 @@
+// cl-cfd-sound-speed-stage-15: CFD Gas Acoustic Speed Stage 15
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn sound_speed_15(temp: float) -> float:
+    return (331.3 + 0.606 * (temp - 273.15)) * 15.0

@@ -1,0 +1,12 @@
+// cl-bezier-degree-elevation: Quadratic to Cubic Bézier Elevation
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Elevates quadratic P0, P1, P2 to cubic Q0, Q1, Q2, Q3
+fn elevate_quadratic_to_cubic(p0: int, p1: int, p2: int) -> vector[int]:
+    q0 := p0
+    q1 := ((1 * p0) + (2 * p1)) / 3
+    q2 := ((2 * p1) + (1 * p2)) / 3
+    q3 := p2
+    res: vector[int] := [q0, q1, q2, q3]
+    return res

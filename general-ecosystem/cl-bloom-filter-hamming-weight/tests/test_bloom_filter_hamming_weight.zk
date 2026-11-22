@@ -1,0 +1,13 @@
+// cl-bloom-filter-hamming-weight: Test Suite
+import "../bf_hw.zk"
+
+fn test_bf_hw():
+    // 7 (3 bits) + 15 (4 bits) = 7 bits
+    bits: vector[int] := [7, 15]
+    total := bloom_total_set_bits(bits)
+    if total != 7: sys_exit(1)
+    print("test_bf_hw passed")
+
+fn main():
+    test_bf_hw()
+    print("✓ All tests passed for cl-bloom-filter-hamming-weight!")

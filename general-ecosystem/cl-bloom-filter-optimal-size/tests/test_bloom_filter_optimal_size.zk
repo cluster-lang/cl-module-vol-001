@@ -1,0 +1,12 @@
+// cl-bloom-filter-optimal-size: Test Suite
+import "../bloom_opt.zk"
+
+fn test_bloom_opt():
+    // For 1000 items at 10 bits/element -> 10000 bits
+    m := bloom_bits_for_capacity(1000, 10)
+    if m != 10000: sys_exit(1)
+    print("test_bloom_opt passed: optimal bit size 10000 verified")
+
+fn main():
+    test_bloom_opt()
+    print("✓ All tests passed for cl-bloom-filter-optimal-size!")

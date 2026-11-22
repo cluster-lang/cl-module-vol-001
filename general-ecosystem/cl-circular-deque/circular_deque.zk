@@ -1,0 +1,9 @@
+// cl-circular-deque: Circular Double-Ended Buffer Indices
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn deque_next_index(head: int, cap: int) -> int:
+    return (head + 1) % cap
+
+fn deque_prev_index(head: int, cap: int) -> int:
+    return (head - 1 + cap) % cap

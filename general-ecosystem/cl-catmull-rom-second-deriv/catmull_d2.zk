@@ -1,0 +1,8 @@
+// cl-catmull-rom-second-deriv: Catmull-Rom Spline Acceleration Second Derivative
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn catmull_rom_d2(p0: float, p1: float, p2: float, p3: float, t: float) -> float:
+    b0 := 2.0 * p0 - 5.0 * p1 + 4.0 * p2 - p3
+    b1 := (0.0 - p0) + 3.0 * p1 - 3.0 * p2 + p3
+    return b0 + 3.0 * t * b1

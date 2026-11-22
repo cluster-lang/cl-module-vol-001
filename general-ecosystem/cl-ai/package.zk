@@ -1,0 +1,6 @@
+name: "cl-ai"
+version: "0.1.0"
+description: "Ollama bridge for local AI inference"
+license: "MIT-Conditional"
+author: "Cluster Authors"
+dependencies: []

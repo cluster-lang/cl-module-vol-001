@@ -1,0 +1,15 @@
+// cl-bloom-filter-counting: Test Suite
+import "../cbloom.zk"
+
+fn test_cbloom():
+    c: vector[int] := [0, 0]
+    cbloom_inc(c, 0)
+    cbloom_inc(c, 0)
+    if c[0] != 2: sys_exit(1)
+    cbloom_dec(c, 0)
+    if c[0] != 1: sys_exit(1)
+    print("test_cbloom passed: counting filter inc/dec verified")
+
+fn main():
+    test_cbloom()
+    print("✓ All tests passed for cl-bloom-filter-counting!")

@@ -1,0 +1,16 @@
+// cl-clamp2d: Pure Cluster 2D Boundary Point Clamping
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+model Point2D:
+    x: int
+    y: int
+
+fn clamp2d(p: Point2D, min_x: int, min_y: int, max_x: int, max_y: int) -> Point2D:
+    cx := p.x
+    cy := p.y
+    if cx < min_x: cx = min_x
+    if cx > max_x: cx = max_x
+    if cy < min_y: cy = min_y
+    if cy > max_y: cy = max_y
+    return Point2D(cx, cy)

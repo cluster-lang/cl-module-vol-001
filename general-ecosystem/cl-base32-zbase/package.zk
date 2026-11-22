@@ -1,0 +1,10 @@
+// cl-base32-zbase Package Manifest
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+name := "cl-base32-zbase"
+version := "1.0.0"
+description := "Phil Zimmermann z-base-32 Codec"
+main := "zbase.zk"
+license := "CCFL-2.0"
+author := "zk-mohammad <ZaidKhan-alamgir@proton.me>"

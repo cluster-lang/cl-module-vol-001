@@ -1,0 +1,14 @@
+// cl-bloom-filter-union: Test Suite
+import "../bloom_un.zk"
+
+fn test_bloom_un():
+    f1: vector[int] := [1, 2]
+    f2: vector[int] := [4, 2]
+    bloom_union(f1, f2)
+    if f1[0] != 5: sys_exit(1)
+    if f1[1] != 2: sys_exit(1)
+    print("test_bloom_un passed: bitwise union verified")
+
+fn main():
+    test_bloom_un()
+    print("✓ All tests passed for cl-bloom-filter-union!")

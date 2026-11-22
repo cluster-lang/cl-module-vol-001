@@ -1,0 +1,6 @@
+// cl-checksum-acc-stage-3: Checksum Accumulator Stage 3
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn chk_acc_stage_3(acc: int, b: int) -> int:
+    return (acc + (b & 255) * 3) & 65535

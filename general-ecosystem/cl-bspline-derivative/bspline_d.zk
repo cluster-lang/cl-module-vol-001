@@ -1,0 +1,13 @@
+// cl-bspline-derivative: Quadratic B-Spline First Derivative Evaluator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Basis derivatives for uniform quadratic B-spline
+fn bspline_quad_d0(t: float) -> float:
+    return t - 1.0
+
+fn bspline_quad_d1(t: float) -> float:
+    return 1.0 - (2.0 * t)
+
+fn bspline_quad_d2(t: float) -> float:
+    return t

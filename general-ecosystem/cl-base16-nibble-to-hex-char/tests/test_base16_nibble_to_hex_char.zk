@@ -1,0 +1,13 @@
+// cl-base16-nibble-to-hex-char: Test Suite
+import "../nib_hex.zk"
+
+fn test_n2h():
+    if nibble_to_hex(0) != 48: sys_exit(1) // 0 -> '0'
+    if nibble_to_hex(9) != 57: sys_exit(1) // 9 -> '9'
+    if nibble_to_hex(10) != 97: sys_exit(1) // 10 -> 'a'
+    if nibble_to_hex(15) != 102: sys_exit(1) // 15 -> 'f'
+    print("test_n2h passed")
+
+fn main():
+    test_n2h()
+    print("✓ All tests passed for cl-base16-nibble-to-hex-char!")

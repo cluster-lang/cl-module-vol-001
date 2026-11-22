@@ -1,0 +1,12 @@
+// cl-bit-count-ones64: Test Suite
+import "../popcount64.zk"
+
+fn test_popcount64():
+    if popcount64(0) != 0: sys_exit(1)
+    if popcount64(7) != 3: sys_exit(1)
+    if popcount64(255) != 8: sys_exit(1)
+    print("test_popcount64 passed: 64-bit population count verified")
+
+fn main():
+    test_popcount64()
+    print("✓ All tests passed for cl-bit-count-ones64!")

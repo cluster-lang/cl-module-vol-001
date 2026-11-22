@@ -1,0 +1,20 @@
+// cl-bspline-cubic-eval: Uniform Cubic B-Spline Basis
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bspline_cubic_b0(t: float) -> float:
+    mt := 1.0 - t
+    return (mt * mt * mt) / 6.0
+
+fn bspline_cubic_b1(t: float) -> float:
+    t2 := t * t
+    t3 := t2 * t
+    return (3.0*t3 - 6.0*t2 + 4.0) / 6.0
+
+fn bspline_cubic_b2(t: float) -> float:
+    t2 := t * t
+    t3 := t2 * t
+    return (-3.0*t3 + 3.0*t2 + 3.0*t + 1.0) / 6.0
+
+fn bspline_cubic_b3(t: float) -> float:
+    return (t * t * t) / 6.0

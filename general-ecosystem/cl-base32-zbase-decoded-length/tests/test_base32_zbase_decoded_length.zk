@@ -1,0 +1,12 @@
+// cl-base32-zbase-decoded-length: Test Suite
+import "../zdec_len.zk"
+
+fn test_zdec_len():
+    // 8 chars * 5 / 8 = 5 bytes
+    if zbase32_decoded_max_length(8) != 5: sys_exit(1)
+    if zbase32_decoded_max_length(0) != 0: sys_exit(1)
+    print("test_zdec_len passed")
+
+fn main():
+    test_zdec_len()
+    print("✓ All tests passed for cl-base32-zbase-decoded-length!")

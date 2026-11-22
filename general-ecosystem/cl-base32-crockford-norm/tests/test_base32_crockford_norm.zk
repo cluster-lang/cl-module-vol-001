@@ -1,0 +1,13 @@
+// cl-base32-crockford-norm: Test Suite
+import "../crockford_norm.zk"
+
+fn test_crockford_norm():
+    if crockford_normalize_char(73) != 49: sys_exit(1) // 'I' -> '1'
+    if crockford_normalize_char(108) != 49: sys_exit(1) // 'l' -> '1'
+    if crockford_normalize_char(79) != 48: sys_exit(1) // 'O' -> '0'
+    if crockford_normalize_char(50) != 50: sys_exit(1) // '2' -> '2'
+    print("test_crockford_norm passed: Crockford normalization verified")
+
+fn main():
+    test_crockford_norm()
+    print("✓ All tests passed for cl-base32-crockford-norm!")

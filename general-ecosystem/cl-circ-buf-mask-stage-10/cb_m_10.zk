@@ -1,0 +1,6 @@
+// cl-circ-buf-mask-stage-10: Circular Buffer Mask for Capacity 4 Stage 10
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn circ_buf_wrap_10(idx: int) -> int:
+    return idx & 3

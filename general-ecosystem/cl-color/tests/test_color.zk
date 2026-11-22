@@ -1,0 +1,12 @@
+// cl-color: Test Suite
+import "../color.zk"
+
+fn test_color():
+    c := RGB(255, 0, 128)
+    if rgb_to_hex(c) != "ff0080": sys_exit(1)
+    if rgb_luminance(RGB(100, 100, 100)) != 100: sys_exit(1)
+    print("test_color passed: color conversions verified")
+
+fn main():
+    test_color()
+    print("✓ All tests passed for cl-color!")

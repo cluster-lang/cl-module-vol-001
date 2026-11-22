@@ -1,0 +1,12 @@
+// cl-catmull-rom-eval: 1D Catmull-Rom Position Evaluator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn catmull_rom_eval(p0: float, p1: float, p2: float, p3: float, t: float) -> float:
+    t2 := t * t
+    t3 := t2 * t
+    a0 := -0.5*t3 + t2 - 0.5*t
+    a1 := 1.5*t3 - 2.5*t2 + 1.0
+    a2 := -1.5*t3 + 2.0*t2 + 0.5*t
+    a3 := 0.5*t3 - 0.5*t2
+    return (a0 * p0) + (a1 * p1) + (a2 * p2) + (a3 * p3)

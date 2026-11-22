@@ -1,0 +1,15 @@
+// cl-b-spline-knot-vector: Test Suite
+import "../knot_vec.zk"
+
+fn test_knot_vec():
+    knots: vector[float] := []
+    generate_clamped_knots(knots, 4, 2)
+    // 4 control points, degree 2 -> 4+2+1 = 7 knots
+    if knots.len() != 7: sys_exit(1)
+    if knots[0] != 0.0: sys_exit(1)
+    if knots[6] != 1.0: sys_exit(1)
+    print("test_knot_vec passed: clamped knot vector verified")
+
+fn main():
+    test_knot_vec()
+    print("✓ All tests passed for cl-b-spline-knot-vector!")

@@ -1,0 +1,11 @@
+// cl-bit-swap-nibble-stage-57: Test Suite
+import "../bsn_57.zk"
+
+fn test_run():
+    res := bit_swap_nibble_57(4660)
+    if res != 13355: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-bit-swap-nibble-stage-57!")

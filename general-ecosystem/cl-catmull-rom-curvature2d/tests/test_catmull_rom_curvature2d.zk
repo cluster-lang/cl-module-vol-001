@@ -1,0 +1,14 @@
+// cl-catmull-rom-curvature2d: Test Suite
+import "../cr_curv.zk"
+
+fn test_cr_curv():
+    // Circle of radius R=2: v = (0, 2), a = (-2, 0) -> speed=2, num = |0 - (-4)| = 4, den = 8 -> kappa = 0.5 = 1/R
+    k := curve_curvature2d(0.0, 2.0, -2.0, 0.0)
+    diff := k - 0.5
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.01: sys_exit(1)
+    print("test_cr_curv passed: curvature 0.5 for radius 2 verified")
+
+fn main():
+    test_cr_curv()
+    print("✓ All tests passed for cl-catmull-rom-curvature2d!")

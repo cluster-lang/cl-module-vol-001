@@ -1,0 +1,16 @@
+// cl-bezier-cubic-subdivide: Test Suite
+import "../bezier_sub.zk"
+
+fn test_bezier_sub():
+    // Symmetric curve: 0, 100, 100, 0
+    sub := bezier_subdivide_mid(0, 100, 100, 0)
+    // Middle point at t=0.5 is 75
+    if sub[3] != 75: sys_exit(1)
+    if sub[4] != 75: sys_exit(1)
+    if sub[0] != 0: sys_exit(1)
+    if sub[7] != 0: sys_exit(1)
+    print("test_bezier_sub passed: De Casteljau subdivision verified")
+
+fn main():
+    test_bezier_sub()
+    print("✓ All tests passed for cl-bezier-cubic-subdivide!")

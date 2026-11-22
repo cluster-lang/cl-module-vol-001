@@ -1,0 +1,6 @@
+// cl-cfd-viscous-laplacian-stage-45: CFD Viscous Laplacian Dissipation Stage 45
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn viscous_laplacian_45(up: float, uc: float, um: float) -> float:
+    return (up - 2.0 * uc + um) * 45.0

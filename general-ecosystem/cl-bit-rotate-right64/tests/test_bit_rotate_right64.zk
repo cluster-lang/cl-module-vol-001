@@ -1,0 +1,14 @@
+// cl-bit-rotate-right64: Test Suite
+import "../rotr64.zk"
+
+fn test_rotr64():
+    v := rotr64(16, 4)
+    if v != 1: sys_exit(1)
+    r := rotr64(1, 1)
+    // 1 rotated right by 1 is MSB set: -9223372036854775808
+    if r != -9223372036854775808: sys_exit(1)
+    print("test_rotr64 passed: 64-bit right rotation verified")
+
+fn main():
+    test_rotr64()
+    print("✓ All tests passed for cl-bit-rotate-right64!")

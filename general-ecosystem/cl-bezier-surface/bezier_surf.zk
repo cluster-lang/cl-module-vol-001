@@ -1,0 +1,25 @@
+// cl-bezier-surface: Bicubic Bézier Surface Tensor Evaluator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bezier_basis_cubic(t: int, i: int) -> int:
+    // t: 0..1000
+    u := 1000 - t
+    if i == 0:
+        return (u * u * u) / 1000000
+    if i == 1:
+        return (3 * u * u * t) / 1000000
+    if i == 2:
+        return (3 * u * t * t) / 1000000
+    return (t * t * t) / 1000000
+
+fn bezier_patch_point_1d(corners: vector[int], u: int, v: int) -> int:
+    // 4 corners: [P00, P01, P10, P11] at t=0 and t=1
+    // Bilinear blend
+    inv_u := 1000 - u
+    inv_v := 1000 - v
+    term00 := (inv_u * inv_v * corners[0]) / 1000000
+    term01 := (inv_u * v * corners[1]) / 1000000
+    term10 := (u * inv_v * corners[2]) / 1000000
+    term11 := (u * v * corners[3]) / 1000000
+    return term00 + term01 + term10 + term11

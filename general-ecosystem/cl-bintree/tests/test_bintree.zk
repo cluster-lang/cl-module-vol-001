@@ -1,0 +1,74 @@
+// cl-bintree: Test Suite
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+import "../bintree.zk"
+
+fn test_tree_insertion_and_search():
+    t := bintree_new()
+    assert bintree_is_empty(t) == true, "new tree must be empty"
+
+    bintree_insert(t, 50)
+    bintree_insert(t, 30)
+    bintree_insert(t, 70)
+    bintree_insert(t, 20)
+    bintree_insert(t, 40)
+    bintree_insert(t, 60)
+    bintree_insert(t, 80)
+
+    assert bintree_size(t) == 7, "tree size must be 7"
+
+    assert bintree_contains(t, 50) == true, "50 must exist"
+    assert bintree_contains(t, 30) == true, "30 must exist"
+    assert bintree_contains(t, 70) == true, "70 must exist"
+    assert bintree_contains(t, 20) == true, "20 must exist"
+    assert bintree_contains(t, 80) == true, "80 must exist"
+
+    assert bintree_contains(t, 99) == false, "99 must not exist"
+    assert bintree_contains(t, 10) == false, "10 must not exist"
+    assert bintree_contains(t, 35) == false, "35 must not exist"
+
+    print("test_tree_insertion_and_search passed")
+
+fn test_tree_min_max():
+    t := bintree_new()
+    bintree_insert(t, 50)
+    bintree_insert(t, 25)
+    bintree_insert(t, 75)
+    bintree_insert(t, 10)
+    bintree_insert(t, 95)
+
+    assert bintree_min(t) == 10, "min must be 10"
+    assert bintree_max(t) == 95, "max must be 95"
+
+    print("test_tree_min_max passed")
+
+fn test_tree_inorder_sort():
+    t := bintree_new()
+    bintree_insert(t, 42)
+    bintree_insert(t, 17)
+    bintree_insert(t, 88)
+    bintree_insert(t, 8)
+    bintree_insert(t, 23)
+    bintree_insert(t, 64)
+    bintree_insert(t, 99)
+
+    sorted := bintree_inorder(t)
+    assert sorted.len() == 7, "sorted length must be 7"
+
+    assert sorted[0] == 8, "sorted[0] must be 8"
+    assert sorted[1] == 17, "sorted[1] must be 17"
+    assert sorted[2] == 23, "sorted[2] must be 23"
+    assert sorted[3] == 42, "sorted[3] must be 42"
+    assert sorted[4] == 64, "sorted[4] must be 64"
+    assert sorted[5] == 88, "sorted[5] must be 88"
+    assert sorted[6] == 99, "sorted[6] must be 99"
+
+    print("test_tree_inorder_sort passed: in-order traversal yields perfectly sorted sequence")
+
+fn main():
+    print("Testing cl-bintree (Pure Cluster Binary Search Tree)...")
+    test_tree_insertion_and_search()
+    test_tree_min_max()
+    test_tree_inorder_sort()
+    print("✓ All tests passed for cl-bintree!")

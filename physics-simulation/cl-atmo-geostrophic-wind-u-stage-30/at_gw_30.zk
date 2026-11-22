@@ -1,0 +1,6 @@
+// cl-atmo-geostrophic-wind-u-stage-30: Geostrophic Wind Zonal Velocity Component Stage 30
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn geostrophic_u_30(g: float, f_param: float, dz_dy: float) -> float:
+    return ((g / f_param) * dz_dy) * 30.0

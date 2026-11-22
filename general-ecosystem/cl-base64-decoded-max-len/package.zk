@@ -1,0 +1,10 @@
+// cl-base64-decoded-max-len Package Manifest
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+name := "cl-base64-decoded-max-len"
+version := "1.0.0"
+description := "Base64 Upper Bound Decoded Length"
+main := "b64_dlen.zk"
+license := "CCFL-2.0"
+author := "zk-mohammad <ZaidKhan-alamgir@proton.me>"

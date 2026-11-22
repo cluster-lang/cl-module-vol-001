@@ -1,0 +1,16 @@
+// cl-adler32-rolling: Test Suite
+import "../adler_rolling.zk"
+
+fn test_adler_rolling():
+    bytes: vector[int] := [49, 50, 51] // "123"
+    c := adler32_compute(bytes)
+    if c == 0: sys_exit(1)
+
+    s1 := 151 // s1 of "123" (1 + 49 + 50 + 51)
+    s1_next := adler32_roll_s1(s1, 49, 52) // slide window to "234"
+    if s1_next != 154: sys_exit(1) // (1 + 50 + 51 + 52) = 154
+    print("test_adler_rolling passed: O(1) rolling window Adler-32 verified")
+
+fn main():
+    test_adler_rolling()
+    print("✓ All tests passed for cl-adler32-rolling!")

@@ -1,0 +1,11 @@
+// cl-checksum-internet-ipv4-add: Test Suite
+import "../ipv4_add.zk"
+
+fn test_run():
+    res := ipv4_checksum_add(65534, 3)
+    if res != 2: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-checksum-internet-ipv4-add!")

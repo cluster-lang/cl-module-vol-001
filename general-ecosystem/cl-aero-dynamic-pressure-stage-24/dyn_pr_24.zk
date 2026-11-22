@@ -1,0 +1,6 @@
+// cl-aero-dynamic-pressure-stage-24: Bernoulli Dynamic Pressure Stage 24
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn dynamic_pressure_24(rho: float, vel: float) -> float:
+    return 0.5 * rho * vel * vel * 24.0

@@ -1,0 +1,13 @@
+// cl-astro-vis-viva-stage-25: Test Suite
+import "../vis_vv_25.zk"
+
+fn test_run():
+    res := vis_viva_component_25(2.0, 4.0)
+    diff := res - 18.7500
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-astro-vis-viva-stage-25!")

@@ -1,0 +1,17 @@
+// cl-base32-hex-codec: RFC 4648 Base32 Extended Hex Alphabet Codec
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn base32_hex_char(val: int) -> string:
+    alphabet := "0123456789ABCDEFGHIJKLMNOPQRSTUV"
+    v := val & 31
+    return chr(byte_at(alphabet, v))
+
+fn base32_hex_encode_int(val: int) -> string:
+    if val == 0: return "0"
+    v := val
+    res := ""
+    while v > 0:
+        res = base32_hex_char(v % 32) + res
+        v = v / 32
+    return res

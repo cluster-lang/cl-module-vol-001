@@ -1,0 +1,13 @@
+// cl-catmull-rom-tangent3d-vec: Test Suite
+import "../cr_tangent.zk"
+
+fn test_cr_tangent():
+    t := catmull_rom_tangent3d(0.0, 0.0, 0.0, 4.0, 6.0, 8.0, 0.0)
+    if t[0] != 2.0: sys_exit(1)
+    if t[1] != 3.0: sys_exit(2)
+    if t[2] != 4.0: sys_exit(3)
+    print("test_cr_tangent passed: tangent (2, 3, 4) verified")
+
+fn main():
+    test_cr_tangent()
+    print("✓ All tests passed for cl-catmull-rom-tangent3d-vec!")

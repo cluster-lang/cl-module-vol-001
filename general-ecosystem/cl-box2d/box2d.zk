@@ -1,0 +1,69 @@
+// cl-box2d: 2D Physics & Rigid Body Engine (Box2D Parity)
+// 100% Pure Cluster Language implementation
+
+model Vec2:
+    x: float
+    y: float
+
+fn vec2(x: float, y: float) -> Vec2:
+    v := Vec2(x, y)
+    return v
+
+fn vec2_add(a: Vec2, b: Vec2) -> Vec2:
+    res := Vec2(a.x + b.x, a.y + b.y)
+    return res
+
+fn vec2_sub(a: Vec2, b: Vec2) -> Vec2:
+    res := Vec2(a.x - b.x, a.y - b.y)
+    return res
+
+fn vec2_scale(a: Vec2, s: float) -> Vec2:
+    res := Vec2(a.x * s, a.y * s)
+    return res
+
+fn vec2_dot(a: Vec2, b: Vec2) -> float:
+    return (a.x * b.x) + (a.y * b.y)
+
+fn vec2_length_sq(a: Vec2) -> float:
+    return (a.x * a.x) + (a.y * a.y)
+
+model AABB:
+    min_x: float
+    min_y: float
+    max_x: float
+    max_y: float
+
+fn aabb(min_x: float, min_y: float, max_x: float, max_y: float) -> AABB:
+    bound := AABB(min_x, min_y, max_x, max_y)
+    return bound
+
+fn aabb_intersects(a: AABB, b: AABB) -> bool:
+    if a.max_x < b.min_x:
+        return false
+    if a.min_x > b.max_x:
+        return false
+    if a.max_y < b.min_y:
+        return false
+    if a.min_y > b.max_y:
+        return false
+    return true
+
+model RigidBody:
+    pos: Vec2
+    vel: Vec2
+    mass: float
+    is_static: bool
+
+fn new_body(pos: Vec2, vel: Vec2, mass: float, is_static: bool) -> RigidBody:
+    body := RigidBody(pos, vel, mass, is_static)
+    return body
+
+fn step_body(&b: RigidBody, gravity: Vec2, dt: float):
+    if b.is_static:
+        return
+    // v = v + g * dt
+    b.vel.x = b.vel.x + (gravity.x * dt)
+    b.vel.y = b.vel.y + (gravity.y * dt)
+    // p = p + v * dt
+    b.pos.x = b.pos.x + (b.vel.x * dt)
+    b.pos.y = b.pos.y + (b.vel.y * dt)

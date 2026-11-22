@@ -1,0 +1,11 @@
+// cl-bit-gray-encode-16: Test Suite
+import "../gray_enc.zk"
+
+fn test_run():
+    res := gray_encode_16(4)
+    if res != 6: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-bit-gray-encode-16!")

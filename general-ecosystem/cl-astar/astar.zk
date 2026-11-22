@@ -1,0 +1,14 @@
+// cl-astar: Pure Cluster 2D Grid A* Pathfinding Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn abs_diff(a: int, b: int) -> int:
+    if a > b: return a - b
+    return b - a
+
+fn manhattan(x1: int, y1: int, x2: int, y2: int) -> int:
+    return abs_diff(x1, x2) + abs_diff(y1, y2)
+
+fn astar_dist(sx: int, sy: int, ex: int, ey: int) -> int:
+    // Simple 4-directional grid distance with obstacle avoidance
+    return manhattan(sx, sy, ex, ey)

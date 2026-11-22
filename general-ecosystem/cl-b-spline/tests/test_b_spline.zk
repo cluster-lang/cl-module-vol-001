@@ -1,0 +1,14 @@
+// cl-b-spline: Test Suite
+import "../bspline.zk"
+
+fn test_bspline():
+    // For constant control points 100, result should be 100 across all t
+    v0 := bspline_cubic_1d(100, 100, 100, 100, 0)
+    if v0 != 100: sys_exit(1)
+    v1 := bspline_cubic_1d(100, 100, 100, 100, 500)
+    if v1 != 100: sys_exit(1)
+    print("test_bspline passed: partition of unity B-spline verified")
+
+fn main():
+    test_bspline()
+    print("✓ All tests passed for cl-b-spline!")

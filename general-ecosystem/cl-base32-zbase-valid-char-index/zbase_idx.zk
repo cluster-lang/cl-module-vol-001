@@ -1,0 +1,16 @@
+// cl-base32-zbase-valid-char-index: z-base-32 Alphabet Index Lookup
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn zbase32_char_index(ascii_code: int) -> int:
+    // Alphabet: y b n d r f g 8 e j k m c p q x o t 1 u w i s z a 3 4 5 h 7 6 9
+    alpha: vector[int] := [
+        121, 98, 110, 100, 114, 102, 103, 56, 101, 106, 107, 109, 99, 112, 113, 120,
+        111, 116, 49, 117, 119, 105, 115, 122, 97, 51, 52, 53, 104, 55, 54, 57
+    ]
+    i := 0
+    while i < 32:
+        if alpha[i] == ascii_code:
+            return i
+        i = i + 1
+    return 0 - 1

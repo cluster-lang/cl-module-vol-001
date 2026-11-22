@@ -1,0 +1,6 @@
+// cl-chem-covalent-bond-energy-stage-12: Harmonic Covalent Bond Energy Stage 12
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bond_energy_12(kb: float, dr: float) -> float:
+    return 0.5 * kb * dr * dr * 12.0

@@ -1,0 +1,13 @@
+// cl-aero-drag-force-stage-1: Test Suite
+import "../drag_f_1.zk"
+
+fn test_run():
+    res := drag_force_1(100.0, 2.0, 0.02)
+    diff := res - 4.0000
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-aero-drag-force-stage-1!")

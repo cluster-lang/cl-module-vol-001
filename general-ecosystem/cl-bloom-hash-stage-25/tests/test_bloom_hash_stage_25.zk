@@ -1,0 +1,11 @@
+// cl-bloom-hash-stage-25: Test Suite
+import "../blm_h_25.zk"
+
+fn test_run():
+    res := bloom_probe_25(123456, 789012)
+    if res != 848699: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-bloom-hash-stage-25!")

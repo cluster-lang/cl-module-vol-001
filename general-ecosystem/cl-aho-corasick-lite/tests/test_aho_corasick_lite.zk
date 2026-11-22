@@ -1,0 +1,13 @@
+// cl-aho-corasick-lite: Test Suite
+import "../aho.zk"
+
+fn test_aho():
+    dict: vector[string] := ["he", "she", "his", "hers"]
+    text := "ushers"
+    // "ushers" contains "he" (in "hers" and "she"), "she", and "hers" -> 3 matches
+    if aho_count_matches(dict, text) != 3: sys_exit(1)
+    print("test_aho passed: dictionary multi-pattern matching verified")
+
+fn main():
+    test_aho()
+    print("✓ All tests passed for cl-aho-corasick-lite!")

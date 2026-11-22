@@ -1,0 +1,10 @@
+// cl-char-to-digit-value: Test Suite
+import "../c_dval.zk"
+
+fn test_char():
+    if char_to_digit(57) != 9: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_char()
+    print("✓ All tests passed for cl-char-to-digit-value!")

@@ -1,0 +1,12 @@
+// cl-b-tree: Test Suite
+import "../btree.zk"
+
+fn test_btree():
+    node: vector[int] := [10, 20, 30]
+    if btree_node_search(node, 20) != 1: sys_exit(1)
+    if btree_node_search(node, 25) != 0: sys_exit(1)
+    print("test_btree passed: 2-3-4 tree node search verified")
+
+fn main():
+    test_btree()
+    print("✓ All tests passed for cl-b-tree!")

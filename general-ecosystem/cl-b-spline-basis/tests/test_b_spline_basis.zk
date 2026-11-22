@@ -1,0 +1,14 @@
+// cl-b-spline-basis: Test Suite
+import "../bspline.zk"
+
+fn test_bspline():
+    // Partition of unity: b0 + b1 + b2 == 1.0 for all t in [0, 1]
+    t := 0.3
+    sum_b := bspline_quad_b0(t) + bspline_quad_b1(t) + bspline_quad_b2(t)
+    if sum_b < 0.999: sys_exit(1)
+    if sum_b > 1.001: sys_exit(1)
+    print("test_bspline passed: quadratic partition of unity verified")
+
+fn main():
+    test_bspline()
+    print("✓ All tests passed for cl-b-spline-basis!")

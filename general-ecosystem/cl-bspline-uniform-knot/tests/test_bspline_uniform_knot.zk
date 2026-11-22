@@ -1,0 +1,13 @@
+// cl-bspline-uniform-knot: Test Suite
+import "../bspline_knot.zk"
+
+fn test_bspline_knot():
+    knots: vector[float] := []
+    generate_uniform_knots(knots, 5)
+    if knots.len() != 5: sys_exit(1)
+    if knots[4] != 4.0: sys_exit(1)
+    print("test_bspline_knot passed: uniform knots sequence verified")
+
+fn main():
+    test_bspline_knot()
+    print("✓ All tests passed for cl-bspline-uniform-knot!")

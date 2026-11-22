@@ -1,0 +1,8 @@
+// cl-bspline-uniform-basis-quadratic: Uniform Quadratic B-Spline Basis
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bspline_quadratic_basis(u: float, out_b: vector[float]):
+    out_b[0] = 0.5 * (1.0 - u) * (1.0 - u)
+    out_b[1] = 0.5 + u * (1.0 - u)
+    out_b[2] = 0.5 * u * u

@@ -1,0 +1,13 @@
+// cl-base32: Test Suite
+import "../base32.zk"
+
+fn test_base32():
+    if base32_encode_str("") != "": sys_exit(1)
+    if base32_encode_str("f") != "MY======": sys_exit(1)
+    if base32_encode_str("fo") != "MZXQ====": sys_exit(1)
+    if base32_encode_str("foo") != "MZXW6===": sys_exit(1)
+    print("test_base32 passed: RFC 4648 standard vectors verified")
+
+fn main():
+    test_base32()
+    print("✓ All tests passed for cl-base32!")

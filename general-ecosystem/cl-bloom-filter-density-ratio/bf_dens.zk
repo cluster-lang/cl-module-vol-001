@@ -1,0 +1,28 @@
+// cl-bloom-filter-density-ratio: Bloom Filter Bitset Density Calculator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn popcount32(val: int) -> int:
+    mask32 := 4294967295
+    x := val & mask32
+    m1 := 1431655765
+    m2 := 858993459
+    m4 := 252645135
+    x = (x - ((x >> 1) & m1)) & mask32
+    x = (((x & m2) + ((x >> 2) & m2))) & mask32
+    x = (((x + (x >> 4)) & m4)) & mask32
+    x = (x + (x >> 8)) & mask32
+    x = (x + (x >> 16)) & mask32
+    return x & 63
+
+fn bloom_filter_density(bits: vector[int]) -> float:
+    n := bits.len()
+    if n == 0:
+        return 0.0
+    total_set := 0
+    i := 0
+    while i < n:
+        total_set = total_set + popcount32(bits[i])
+        i = i + 1
+    total_capacity := n * 32
+    return float(total_set) / float(total_capacity)

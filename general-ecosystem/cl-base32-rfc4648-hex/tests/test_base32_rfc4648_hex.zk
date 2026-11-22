@@ -1,0 +1,13 @@
+// cl-base32-rfc4648-hex: Test Suite
+import "../b32_hex.zk"
+
+fn test_b32_hex():
+    if base32_hex_value(48) != 0: sys_exit(1) // '0'
+    if base32_hex_value(57) != 9: sys_exit(1) // '9'
+    if base32_hex_value(65) != 10: sys_exit(1) // 'A'
+    if base32_hex_value(86) != 31: sys_exit(1) // 'V'
+    print("test_b32_hex passed: Base32 extended hex value decoding verified")
+
+fn main():
+    test_b32_hex()
+    print("✓ All tests passed for cl-base32-rfc4648-hex!")

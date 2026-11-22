@@ -1,0 +1,14 @@
+// cl-catmull-rom-eval-deriv2d: Test Suite
+import "../cr_deriv.zk"
+
+fn test_cr_deriv():
+    v := catmull_rom_velocity2d(0.0, 0.0, 10.0, 0.0, 20.0, 0.0, 30.0, 0.0, 0.5)
+    diff := v[0] - 10.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.01: sys_exit(1)
+    if v[1] != 0.0: sys_exit(2)
+    print("test_cr_deriv passed: velocity vector (10, 0) verified")
+
+fn main():
+    test_cr_deriv()
+    print("✓ All tests passed for cl-catmull-rom-eval-deriv2d!")

@@ -1,0 +1,18 @@
+// cl-bvh-aabb3d-union: Test Suite
+import "../bvh_union.zk"
+
+fn test_bvh_union():
+    min_a: vector[float] := [0.0, 2.0, 0.0]
+    max_a: vector[float] := [5.0, 6.0, 5.0]
+    min_b: vector[float] := [-2.0, 0.0, 1.0]
+    max_b: vector[float] := [3.0, 4.0, 8.0]
+    out_min: vector[float] := []
+    out_max: vector[float] := []
+    aabb3d_union(out_min, out_max, min_a, max_a, min_b, max_b)
+    if out_min[0] != -2.0: sys_exit(1)
+    if out_max[2] != 8.0: sys_exit(1)
+    print("test_bvh_union passed: AABB union verified")
+
+fn main():
+    test_bvh_union()
+    print("✓ All tests passed for cl-bvh-aabb3d-union!")

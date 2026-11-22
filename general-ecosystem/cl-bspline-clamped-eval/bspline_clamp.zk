@@ -1,0 +1,6 @@
+// cl-bspline-clamped-eval: Clamped B-Spline Point Evaluator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bspline_linear_eval(p0: float, p1: float, t: float) -> float:
+    return p0 + t * (p1 - p0)

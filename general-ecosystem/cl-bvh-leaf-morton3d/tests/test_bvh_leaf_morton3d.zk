@@ -1,0 +1,11 @@
+// cl-bvh-leaf-morton3d: Test Suite
+import "../m3d.zk"
+
+fn test_m3d():
+    if morton3d_simple(1, 1, 1) != 7: sys_exit(1)
+    if morton3d_simple(0, 1, 0) != 2: sys_exit(1)
+    print("test_m3d passed: 3D Morton bit interleaver verified")
+
+fn main():
+    test_m3d()
+    print("✓ All tests passed for cl-bvh-leaf-morton3d!")

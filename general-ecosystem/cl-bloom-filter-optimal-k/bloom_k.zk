@@ -1,0 +1,11 @@
+// cl-bloom-filter-optimal-k: Bloom Filter Optimal Hash Count
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// k = (m / n) * ln(2) ~ (m / n) * 0.6931
+fn optimal_k(m_bits: int, n_items: int) -> int:
+    if n_items <= 0: return 1
+    // (m * 693) / (n * 1000)
+    k := (m_bits * 693) / (n_items * 1000)
+    if k < 1: return 1
+    return k

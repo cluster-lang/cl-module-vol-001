@@ -1,0 +1,14 @@
+// cl-affine2d: Test Suite
+import "../affine2d.zk"
+
+fn test_affine2d():
+    // Scale by 2, translate by (5, 10)
+    m: vector[int] := [2, 0, 5, 0, 2, 10]
+    p := affine2d_point(m, 3, 4)
+    if p[0] != 11: sys_exit(1) // 2*3 + 5 = 11
+    if p[1] != 18: sys_exit(1) // 2*4 + 10 = 18
+    print("test_affine2d passed: 2D affine point mapping verified")
+
+fn main():
+    test_affine2d()
+    print("✓ All tests passed for cl-affine2d!")

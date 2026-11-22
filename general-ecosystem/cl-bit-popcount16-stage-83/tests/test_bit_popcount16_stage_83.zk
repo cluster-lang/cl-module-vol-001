@@ -1,0 +1,11 @@
+// cl-bit-popcount16-stage-83: Test Suite
+import "../pop16_83.zk"
+
+fn test_run():
+    res := popcount16_83(4071)
+    if res != 10: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-bit-popcount16-stage-83!")

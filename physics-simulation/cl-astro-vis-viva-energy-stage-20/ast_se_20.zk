@@ -1,0 +1,6 @@
+// cl-astro-vis-viva-energy-stage-20: Specific Orbital Energy Vis-Viva Stage 20
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn specific_energy_20(mu: float, a: float) -> float:
+    return (-mu / (2.0 * a)) * 20.0

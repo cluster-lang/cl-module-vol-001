@@ -1,0 +1,13 @@
+// cl-astro-orbital-period-stage-27: Test Suite
+import "../ast_op_27.zk"
+
+fn test_run():
+    res := orbital_period_27(100.0)
+    diff := res - 333.1800
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-astro-orbital-period-stage-27!")

@@ -1,0 +1,21 @@
+// cl-base32-crockford-decode: Crockford Base32 Character Decoder
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn crockford_decode_digit(c: int) -> int:
+    if c >= 48:
+        if c <= 57: return c - 48 // '0'-'9'
+    if c >= 65:
+        if c <= 72: return c - 55 // 'A'-'H' -> 10-17
+    if c == 73: return 1         // 'I' -> 1
+    if c >= 74:
+        if c <= 75: return c - 56 // 'J','K' -> 18,19
+    if c == 76: return 1         // 'L' -> 1
+    if c >= 77:
+        if c <= 78: return c - 57 // 'M','N' -> 20,21
+    if c == 79: return 0         // 'O' -> 0
+    if c >= 80:
+        if c <= 84: return c - 58 // 'P'-'T' -> 22-26
+    if c >= 86:
+        if c <= 90: return c - 59 // 'V'-'Z' -> 27-31
+    return -1

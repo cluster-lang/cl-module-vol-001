@@ -1,0 +1,21 @@
+// cl-bezier-cubic-curvature: Cubic Bezier Curvature Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn sqrt_approx(val: float) -> float:
+    if val <= 0.0: return 0.0
+    s := val * 0.5
+    if s < 1.0: s = 1.0
+    iter := 0
+    while iter < 6:
+        s = (s + val / s) * 0.5
+        iter = iter + 1
+    return s
+
+fn bezier_curvature_formula(dx: float, dy: float, ddx: float, ddy: float) -> float:
+    cross := dx * ddy - dy * ddx
+    if cross < 0.0: cross = 0.0 - cross
+    speed_sq := dx * dx + dy * dy
+    if speed_sq < 0.000001: return 0.0
+    speed := sqrt_approx(speed_sq)
+    return cross / (speed * speed_sq)

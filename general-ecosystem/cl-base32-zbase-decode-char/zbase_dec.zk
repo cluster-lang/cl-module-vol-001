@@ -1,0 +1,12 @@
+// cl-base32-zbase-decode-char: z-base-32 Character Decoder Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn zbase32_decode_char(c: int) -> int:
+    // 'y'=121->0, 'b'=98->1, 'n'=110->2, 'd'=100->3, '9'=57->31
+    if c == 121: return 0
+    if c == 98: return 1
+    if c == 110: return 2
+    if c == 100: return 3
+    if c == 57: return 31
+    return -1

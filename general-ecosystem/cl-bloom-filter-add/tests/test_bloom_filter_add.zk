@@ -1,0 +1,13 @@
+// cl-bloom-filter-add: Test Suite
+import "../bloom_add.zk"
+
+fn test_bloom_add():
+    filt := 0
+    filt = bloom_add_double(filt, 3, 7)
+    expected := (1 << 3) | (1 << 7)
+    if filt != expected: sys_exit(1)
+    print("test_bloom_add passed: bloom filter insertion verified")
+
+fn main():
+    test_bloom_add()
+    print("✓ All tests passed for cl-bloom-filter-add!")

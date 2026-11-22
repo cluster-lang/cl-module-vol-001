@@ -1,0 +1,14 @@
+// cl-binary-search: Test Suite
+import "../binary_search.zk"
+
+fn test_bsearch():
+    v: vector[int] := [10, 20, 30, 40, 50]
+    if binary_search(v, 30) != 2: sys_exit(1)
+    if binary_search(v, 10) != 0: sys_exit(1)
+    if binary_search(v, 50) != 4: sys_exit(1)
+    if binary_search(v, 35) != -1: sys_exit(1)
+    print("test_bsearch passed: O(log n) binary search verified")
+
+fn main():
+    test_bsearch()
+    print("✓ All tests passed for cl-binary-search!")

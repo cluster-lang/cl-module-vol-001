@@ -1,0 +1,12 @@
+// cl-bspline-clamped-basis-deriv: Test Suite
+import "../bspline_deriv2.zk"
+
+fn test_bspline_deriv2():
+    dw := bspline_quadratic_derivs(0.5)
+    sum := dw[0] + dw[1] + dw[2]
+    if sum != 0.0: sys_exit(1)
+    print("test_bspline_deriv2 passed: derivative sum = 0 verified")
+
+fn main():
+    test_bspline_deriv2()
+    print("✓ All tests passed for cl-bspline-clamped-basis-deriv!")

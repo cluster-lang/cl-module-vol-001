@@ -1,0 +1,13 @@
+// cl-atmo-coriolis-parameter-stage-90: Test Suite
+import "../at_cp_90.zk"
+
+fn test_run():
+    res := coriolis_param_90(0.00007292, 0.7071)
+    diff := res - 0.0093
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-atmo-coriolis-parameter-stage-90!")

@@ -1,0 +1,6 @@
+// cl-catmull-rom-chordal-eval: Catmull-Rom Chordal Knot Point Evaluator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn catmull_rom_midpoint(p1: float, p2: float) -> float:
+    return 0.5 * (p1 + p2)

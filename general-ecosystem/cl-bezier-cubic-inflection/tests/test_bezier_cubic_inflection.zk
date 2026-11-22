@@ -1,0 +1,11 @@
+// cl-bezier-cubic-inflection: Test Suite
+import "../b_inflect.zk"
+
+fn test_b_inflect():
+    cp := cross_product_2d(1.0, 0.0, 0.0, 1.0)
+    if cp != 1.0: sys_exit(1)
+    print("test_b_inflect passed: cross product verified")
+
+fn main():
+    test_b_inflect()
+    print("✓ All tests passed for cl-bezier-cubic-inflection!")

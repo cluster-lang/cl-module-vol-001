@@ -1,0 +1,10 @@
+// cl-base16-byte-to-hex-high: Test Suite
+import "../b_hex_hi.zk"
+
+fn test_b2h_hi():
+    if byte_to_hex_high(165) != 97: sys_exit(1) // 0xA -> 'a'
+    print("test_b2h_hi passed")
+
+fn main():
+    test_b2h_hi()
+    print("✓ All tests passed for cl-base16-byte-to-hex-high!")

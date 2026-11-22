@@ -1,0 +1,13 @@
+// cl-bvh-leaf-morton2d-split: Test Suite
+import "../morton_split.zk"
+
+fn test_morton_split():
+    // Identical codes have prefix 32
+    if common_prefix_morton(10, 10) != 32: sys_exit(1)
+    // 0b1000 and 0b1001 differ at lowest bit -> prefix 31
+    if common_prefix_morton(8, 9) != 31: sys_exit(1)
+    print("test_morton_split passed: Morton prefix split bit verified")
+
+fn main():
+    test_morton_split()
+    print("✓ All tests passed for cl-bvh-leaf-morton2d-split!")

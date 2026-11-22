@@ -1,0 +1,21 @@
+// cl-bvh-leaf-morton2d-bounding-union: 2D BVH Leaf AABB Union Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bvh_aabb_union(out_box: vector[float], b1: vector[float], b2: vector[float]):
+    min_x := b1[0]
+    if b2[0] < min_x: min_x = b2[0]
+
+    min_y := b1[1]
+    if b2[1] < min_y: min_y = b2[1]
+
+    max_x := b1[2]
+    if b2[2] > max_x: max_x = b2[2]
+
+    max_y := b1[3]
+    if b2[3] > max_y: max_y = b2[3]
+
+    out_box[0] = min_x
+    out_box[1] = min_y
+    out_box[2] = max_x
+    out_box[3] = max_y

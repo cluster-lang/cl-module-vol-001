@@ -1,0 +1,11 @@
+// cl-bit-mask-bit-17: Test Suite
+import "../bmask_17.zk"
+
+fn test_run():
+    res := get_bitmask_17()
+    if res != 131072: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-bit-mask-bit-17!")

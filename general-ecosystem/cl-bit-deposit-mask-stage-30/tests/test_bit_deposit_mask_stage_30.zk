@@ -1,0 +1,11 @@
+// cl-bit-deposit-mask-stage-30: Test Suite
+import "../bdep_30.zk"
+
+fn test_run():
+    res := bit_deposit_mask_30(65535)
+    if res != 16383: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-bit-deposit-mask-stage-30!")

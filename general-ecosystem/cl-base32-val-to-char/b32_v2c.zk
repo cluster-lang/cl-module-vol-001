@@ -1,0 +1,8 @@
+// cl-base32-val-to-char: 5-bit Integer to RFC 4648 Base32 Character
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn base32_val_to_char(val: int) -> int:
+    v := val & 31
+    if v < 26: return 65 + v
+    return 50 + (v - 26)

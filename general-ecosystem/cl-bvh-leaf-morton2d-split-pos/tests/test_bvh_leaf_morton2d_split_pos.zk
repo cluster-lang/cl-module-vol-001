@@ -1,0 +1,13 @@
+// cl-bvh-leaf-morton2d-split-pos: Test Suite
+import "../bvh_split.zk"
+
+fn test_bvh_split():
+    codes: vector[int] := [1, 2, 3, 8, 9, 10]
+    s := bvh_find_split(codes, 0, 5)
+    // Between 3 and 8 (highest bit differs at index 2)
+    if s != 2: sys_exit(1)
+    print("test_bvh_split passed")
+
+fn main():
+    test_bvh_split()
+    print("✓ All tests passed for cl-bvh-leaf-morton2d-split-pos!")

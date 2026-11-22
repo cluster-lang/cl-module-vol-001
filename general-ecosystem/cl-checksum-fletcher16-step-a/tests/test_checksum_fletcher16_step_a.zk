@@ -1,0 +1,11 @@
+// cl-checksum-fletcher16-step-a: Test Suite
+import "../f16_a.zk"
+
+fn test_run():
+    res := fletcher16_step_a(10, 20)
+    if res != 30: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-checksum-fletcher16-step-a!")

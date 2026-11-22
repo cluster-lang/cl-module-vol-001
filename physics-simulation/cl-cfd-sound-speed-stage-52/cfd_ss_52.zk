@@ -1,0 +1,6 @@
+// cl-cfd-sound-speed-stage-52: CFD Gas Acoustic Speed Stage 52
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn sound_speed_52(temp: float) -> float:
+    return (331.3 + 0.606 * (temp - 273.15)) * 52.0

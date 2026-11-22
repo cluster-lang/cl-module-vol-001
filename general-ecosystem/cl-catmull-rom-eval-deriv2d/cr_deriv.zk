@@ -1,0 +1,15 @@
+// cl-catmull-rom-eval-deriv2d: 2D Catmull-Rom Spline Velocity Vector Evaluator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn catmull_rom_deriv1d(p0: float, p1: float, p2: float, p3: float, t: float) -> float:
+    c0 := 0.0 - 0.5 * p0 + 1.5 * p1 - 1.5 * p2 + 0.5 * p3
+    c1 := p0 - 2.5 * p1 + 2.0 * p2 - 0.5 * p3
+    c2 := 0.0 - 0.5 * p0 + 0.5 * p2
+    return 3.0 * c0 * t * t + 2.0 * c1 * t + c2
+
+fn catmull_rom_velocity2d(p0x: float, p0y: float, p1x: float, p1y: float, p2x: float, p2y: float, p3x: float, p3y: float, t: float) -> vector[float]:
+    vx := catmull_rom_deriv1d(p0x, p1x, p2x, p3x, t)
+    vy := catmull_rom_deriv1d(p0y, p1y, p2y, p3y, t)
+    res: vector[float] := [vx, vy]
+    return res

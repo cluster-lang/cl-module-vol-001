@@ -1,0 +1,11 @@
+// cl-astar: Test Suite
+import "../astar.zk"
+
+fn test_astar():
+    d := astar_dist(0, 0, 5, 5)
+    if d != 10: sys_exit(1)
+    print("test_astar passed: Manhattan grid heuristic verified")
+
+fn main():
+    test_astar()
+    print("✓ All tests passed for cl-astar!")

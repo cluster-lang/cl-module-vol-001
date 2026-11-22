@@ -1,0 +1,20 @@
+// cl-catmull-rom-tangent-accel: Test Suite
+import "../cr_ta.zk"
+
+fn test_cr_ta():
+    p0: vector[float] := [0.0, 0.0]
+    p1: vector[float] := [1.0, 0.0]
+    p2: vector[float] := [2.0, 0.0]
+    p3: vector[float] := [3.0, 0.0]
+    va: vector[float] := [0.0, 0.0, 0.0, 0.0]
+    catmull_rom_derivs2d(va, p0, p1, p2, p3, 0.5)
+    // Straight line: velocity along x is 1.0, accel is 0.0
+    diff_vx := va[0] - 1.0
+    if diff_vx < 0.0: diff_vx = 0.0 - diff_vx
+    if diff_vx > 0.0001: sys_exit(1)
+    if va[1] != 0.0 or va[3] != 0.0: sys_exit(1)
+    print("test_cr_ta passed")
+
+fn main():
+    test_cr_ta()
+    print("✓ All tests passed for cl-catmull-rom-tangent-accel!")

@@ -1,0 +1,7 @@
+// cl-bspline-uniform-basis-linear: First-Order Linear B-Spline Basis
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bspline_linear_basis(u: float, out_b: vector[float]):
+    out_b[0] = 1.0 - u
+    out_b[1] = u

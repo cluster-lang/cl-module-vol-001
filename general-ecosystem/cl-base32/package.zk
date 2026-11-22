@@ -1,0 +1,10 @@
+// cl-base32 Package Manifest
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+name := "cl-base32"
+version := "1.0.0"
+description := "RFC 4648 Base32 Codec Engine"
+main := "base32.zk"
+license := "CCFL-2.0"
+author := "zk-mohammad <ZaidKhan-alamgir@proton.me>"

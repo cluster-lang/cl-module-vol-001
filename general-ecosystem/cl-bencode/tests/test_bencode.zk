@@ -1,0 +1,11 @@
+// cl-bencode: Test Suite
+import "../bencode.zk"
+
+fn test_bencode():
+    if bencode_int(42) != "i42e": sys_exit(1)
+    if bencode_str("spam") != "4:spam": sys_exit(1)
+    print("test_bencode passed: bencode serialization verified")
+
+fn main():
+    test_bencode()
+    print("✓ All tests passed for cl-bencode!")

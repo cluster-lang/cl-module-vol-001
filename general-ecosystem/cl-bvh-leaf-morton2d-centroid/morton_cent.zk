@@ -1,0 +1,15 @@
+// cl-bvh-leaf-morton2d-centroid: Compute Centroid of Morton 2D Cluster Slice
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn morton2d_slice_centroid(xs: vector[float], ys: vector[float], start_idx: int, end_idx: int) -> vector[float]:
+    sum_x := 0.0
+    sum_y := 0.0
+    count := float(end_idx - start_idx + 1)
+    i := start_idx
+    while i <= end_idx:
+        sum_x = sum_x + xs[i]
+        sum_y = sum_y + ys[i]
+        i = i + 1
+    res: vector[float] := [sum_x / count, sum_y / count]
+    return res

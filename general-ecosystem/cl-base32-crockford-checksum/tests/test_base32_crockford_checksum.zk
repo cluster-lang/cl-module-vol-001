@@ -1,0 +1,13 @@
+// cl-base32-crockford-checksum: Test Suite
+import "../crock_check.zk"
+
+fn test_crock_check():
+    c0 := crockford_check_symbol(0)
+    if c0 != 48: sys_exit(1) // '0'
+    c10 := crockford_check_symbol(10)
+    if c10 != 65: sys_exit(1) // 'A'
+    print("test_crock_check passed: check symbol character verified")
+
+fn main():
+    test_crock_check()
+    print("✓ All tests passed for cl-base32-crockford-checksum!")

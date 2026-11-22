@@ -1,0 +1,12 @@
+// cl-base64-url-safe: Test Suite
+import "../b64_url.zk"
+
+fn test_b64_url():
+    if base64_url_char(62) != 45: sys_exit(1) // '-'
+    if base64_url_char(63) != 95: sys_exit(1) // '_'
+    if base64_url_char(0) != 65: sys_exit(1)  // 'A'
+    print("test_b64_url passed: URL-safe character mapping verified")
+
+fn main():
+    test_b64_url()
+    print("✓ All tests passed for cl-base64-url-safe!")

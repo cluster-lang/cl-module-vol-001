@@ -1,0 +1,11 @@
+// cl-bezier-cubic-inflection-points: Test Suite
+import "../bez_infl.zk"
+
+fn test_bez_infl():
+    r0 := bezier_inflection_roots(0.0, 0.0, 1.0, 0.0, 2.0, 0.0, 3.0, 0.0)
+    if r0 != 0: sys_exit(1)
+    print("test_bez_infl passed: inflection root counter verified")
+
+fn main():
+    test_bez_infl()
+    print("✓ All tests passed for cl-bezier-cubic-inflection-points!")

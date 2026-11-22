@@ -1,0 +1,10 @@
+// cl-catmull-rom-tangent-vec: Catmull-Rom Tangent Velocity Vector Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn catmull_rom_tangent(p0: float, p1: float, p2: float, p3: float, t: float) -> float:
+    t2 := t * t
+    term0 := 3.0 * t2 * (0.0 - p0 + 3.0 * p1 - 3.0 * p2 + p3)
+    term1 := 2.0 * t * (2.0 * p0 - 5.0 * p1 + 4.0 * p2 - p3)
+    term2 := 0.0 - p0 + p2
+    return 0.5 * (term0 + term1 + term2)

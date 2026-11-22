@@ -1,0 +1,50 @@
+// cl-base58: Test Suite
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+import "../base58.zk"
+
+fn test_base58_hello_world():
+    input := "Hello World"
+    encoded := base58_encode(input)
+    assert encoded == "JxF12TrwUP45BMd", "Base58('Hello World') must be 'JxF12TrwUP45BMd'"
+
+    decoded := base58_decode(encoded)
+    assert decoded == input, "decoded text must equal original 'Hello World'"
+
+    print("test_base58_hello_world passed: standard Bitcoin/IPFS test vector verified")
+
+fn test_base58_leading_zeros():
+    bytes: vector[int] := []
+    bytes.push(0)
+    bytes.push(0)
+    bytes.push(72)
+    bytes.push(105)
+
+    encoded := base58_encode_bytes(bytes)
+    // Must start with two '1' characters representing the two zero bytes
+    assert substring(encoded, 0, 2) == "11", "two leading zero bytes must produce '11'"
+
+    decoded_bytes := base58_decode_bytes(encoded)
+    assert decoded_bytes.len() == 4, "decoded length must be 4"
+    assert decoded_bytes[0] == 0, "byte 0 must be 0"
+    assert decoded_bytes[1] == 0, "byte 1 must be 0"
+    assert decoded_bytes[2] == 72, "byte 2 must be 72 ('H')"
+    assert decoded_bytes[3] == 105, "byte 3 must be 105 ('i')"
+
+    print("test_base58_leading_zeros passed: leading zero bytes preserved")
+
+fn test_base58_arbitrary_roundtrip():
+    s := "cluster-lang-sovereignty-2026"
+    enc := base58_encode(s)
+    dec := base58_decode(enc)
+    assert dec == s, "arbitrary string roundtrip must be lossless"
+
+    print("test_base58_arbitrary_roundtrip passed")
+
+fn main():
+    print("Testing cl-base58 (Pure Cluster Base58 Encoding Engine)...")
+    test_base58_hello_world()
+    test_base58_leading_zeros()
+    test_base58_arbitrary_roundtrip()
+    print("✓ All tests passed for cl-base58!")

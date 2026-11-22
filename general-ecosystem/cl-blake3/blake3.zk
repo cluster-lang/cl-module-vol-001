@@ -1,0 +1,300 @@
+// cl-blake3: Pure Cluster BLAKE3 Cryptographic Tree Hash Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn ror32(x: int, n: int) -> int:
+    mask32 := 4294967295
+    v := x & mask32
+    right := (v >> n) & mask32
+    n_mask := (1 << n) - 1
+    left := ((v & n_mask) << (32 - n)) & mask32
+    return (right | left) & mask32
+
+fn blake3_g(s: vector[int], a: int, b: int, c: int, d: int, mx: int, my: int):
+    mask32 := 4294967295
+    s[a] = (s[a] + s[b] + mx) & mask32
+    s[d] = ror32(s[d] ^ s[a], 16)
+    s[c] = (s[c] + s[d]) & mask32
+    s[b] = ror32(s[b] ^ s[c], 12)
+    s[a] = (s[a] + s[b] + my) & mask32
+    s[d] = ror32(s[d] ^ s[a], 8)
+    s[c] = (s[c] + s[d]) & mask32
+    s[b] = ror32(s[b] ^ s[c], 7)
+
+fn blake3_round(s: vector[int], m: vector[int]):
+    // Column step
+    blake3_g(s, 0, 4, 8, 12, m[0], m[1])
+    blake3_g(s, 1, 5, 9, 13, m[2], m[3])
+    blake3_g(s, 2, 6, 10, 14, m[4], m[5])
+    blake3_g(s, 3, 7, 11, 15, m[6], m[7])
+    // Diagonal step
+    blake3_g(s, 0, 5, 10, 15, m[8], m[9])
+    blake3_g(s, 1, 6, 11, 12, m[10], m[11])
+    blake3_g(s, 2, 7, 8, 13, m[12], m[13])
+    blake3_g(s, 3, 4, 9, 14, m[14], m[15])
+
+fn blake3_permute(m: vector[int]) -> vector[int]:
+    p: vector[int] := []
+    p.push(m[2]); p.push(m[6]); p.push(m[3]); p.push(m[10])
+    p.push(m[7]); p.push(m[0]); p.push(m[4]); p.push(m[13])
+    p.push(m[1]); p.push(m[11]); p.push(m[12]); p.push(m[5])
+    p.push(m[9]); p.push(m[14]); p.push(m[15]); p.push(m[8])
+    return p
+
+fn blake3_compress(cv: vector[int], block_words: vector[int], counter_low: int, counter_high: int, block_len: int, flags: int) -> vector[int]:
+    mask32 := 4294967295
+    state: vector[int] := []
+    // 0..7 from cv
+    i := 0
+    while i < 8:
+        state.push(cv[i] & mask32)
+        i = i + 1
+    // 8..11 from IV[0..3]
+    state.push(1779033703) // 0x6a09e667
+    state.push(3144134277) // 0xbb67ae85
+    state.push(1013904242) // 0x3c6ef372
+    state.push(2773480762) // 0xa54ff53a
+    // 12..15
+    state.push(counter_low & mask32)
+    state.push(counter_high & mask32)
+    state.push(block_len & mask32)
+    state.push(flags & mask32)
+
+    m: vector[int] := []
+    j := 0
+    while j < 16:
+        m.push(block_words[j] & mask32)
+        j = j + 1
+
+    rnd := 0
+    while rnd < 7:
+        blake3_round(state, m)
+        if rnd < 6:
+            m = blake3_permute(m)
+        rnd = rnd + 1
+
+    out: vector[int] := []
+    k := 0
+    while k < 8:
+        out.push((state[k] ^ state[k + 8]) & mask32)
+        k = k + 1
+    k = 0
+    while k < 8:
+        out.push((state[k + 8] ^ (cv[k] & mask32)) & mask32)
+        k = k + 1
+    return out
+
+fn blake3_words_from_bytes(bytes: vector[int], start: int, count: int) -> vector[int]:
+    mask32 := 4294967295
+    words: vector[int] := []
+    w := 0
+    while w < 16:
+        b0 := 0
+        b1 := 0
+        b2 := 0
+        b3 := 0
+        if (w * 4) < count:
+            b0 = bytes[start + (w * 4)] & 255
+        if (w * 4 + 1) < count:
+            b1 = bytes[start + (w * 4) + 1] & 255
+        if (w * 4 + 2) < count:
+            b2 = bytes[start + (w * 4) + 2] & 255
+        if (w * 4 + 3) < count:
+            b3 = bytes[start + (w * 4) + 3] & 255
+        val := (b0 | (b1 << 8) | (b2 << 16) | (b3 << 24)) & mask32
+        words.push(val)
+        w = w + 1
+    return words
+
+fn hex_nibble_str(n: int) -> string:
+    v := n & 15
+    if v == 0: return "0"
+    if v == 1: return "1"
+    if v == 2: return "2"
+    if v == 3: return "3"
+    if v == 4: return "4"
+    if v == 5: return "5"
+    if v == 6: return "6"
+    if v == 7: return "7"
+    if v == 8: return "8"
+    if v == 9: return "9"
+    if v == 10: return "a"
+    if v == 11: return "b"
+    if v == 12: return "c"
+    if v == 13: return "d"
+    if v == 14: return "e"
+    return "f"
+
+fn byte_to_hex(b: int) -> string:
+    v := b & 255
+    hi := (v >> 4) & 15
+    lo := v & 15
+    return hex_nibble_str(hi) + hex_nibble_str(lo)
+
+fn word32_to_le_hex(w: int) -> string:
+    b0 := w & 255
+    b1 := (w >> 8) & 255
+    b2 := (w >> 16) & 255
+    b3 := (w >> 24) & 255
+    return byte_to_hex(b0) + byte_to_hex(b1) + byte_to_hex(b2) + byte_to_hex(b3)
+
+fn blake3_parent_cv(left_cv: vector[int], right_cv: vector[int], key_words: vector[int], flags: int) -> vector[int]:
+    block_words: vector[int] := []
+    i := 0
+    while i < 8:
+        block_words.push(left_cv[i])
+        i = i + 1
+    i = 0
+    while i < 8:
+        block_words.push(right_cv[i])
+        i = i + 1
+    // Parent node has counter = 0, block_len = 64, flags = PARENT (4) | flags
+    parent_flags := 4 | flags
+    comp := blake3_compress(key_words, block_words, 0, 0, 64, parent_flags)
+    cv: vector[int] := []
+    i = 0
+    while i < 8:
+        cv.push(comp[i])
+        i = i + 1
+    return cv
+
+fn blake3_hash_bytes(msg_bytes: vector[int]) -> string:
+    iv: vector[int] := []
+    iv.push(1779033703); iv.push(3144134277); iv.push(1013904242); iv.push(2773480762)
+    iv.push(1359893119); iv.push(2600822924); iv.push(528734635); iv.push(1541459225)
+
+    msg_len := msg_bytes.len()
+    num_chunks := (msg_len + 1023) / 1024
+    if num_chunks == 0:
+        num_chunks = 1
+
+    cv_stack: vector[int] := []
+
+    c := 0
+    while c < num_chunks:
+        chunk_start := c * 1024
+        chunk_len := msg_len - chunk_start
+        if chunk_len > 1024:
+            chunk_len = 1024
+        blocks_in_chunk := (chunk_len + 63) / 64
+        if blocks_in_chunk == 0:
+            blocks_in_chunk = 1
+
+        chunk_cv: vector[int] := []
+        init_i := 0
+        while init_i < 8:
+            chunk_cv.push(iv[init_i])
+            init_i = init_i + 1
+
+        b := 0
+        while b < blocks_in_chunk:
+            blk_start := chunk_start + (b * 64)
+            blk_len := chunk_len - (b * 64)
+            if blk_len > 64:
+                blk_len = 64
+            blk_words := blake3_words_from_bytes(msg_bytes, blk_start, blk_len)
+            flags := 0
+            if b == 0:
+                flags = flags | 1 // CHUNK_START
+            is_last_block := (b == (blocks_in_chunk - 1))
+            if is_last_block:
+                flags = flags | 2 // CHUNK_END
+            is_single_chunk_root := (num_chunks == 1 and is_last_block)
+            if is_single_chunk_root:
+                flags = flags | 8 // ROOT
+
+            comp := blake3_compress(chunk_cv, blk_words, c, 0, blk_len, flags)
+            if not is_last_block:
+                new_cv: vector[int] := []
+                ki := 0
+                while ki < 8:
+                    new_cv.push(comp[ki])
+                    ki = ki + 1
+                chunk_cv = new_cv
+            else:
+                if num_chunks == 1:
+                    hex_res := ""
+                    ki := 0
+                    while ki < 8:
+                        hex_res = hex_res + word32_to_le_hex(comp[ki])
+                        ki = ki + 1
+                    return hex_res
+                else:
+                    chunk_out_cv: vector[int] := []
+                    ki := 0
+                    while ki < 8:
+                        chunk_out_cv.push(comp[ki])
+                        ki = ki + 1
+
+                    if c < (num_chunks - 1):
+                        total_chunks := c + 1
+                        curr_cv := chunk_out_cv
+                        while (total_chunks & 1) == 0:
+                            left_cv: vector[int] := []
+                            base_idx := cv_stack.len() - 8
+                            pop_i := 0
+                            while pop_i < 8:
+                                left_cv.push(cv_stack[base_idx + pop_i])
+                                pop_i = pop_i + 1
+                            pop_i = 0
+                            while pop_i < 8:
+                                cv_stack.pop()
+                                pop_i = pop_i + 1
+                            curr_cv = blake3_parent_cv(left_cv, curr_cv, iv, 0)
+                            total_chunks = total_chunks >> 1
+                        push_i := 0
+                        while push_i < 8:
+                            cv_stack.push(curr_cv[push_i])
+                            push_i = push_i + 1
+                    else:
+                        // Last chunk: fold up remaining cv_stack
+                        right_cv := chunk_out_cv
+                        while cv_stack.len() > 0:
+                            left_cv: vector[int] := []
+                            base_idx := cv_stack.len() - 8
+                            pop_i := 0
+                            while pop_i < 8:
+                                left_cv.push(cv_stack[base_idx + pop_i])
+                                pop_i = pop_i + 1
+                            pop_i = 0
+                            while pop_i < 8:
+                                cv_stack.pop()
+                                pop_i = pop_i + 1
+
+                            is_root := (cv_stack.len() == 0)
+                            parent_flags := 4 // PARENT
+                            if is_root:
+                                parent_flags = parent_flags | 8 // ROOT
+                            block_words: vector[int] := []
+                            for w in left_cv:
+                                block_words.push(w)
+                            for w in right_cv:
+                                block_words.push(w)
+                            p_comp := blake3_compress(iv, block_words, 0, 0, 64, parent_flags)
+                            if is_root:
+                                root_res := ""
+                                rki := 0
+                                while rki < 8:
+                                    root_res = root_res + word32_to_le_hex(p_comp[rki])
+                                    rki = rki + 1
+                                return root_res
+                            else:
+                                next_right: vector[int] := []
+                                rki := 0
+                                while rki < 8:
+                                    next_right.push(p_comp[rki])
+                                    rki = rki + 1
+                                right_cv = next_right
+            b = b + 1
+        c = c + 1
+
+    return ""
+
+fn blake3(s: string) -> string:
+    bytes: vector[int] := []
+    i := 0
+    slen := len(s)
+    while i < slen:
+        bytes.push(byte_at(s, i))
+        i = i + 1
+    return blake3_hash_bytes(bytes)

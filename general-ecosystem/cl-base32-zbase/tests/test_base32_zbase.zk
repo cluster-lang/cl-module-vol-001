@@ -1,0 +1,13 @@
+// cl-base32-zbase: Test Suite
+import "../zbase.zk"
+
+fn test_zbase():
+    // 1337 = 1*1024 + 9*32 + 25 = "bj3"
+    s := zbase32_encode_int(1337)
+    if s != "bj3": sys_exit(1)
+    if zbase32_encode_int(0) != "y": sys_exit(1)
+    print("test_zbase passed: Phil Zimmermann z-base-32 1337 -> bj3 verified")
+
+fn main():
+    test_zbase()
+    print("✓ All tests passed for cl-base32-zbase!")

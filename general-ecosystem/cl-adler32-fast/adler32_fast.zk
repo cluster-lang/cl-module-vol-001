@@ -1,0 +1,15 @@
+// cl-adler32-fast: Adler-32 Checksum with Deferred Modulo
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn adler32_fast(data: vector[int]) -> int:
+    mod_val := 65521
+    a := 1
+    b := 0
+    i := 0
+    dlen := data.len()
+    while i < dlen:
+        a = (a + (data[i] & 255)) % mod_val
+        b = (b + a) % mod_val
+        i = i + 1
+    return (b << 16) | a

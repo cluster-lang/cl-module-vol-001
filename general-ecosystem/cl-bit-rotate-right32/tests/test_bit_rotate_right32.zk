@@ -1,0 +1,13 @@
+// cl-bit-rotate-right32: Test Suite
+import "../rotr32.zk"
+
+fn test_rotr32():
+    v := rotr32(16, 4)
+    if v != 1: sys_exit(1)
+    v0 := rotr32(1234, 0)
+    if v0 != 1234: sys_exit(1)
+    print("test_rotr32 passed: 32-bit circular right rotation verified")
+
+fn main():
+    test_rotr32()
+    print("✓ All tests passed for cl-bit-rotate-right32!")

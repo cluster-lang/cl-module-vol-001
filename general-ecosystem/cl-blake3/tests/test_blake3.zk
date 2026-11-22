@@ -1,0 +1,86 @@
+// cl-blake3: Test Suite
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+import "../blake3.zk"
+
+fn test_blake3_empty():
+    expected := "af1349b9f5f9a1a6a0404dea36dcc9499bcb25c9adc112b7cc9a93cae41f3262"
+    digest := blake3("")
+    print("BLAKE3(''): " + digest)
+    if digest != expected:
+        print("Mismatch on empty vector! Expected: " + expected + ", Got: " + digest)
+        sys_exit(1)
+    print("test_blake3_empty passed: official BLAKE3 empty vector verified")
+
+fn test_blake3_abc():
+    expected := "6437b3ac38465133ffb63b75273a8db548c558465d79db03fd359c6cd5bd9d85"
+    digest := blake3("abc")
+    print("BLAKE3('abc'): " + digest)
+    if digest != expected:
+        print("Mismatch on 'abc' vector! Expected: " + expected + ", Got: " + digest)
+        sys_exit(1)
+    print("test_blake3_abc passed: 'abc' vector verified")
+
+fn test_blake3_seq_3():
+    expected := "e1be4d7a8ab5560aa4199eea339849ba8e293d55ca0a81006726d184519e647f"
+    bytes: vector[int] := []
+    bytes.push(0); bytes.push(1); bytes.push(2)
+    digest := blake3_hash_bytes(bytes)
+    print("BLAKE3([0,1,2]): " + digest)
+    if digest != expected:
+        print("Mismatch on [0,1,2] vector! Expected: " + expected + ", Got: " + digest)
+        sys_exit(1)
+    print("test_blake3_seq_3 passed: official test vector input_len=3 verified")
+
+fn test_blake3_seq_64():
+    expected := "4eed7141ea4a5cd4b788606bd23f46e212af9cacebacdc7d1f4c6dc7f2511b98"
+    bytes: vector[int] := []
+    i := 0
+    while i < 64:
+        bytes.push(i % 251)
+        i = i + 1
+    digest := blake3_hash_bytes(bytes)
+    print("BLAKE3(64 bytes): " + digest)
+    if digest != expected:
+        print("Mismatch on 64-byte vector! Expected: " + expected + ", Got: " + digest)
+        sys_exit(1)
+    print("test_blake3_seq_64 passed: official test vector input_len=64 verified")
+
+fn test_blake3_seq_1024():
+    expected := "42214739f095a406f3fc83deb889744ac00df831c10daa55189b5d121c855af7"
+    bytes: vector[int] := []
+    i := 0
+    while i < 1024:
+        bytes.push(i % 251)
+        i = i + 1
+    digest := blake3_hash_bytes(bytes)
+    print("BLAKE3(1024 bytes): " + digest)
+    if digest != expected:
+        print("Mismatch on 1024-byte vector! Expected: " + expected + ", Got: " + digest)
+        sys_exit(1)
+    print("test_blake3_seq_1024 passed: official test vector input_len=1024 verified")
+
+fn test_blake3_seq_2048():
+    expected := "e776b6028c7cd22a4d0ba182a8bf62205d2ef576467e838ed6f2529b85fba24a"
+    bytes: vector[int] := []
+    i := 0
+    while i < 2048:
+        bytes.push(i % 251)
+        i = i + 1
+    digest := blake3_hash_bytes(bytes)
+    print("BLAKE3(2048 bytes tree): " + digest)
+    if digest != expected:
+        print("Mismatch on 2048-byte vector! Expected: " + expected + ", Got: " + digest)
+        sys_exit(1)
+    print("test_blake3_seq_2048 passed: official multi-chunk tree verified")
+
+fn main():
+    print("Testing cl-blake3 (Pure Cluster BLAKE3 Cryptographic Tree Hash Engine)...")
+    test_blake3_empty()
+    test_blake3_abc()
+    test_blake3_seq_3()
+    test_blake3_seq_64()
+    test_blake3_seq_1024()
+    test_blake3_seq_2048()
+    print("✓ All tests passed for cl-blake3!")

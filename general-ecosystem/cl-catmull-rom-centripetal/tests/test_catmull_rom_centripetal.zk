@@ -1,0 +1,13 @@
+// cl-catmull-rom-centripetal: Test Suite
+import "../cr_cent.zk"
+
+fn test_cr_cent():
+    // Distance 16 (from (0,0) to (16,0)) -> dt = sqrt(16) = 4.0
+    dt := centripetal_dt(0.0, 0.0, 16.0, 0.0)
+    if dt < 3.99: sys_exit(1)
+    if dt > 4.01: sys_exit(1)
+    print("test_cr_cent passed: centripetal time interval verified")
+
+fn main():
+    test_cr_cent()
+    print("✓ All tests passed for cl-catmull-rom-centripetal!")

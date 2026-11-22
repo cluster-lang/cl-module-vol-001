@@ -1,0 +1,13 @@
+// cl-base32-hex-encode: Test Suite
+import "../base32_hex.zk"
+
+fn test_base32_hex():
+    if base32hex_encode_char(0) != 48: sys_exit(1)
+    if base32hex_encode_char(9) != 57: sys_exit(1)
+    if base32hex_encode_char(10) != 65: sys_exit(1)
+    if base32hex_encode_char(31) != 86: sys_exit(1) // 65 + 21 = 86 ('V')
+    print("test_base32_hex passed: Base32hex character encodings verified")
+
+fn main():
+    test_base32_hex()
+    print("✓ All tests passed for cl-base32-hex-encode!")

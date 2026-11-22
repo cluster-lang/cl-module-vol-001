@@ -1,0 +1,13 @@
+// cl-bit-parity-fast64: Test Suite
+import "../parity_fast.zk"
+
+fn test_parity_fast():
+    if parity_tree64(0) != 0: sys_exit(1)
+    if parity_tree64(1) != 1: sys_exit(1)
+    if parity_tree64(3) != 0: sys_exit(1)
+    if parity_tree64(7) != 1: sys_exit(1)
+    print("test_parity_fast passed: tree XOR parity verified")
+
+fn main():
+    test_parity_fast()
+    print("✓ All tests passed for cl-bit-parity-fast64!")

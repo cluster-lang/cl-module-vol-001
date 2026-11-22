@@ -1,0 +1,12 @@
+// cl-catmull-rom-chordal: Test Suite
+import "../cr_chord.zk"
+
+fn test_cr_chord():
+    dt := chordal_dt(0.0, 0.0, 3.0, 4.0)
+    if dt < 4.99: sys_exit(1)
+    if dt > 5.01: sys_exit(1)
+    print("test_cr_chord passed: chordal knot interval verified")
+
+fn main():
+    test_cr_chord()
+    print("✓ All tests passed for cl-catmull-rom-chordal!")

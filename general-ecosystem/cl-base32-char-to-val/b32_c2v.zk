@@ -1,0 +1,8 @@
+// cl-base32-char-to-val: RFC 4648 Base32 Uppercase Character to 5-bit Integer
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn base32_char_to_val(c: int) -> int:
+    if c >= 65 and c <= 90: return c - 65
+    if c >= 50 and c <= 55: return c - 50 + 26
+    return 0 - 1

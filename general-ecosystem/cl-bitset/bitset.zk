@@ -1,0 +1,35 @@
+// cl-bitset: Pure Cluster Arbitrary Length Bitset
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+model BitSet:
+    words: vector[int]
+    size: int
+
+fn bitset_new(bit_count: int) -> BitSet:
+    w: vector[int] := []
+    num_words := (bit_count + 63) / 64
+    i := 0
+    while i < num_words:
+        w.push(0)
+        i = i + 1
+    return BitSet(w, bit_count)
+
+fn bitset_set(b: BitSet, idx: int):
+    if idx < 0 or idx >= b.size: return
+    w_idx := idx / 64
+    b_idx := idx % 64
+    b.words[w_idx] = b.words[w_idx] | (1 << b_idx)
+
+fn bitset_get(b: BitSet, idx: int) -> int:
+    if idx < 0 or idx >= b.size: return 0
+    w_idx := idx / 64
+    b_idx := idx % 64
+    return (b.words[w_idx] >> b_idx) & 1
+
+fn bitset_clear(b: BitSet, idx: int):
+    if idx < 0 or idx >= b.size: return
+    w_idx := idx / 64
+    b_idx := idx % 64
+    mask := 0 - 1 - (1 << b_idx)
+    b.words[w_idx] = b.words[w_idx] & mask

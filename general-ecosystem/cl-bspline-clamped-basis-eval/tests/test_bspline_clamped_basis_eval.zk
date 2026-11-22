@@ -1,0 +1,14 @@
+// cl-bspline-clamped-basis-eval: Test Suite
+import "../bspline_cl.zk"
+
+fn test_bspline_cl():
+    w := bspline_quadratic_weights(0.5)
+    sum := w[0] + w[1] + w[2]
+    diff := sum - 1.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.01: sys_exit(1)
+    print("test_bspline_cl passed: partition of unity verified")
+
+fn main():
+    test_bspline_cl()
+    print("✓ All tests passed for cl-bspline-clamped-basis-eval!")

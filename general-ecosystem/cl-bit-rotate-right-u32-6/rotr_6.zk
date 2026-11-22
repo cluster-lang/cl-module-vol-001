@@ -1,0 +1,9 @@
+// cl-bit-rotate-right-u32-6: 32-Bit Unsigned Integer Rotate Right by 6 Bits
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn rot_right_u32_6(val: int) -> int:
+    mask32 := 4294967295
+    v := val & mask32
+    res := ((v >> 6) | (v << 26)) & mask32
+    return res

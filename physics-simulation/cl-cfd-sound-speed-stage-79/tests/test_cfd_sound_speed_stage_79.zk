@@ -1,0 +1,13 @@
+// cl-cfd-sound-speed-stage-79: Test Suite
+import "../cfd_ss_79.zk"
+
+fn test_run():
+    res := sound_speed_79(300.0)
+    diff := res - 27458.1169
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cfd-sound-speed-stage-79!")

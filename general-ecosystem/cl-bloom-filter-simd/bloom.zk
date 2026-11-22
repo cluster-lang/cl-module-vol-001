@@ -1,0 +1,9 @@
+// cl-bloom-filter-simd: Multi-Hash Bloom Filter Bit Mappers
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Double hashing: h(i) = (h1 + i * h2) % num_bits
+fn bloom_get_index(h1: int, h2: int, i: int, num_bits: int) -> int:
+    mask63 := 9223372036854775807
+    pos := (h1 + (i * h2)) & mask63
+    return pos % num_bits

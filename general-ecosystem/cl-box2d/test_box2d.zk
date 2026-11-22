@@ -1,0 +1,46 @@
+import box2d
+
+fn main():
+    print("Testing cl-box2d 2D physics engine...")
+    
+    // 1. Vector math
+    v1 := box2d::vec2(3.0, 4.0)
+    v2 := box2d::vec2(1.0, 2.0)
+    
+    v_add := box2d::vec2_add(v1, v2)
+    assert v_add.x == 4.0, "vec2 add x mismatch"
+    assert v_add.y == 6.0, "vec2 add y mismatch"
+    
+    v_sub := box2d::vec2_sub(v1, v2)
+    assert v_sub.x == 2.0, "vec2 sub x mismatch"
+    assert v_sub.y == 2.0, "vec2 sub y mismatch"
+    
+    dot := box2d::vec2_dot(v1, v2)
+    assert dot == 11.0, "vec2 dot mismatch"
+    
+    len_sq := box2d::vec2_length_sq(v1)
+    assert len_sq == 25.0, "vec2 length_sq mismatch"
+    
+    // 2. AABB Collision detection
+    boxA := box2d::aabb(0.0, 0.0, 10.0, 10.0)
+    boxB := box2d::aabb(5.0, 5.0, 15.0, 15.0)
+    boxC := box2d::aabb(20.0, 20.0, 30.0, 30.0)
+    
+    assert box2d::aabb_intersects(boxA, boxB) == true, "boxA and boxB should collide"
+    assert box2d::aabb_intersects(boxA, boxC) == false, "boxA and boxC should not collide"
+    
+    // 3. Rigid body simulation step
+    p0 := box2d::vec2(0.0, 100.0)
+    v0 := box2d::vec2(10.0, 0.0)
+    body := box2d::new_body(p0, v0, 1.0, false)
+    
+    gravity := box2d::vec2(0.0, -9.8)
+    dt := 1.0
+    
+    box2d::step_body(body, gravity, dt)
+    assert body.vel.x == 10.0, "body vel.x mismatch after step"
+    assert body.vel.y == -9.8, "body vel.y mismatch after step"
+    assert body.pos.x == 10.0, "body pos.x mismatch after step"
+    assert body.pos.y == 90.2, "body pos.y mismatch after step"
+    
+    print("ALL cl-box2d tests passed successfully!")

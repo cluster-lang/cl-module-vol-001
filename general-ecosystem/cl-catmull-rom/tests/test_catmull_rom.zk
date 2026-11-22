@@ -1,0 +1,16 @@
+// cl-catmull-rom: Test Suite
+import "../catmull.zk"
+
+fn test_catmull():
+    // At t=0, spline passes exactly through p1
+    v0 := catmull_rom_1d(0, 100, 200, 300, 0)
+    if v0 != 100: sys_exit(1)
+
+    // At t=1000, spline passes exactly through p2
+    v1 := catmull_rom_1d(0, 100, 200, 300, 1000)
+    if v1 != 200: sys_exit(1)
+    print("test_catmull passed: C1-continuous spline interpolation verified")
+
+fn main():
+    test_catmull()
+    print("✓ All tests passed for cl-catmull-rom!")

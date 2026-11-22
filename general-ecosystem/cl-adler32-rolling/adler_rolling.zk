@@ -1,0 +1,20 @@
+// cl-adler32-rolling: Adler-32 Rolling Checksum Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn adler32_compute(data: vector[int]) -> int:
+    mod := 65521
+    s1 := 1
+    s2 := 0
+    i := 0
+    dlen := data.len()
+    while i < dlen:
+        s1 = (s1 + (data[i] & 255)) % mod
+        s2 = (s2 + s1) % mod
+        i = i + 1
+    return (s2 << 16) | s1
+
+fn adler32_roll_s1(s1: int, old_byte: int, new_byte: int) -> int:
+    mod := 65521
+    res := (s1 - (old_byte & 255)) + (new_byte & 255)
+    return (res % mod + mod) % mod

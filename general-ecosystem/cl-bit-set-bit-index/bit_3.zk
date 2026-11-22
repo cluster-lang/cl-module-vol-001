@@ -1,0 +1,7 @@
+// cl-bit-set-bit-index: Set Bit at Specified Index [0, 31]
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn set_bit_at(val: int, bit_index: int) -> int:
+    if bit_index < 0 or bit_index > 31: return val
+    return val | (1 << bit_index)

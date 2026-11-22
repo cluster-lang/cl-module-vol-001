@@ -1,0 +1,19 @@
+// cl-bit-pack-array: Packed 4-bit Nibble Array Accessor
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn nibble_get(packed: vector[int], idx: int) -> int:
+    byte_pos := idx / 2
+    b := packed[byte_pos]
+    if (idx % 2) == 0:
+        return (b >> 4) & 15
+    return b & 15
+
+fn nibble_set(packed: vector[int], idx: int, val: int):
+    byte_pos := idx / 2
+    b := packed[byte_pos]
+    v := val & 15
+    if (idx % 2) == 0:
+        packed[byte_pos] = (b & 15) | (v << 4)
+    else:
+        packed[byte_pos] = (b & 240) | v

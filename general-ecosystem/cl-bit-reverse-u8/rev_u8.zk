@@ -1,0 +1,12 @@
+// cl-bit-reverse-u8: Reverse 8 Bits in Byte
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn reverse_u8(b: int) -> int:
+    val := b & 255
+    res := 0
+    i := 0
+    while i < 8:
+        if (val & (1 << i)) != 0: res = res | (1 << (7 - i))
+        i = i + 1
+    return res

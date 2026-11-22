@@ -1,0 +1,9 @@
+// cl-catmull-rom-subdivide-half: Catmull-Rom Midpoint Subdivider
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn catmull_rom_midpoint2d(p0x: float, p0y: float, p1x: float, p1y: float, p2x: float, p2y: float, p3x: float, p3y: float) -> vector[float]:
+    mx := -0.0625 * p0x + 0.5625 * p1x + 0.5625 * p2x - 0.0625 * p3x
+    my := -0.0625 * p0y + 0.5625 * p1y + 0.5625 * p2y - 0.0625 * p3y
+    res: vector[float] := [mx, my]
+    return res

@@ -1,0 +1,6 @@
+// cl-actuary-commutation-dx-stage-19: Actuarial Commutation Dx Factor Stage 19
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn actuary_dx_19(lx: float) -> float:
+    return lx * 0.5987

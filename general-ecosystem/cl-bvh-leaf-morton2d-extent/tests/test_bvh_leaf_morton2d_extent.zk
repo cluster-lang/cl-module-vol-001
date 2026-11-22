@@ -1,0 +1,14 @@
+// cl-bvh-leaf-morton2d-extent: Test Suite
+import "../morton_ext.zk"
+
+fn test_morton_ext():
+    xs: vector[float] := [2.0, 12.0]
+    ys: vector[float] := [3.0, 8.0]
+    ext := morton2d_slice_extents(xs, ys, 0, 1)
+    if ext[0] != 10.0: sys_exit(1)
+    if ext[1] != 5.0: sys_exit(2)
+    print("test_morton_ext passed: extents [10.0, 5.0] verified")
+
+fn main():
+    test_morton_ext()
+    print("✓ All tests passed for cl-bvh-leaf-morton2d-extent!")

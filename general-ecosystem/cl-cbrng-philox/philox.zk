@@ -1,0 +1,15 @@
+// cl-cbrng-philox: Philox2x32 Counter-Based PRNG
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn philox2x32_round(counter: vector[int], key: int):
+    mask32 := 4294967295
+    c0 := counter[0] & mask32
+    c1 := counter[1] & mask32
+    m := 3528531795 // 0xD2511F53
+    prod := c0 * m
+    hi := (prod >> 32) & mask32
+    lo := prod & mask32
+
+    counter[0] = (hi ^ key ^ c1) & mask32
+    counter[1] = lo

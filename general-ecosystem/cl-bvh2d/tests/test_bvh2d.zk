@@ -1,0 +1,11 @@
+// cl-bvh2d: Test Suite
+import "../bvh2d.zk"
+
+fn test_bvh():
+    if bvh_node_overlaps(0, 0, 10, 10, 5, 5, 15, 15) != 1: sys_exit(1)
+    if bvh_node_overlaps(0, 0, 10, 10, 15, 15, 20, 20) != 0: sys_exit(1)
+    print("test_bvh passed: BVH node overlap verified")
+
+fn main():
+    test_bvh()
+    print("✓ All tests passed for cl-bvh2d!")

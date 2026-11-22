@@ -1,0 +1,10 @@
+// cl-bloom-filter-clear-bits: Bloom Filter Bitset Reset/Clear Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bloom_clear(bits: vector[int]):
+    n := bits.len()
+    i := 0
+    while i < n:
+        bits[i] = 0
+        i = i + 1

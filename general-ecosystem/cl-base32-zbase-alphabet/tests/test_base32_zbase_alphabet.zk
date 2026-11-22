@@ -1,0 +1,11 @@
+// cl-base32-zbase-alphabet: Test Suite
+import "../zbase_alph.zk"
+
+fn test_zbase_alph():
+    if zbase_char_at(0) != 121: sys_exit(1) // 'y'
+    if zbase_char_at(31) != 57: sys_exit(1) // '9'
+    print("test_zbase_alph passed: z-base-32 character lookup verified")
+
+fn main():
+    test_zbase_alph()
+    print("✓ All tests passed for cl-base32-zbase-alphabet!")

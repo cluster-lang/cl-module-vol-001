@@ -1,0 +1,8 @@
+// cl-color-cie-u-prime-stage-57: CIE 1976 u-prime Chromaticity Component Stage 57
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn cie_u_prime_57(x: float, y: float, z: float) -> float:
+    den := x + 15.0 * y + 3.0 * z
+    if den <= 0.0001: return 0.0
+    return ((4.0 * x) / den) * 57.0

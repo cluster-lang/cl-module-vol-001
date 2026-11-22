@@ -1,0 +1,9 @@
+// cl-bspline-uniform-basis-cubic-deriv: Cubic B-Spline Basis Derivative Calculator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bspline_cubic_basis_deriv(u: float, out_d: vector[float]):
+    out_d[0] = (0.0 - 0.5) * (1.0 - u) * (1.0 - u)
+    out_d[1] = 1.5 * u * u - 2.0 * u
+    out_d[2] = (0.0 - 1.5) * u * u + u + 0.5
+    out_d[3] = 0.5 * u * u

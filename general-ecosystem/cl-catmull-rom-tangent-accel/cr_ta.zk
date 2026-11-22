@@ -1,0 +1,30 @@
+// cl-catmull-rom-tangent-accel: 2D Catmull-Rom Velocity & Acceleration
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn catmull_rom_derivs2d(out_va: vector[float], p0: vector[float], p1: vector[float], p2: vector[float], p3: vector[float], t: float):
+    m1_x := (p2[0] - p0[0]) * 0.5
+    m1_y := (p2[1] - p0[1]) * 0.5
+    m2_x := (p3[0] - p1[0]) * 0.5
+    m2_y := (p3[1] - p1[1]) * 0.5
+
+    h00_d := 6.0 * t * t - 6.0 * t
+    h10_d := 3.0 * t * t - 4.0 * t + 1.0
+    h01_d := (0.0 - 6.0) * t * t + 6.0 * t
+    h11_d := 3.0 * t * t - 2.0 * t
+
+    vx := h00_d * p1[0] + h10_d * m1_x + h01_d * p2[0] + h11_d * m2_x
+    vy := h00_d * p1[1] + h10_d * m1_y + h01_d * p2[1] + h11_d * m2_y
+
+    h00_dd := 12.0 * t - 6.0
+    h10_dd := 6.0 * t - 4.0
+    h01_dd := (0.0 - 12.0) * t + 6.0
+    h11_dd := 6.0 * t - 2.0
+
+    ax := h00_dd * p1[0] + h10_dd * m1_x + h01_dd * p2[0] + h11_dd * m2_x
+    ay := h00_dd * p1[1] + h10_dd * m1_y + h01_dd * p2[1] + h11_dd * m2_y
+
+    out_va[0] = vx
+    out_va[1] = vy
+    out_va[2] = ax
+    out_va[3] = ay

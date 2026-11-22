@@ -1,0 +1,12 @@
+// cl-base64-pad-count: Test Suite
+import "../b64_pad.zk"
+
+fn test_b64_pad():
+    if base64_pad_count(1) != 2: sys_exit(1)
+    if base64_pad_count(2) != 1: sys_exit(1)
+    if base64_pad_count(3) != 0: sys_exit(1)
+    print("test_b64_pad passed")
+
+fn main():
+    test_b64_pad()
+    print("✓ All tests passed for cl-base64-pad-count!")

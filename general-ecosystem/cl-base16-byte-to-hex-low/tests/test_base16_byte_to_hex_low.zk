@@ -1,0 +1,10 @@
+// cl-base16-byte-to-hex-low: Test Suite
+import "../b_hex_lo.zk"
+
+fn test_b2h_lo():
+    if byte_to_hex_low(165) != 53: sys_exit(1) // 5 -> '5'
+    print("test_b2h_lo passed")
+
+fn main():
+    test_b2h_lo()
+    print("✓ All tests passed for cl-base16-byte-to-hex-low!")

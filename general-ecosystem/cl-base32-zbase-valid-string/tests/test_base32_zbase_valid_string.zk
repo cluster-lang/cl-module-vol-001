@@ -1,0 +1,13 @@
+// cl-base32-zbase-valid-string: Test Suite
+import "../zbase_str.zk"
+
+fn test_zbase_str():
+    valid: vector[int] := [121, 98, 110, 100, 114]
+    if is_valid_zbase_string(valid) != 1: sys_exit(1)
+    invalid: vector[int] := [121, 98, 50, 100, 114]
+    if is_valid_zbase_string(invalid) != 0: sys_exit(2)
+    print("test_zbase_str passed: zbase32 string validation verified")
+
+fn main():
+    test_zbase_str()
+    print("✓ All tests passed for cl-base32-zbase-valid-string!")

@@ -1,0 +1,16 @@
+// cl-bspline-clamped-knot-vector: Test Suite
+import "../clamped_knots.zk"
+
+fn test_clamped_knots():
+    knots: vector[float] := []
+    // Degree 2, 4 control points -> k = 3 zeros, 1 interior (0.5), 3 ones -> 7 knots
+    generate_clamped_knots(knots, 2, 4)
+    if knots.len() != 7: sys_exit(1)
+    if knots[0] != 0.0: sys_exit(1)
+    if knots[3] != 0.5: sys_exit(1)
+    if knots[6] != 1.0: sys_exit(1)
+    print("test_clamped_knots passed: clamped knot vector verified")
+
+fn main():
+    test_clamped_knots()
+    print("✓ All tests passed for cl-bspline-clamped-knot-vector!")

@@ -1,0 +1,13 @@
+// cl-base32-hex-codec: Test Suite
+import "../base32_hex.zk"
+
+fn test_base32_hex():
+    s := base32_hex_encode_int(1337)
+    // 1337 = 1*1024 + 9*32 + 25 = '1', '9', 'P' -> "19P"
+    if s != "19P": sys_exit(1)
+    if base32_hex_encode_int(0) != "0": sys_exit(1)
+    print("test_base32_hex passed: RFC 4648 extended hex base32 verified")
+
+fn main():
+    test_base32_hex()
+    print("✓ All tests passed for cl-base32-hex-codec!")

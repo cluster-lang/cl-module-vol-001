@@ -1,0 +1,6 @@
+// cl-astro-vis-viva-energy-stage-71: Specific Orbital Energy Vis-Viva Stage 71
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn specific_energy_71(mu: float, a: float) -> float:
+    return (-mu / (2.0 * a)) * 71.0

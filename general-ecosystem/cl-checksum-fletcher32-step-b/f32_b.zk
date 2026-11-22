@@ -1,0 +1,6 @@
+// cl-checksum-fletcher32-step-b: Fletcher-32 Sum B Word Accumulator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn fletcher32_step_b(sum_b: int, sum_a: int) -> int:
+    return (sum_b + sum_a) % 65535

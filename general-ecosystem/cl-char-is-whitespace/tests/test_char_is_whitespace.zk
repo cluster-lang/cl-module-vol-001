@@ -1,0 +1,10 @@
+// cl-char-is-whitespace: Test Suite
+import "../c_ws.zk"
+
+fn test_char():
+    if char_is_whitespace(32) != 1: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_char()
+    print("✓ All tests passed for cl-char-is-whitespace!")

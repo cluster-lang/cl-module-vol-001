@@ -1,0 +1,10 @@
+// cl-color-blend-color-dodge Package Manifest
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+name := "cl-color-blend-color-dodge"
+version := "0.1.0"
+description := "Color Dodge Blend Mode per Channel"
+main := "c_dodge.zk"
+license := "CCFL-2.0"
+author := "zk-mohammad <ZaidKhan-alamgir@proton.me>"

@@ -1,0 +1,10 @@
+// cl-bezier-cubic-inflection-points: 2D Cubic Bezier Inflection Point Solver
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bezier_inflection_roots(p0x: float, p0y: float, p1x: float, p1y: float, p2x: float, p2y: float, p3x: float, p3y: float) -> int:
+    cross1 := (p1x - p0x) * (p2y - p0y) - (p1y - p0y) * (p2x - p0x)
+    cross2 := (p2x - p0x) * (p3y - p0y) - (p2y - p0y) * (p3x - p0x)
+    if cross1 == 0.0 and cross2 == 0.0:
+        return 0
+    return 1

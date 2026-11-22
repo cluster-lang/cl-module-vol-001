@@ -1,0 +1,11 @@
+// cl-cipher-gcm-ghash-block-stage-92: Test Suite
+import "../cph_gh_92.zk"
+
+fn test_run():
+    res := ghash_add_92(112233, 445566)
+    if res != 490099: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cipher-gcm-ghash-block-stage-92!")

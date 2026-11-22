@@ -1,0 +1,12 @@
+// cl-base32-zbase-decode-char: Test Suite
+import "../zbase_dec.zk"
+
+fn test_zbase_dec():
+    if zbase32_decode_char(121) != 0: sys_exit(1) // 'y'
+    if zbase32_decode_char(98) != 1: sys_exit(1)  // 'b'
+    if zbase32_decode_char(57) != 31: sys_exit(1) // '9'
+    print("test_zbase_dec passed: z-base-32 character decoding verified")
+
+fn main():
+    test_zbase_dec()
+    print("✓ All tests passed for cl-base32-zbase-decode-char!")

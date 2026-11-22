@@ -1,0 +1,12 @@
+// cl-base32-zbase-valid-char-exact: Test Suite
+import "../zbase_valid_ch.zk"
+
+fn test_zbase_valid_ch():
+    if is_zbase_valid_exact(121) != 1: sys_exit(1)
+    if is_zbase_valid_exact(48) != 0: sys_exit(2)
+    if is_zbase_valid_exact(118) != 0: sys_exit(3)
+    print("test_zbase_valid_ch passed: valid char classifier verified")
+
+fn main():
+    test_zbase_valid_ch()
+    print("✓ All tests passed for cl-base32-zbase-valid-char-exact!")

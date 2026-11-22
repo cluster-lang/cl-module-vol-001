@@ -1,0 +1,11 @@
+// cl-bvh-leaf-morton2d-split-median: Test Suite
+import "../morton_med.zk"
+
+fn test_morton_med():
+    if morton2d_median_split(0, 10) != 5: sys_exit(1)
+    if morton2d_median_split(4, 9) != 6: sys_exit(2)
+    print("test_morton_med passed: median split index verified")
+
+fn main():
+    test_morton_med()
+    print("✓ All tests passed for cl-bvh-leaf-morton2d-split-median!")

@@ -1,0 +1,11 @@
+// cl-bvh-leaf-morton2d-interleave: Test Suite
+import "../morton2d_16.zk"
+
+fn test_morton2d_16():
+    m := morton2d_interleave16(1, 1)
+    if m != 3: sys_exit(1)
+    print("test_morton2d_16 passed: 16-bit 2D Morton interleave verified")
+
+fn main():
+    test_morton2d_16()
+    print("✓ All tests passed for cl-bvh-leaf-morton2d-interleave!")

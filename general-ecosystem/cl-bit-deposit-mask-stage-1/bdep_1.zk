@@ -1,0 +1,6 @@
+// cl-bit-deposit-mask-stage-1: Bit Deposit Submask Filter Stage 1
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bit_deposit_mask_1(src: int) -> int:
+    return src & 1

@@ -1,0 +1,17 @@
+// cl-bit-stream: Test Suite
+import "../bit_stream.zk"
+
+fn test_bit_stream():
+    // Pack 19 (5 bits: 10011) and 5 (3 bits: 101) into 8 bits: 10011101 = 157
+    packed := bitstream_pack2(19, 5, 5, 3)
+    if packed != 157: sys_exit(1)
+
+    v1 := bitstream_unpack_first(packed, 5, 3)
+    v2 := bitstream_unpack_second(packed, 3)
+    if v1 != 19: sys_exit(1)
+    if v2 != 5: sys_exit(1)
+    print("test_bit_stream passed: bit-level packing and extraction verified")
+
+fn main():
+    test_bit_stream()
+    print("✓ All tests passed for cl-bit-stream!")

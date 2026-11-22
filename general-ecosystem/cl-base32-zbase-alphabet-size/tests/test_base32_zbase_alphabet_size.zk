@@ -1,0 +1,11 @@
+// cl-base32-zbase-alphabet-size: Test Suite
+import "../zbase_alpha.zk"
+
+fn test_zbase_alpha():
+    if zbase32_bits_per_char() != 5: sys_exit(1)
+    if zbase32_alphabet_cardinality() != 32: sys_exit(1)
+    print("test_zbase_alpha passed: alphabet metadata verified")
+
+fn main():
+    test_zbase_alpha()
+    print("✓ All tests passed for cl-base32-zbase-alphabet-size!")

@@ -1,0 +1,15 @@
+// cl-catmull-rom-tangent: Catmull-Rom Spline First Derivative / Tangent Vector
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn catmull_rom_tangent(out: vector[float], p0: float, p1: float, p2: float, p3: float, t: float):
+    // Derivative coefficients:
+    // C0 = 0.5 * (p2 - p0)
+    // C1 = 0.5 * (2.0*p0 - 5.0*p1 + 4.0*p2 - p3)
+    // C2 = 0.5 * (-p0 + 3.0*p1 - 3.0*p2 + p3)
+    // d/dt = C0 + 2*C1*t + 3*C2*t^2
+    c0 := 0.5 * (p2 - p0)
+    c1 := 0.5 * ((2.0 * p0) - (5.0 * p1) + (4.0 * p2) - p3)
+    c2 := 0.5 * (-p0 + (3.0 * p1) - (3.0 * p2) + p3)
+    v := c0 + (2.0 * c1 * t) + (3.0 * c2 * t * t)
+    out.push(v)

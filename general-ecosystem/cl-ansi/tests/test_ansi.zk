@@ -1,0 +1,12 @@
+// cl-ansi: Test Suite
+import "../ansi.zk"
+
+fn test_ansi():
+    g := ansi_green("PASS")
+    if len(g) <= 4: sys_exit(1)
+    print(g)
+    print("test_ansi passed: ANSI sequences verified")
+
+fn main():
+    test_ansi()
+    print("✓ All tests passed for cl-ansi!")

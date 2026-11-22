@@ -1,0 +1,13 @@
+// cl-bit-swap-bytes32: 32-bit Integer Byte Swapping (Endianness Reversal)
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bit_swap_bytes32(val: int) -> int:
+    mask32 := 4294967295
+    v := val & mask32
+    b0 := v & 255
+    b1 := (v >> 8) & 255
+    b2 := (v >> 16) & 255
+    b3 := (v >> 24) & 255
+    res := (b0 << 24) | (b1 << 16) | (b2 << 8) | b3
+    return res & mask32

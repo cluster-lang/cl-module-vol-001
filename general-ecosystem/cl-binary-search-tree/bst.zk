@@ -1,0 +1,50 @@
+// cl-binary-search-tree: Array-Based Binary Search Tree Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// Flat node: [key, left_child_idx, right_child_idx]
+fn bst_insert(nodes: vector[int], key: int):
+    if nodes.len() == 0:
+        nodes.push(key)
+        nodes.push(-1)
+        nodes.push(-1)
+        return
+
+    cur := 0
+    loop := 1
+    while loop == 1:
+        cur_key := nodes[cur * 3]
+        if key < cur_key:
+            left_idx := nodes[(cur * 3) + 1]
+            if left_idx == -1:
+                new_idx := nodes.len() / 3
+                nodes.push(key)
+                nodes.push(-1)
+                nodes.push(-1)
+                nodes[(cur * 3) + 1] = new_idx
+                loop = 0
+            else:
+                cur = left_idx
+        else:
+            right_idx := nodes[(cur * 3) + 2]
+            if right_idx == -1:
+                new_idx := nodes.len() / 3
+                nodes.push(key)
+                nodes.push(-1)
+                nodes.push(-1)
+                nodes[(cur * 3) + 2] = new_idx
+                loop = 0
+            else:
+                cur = right_idx
+
+fn bst_contains(nodes: vector[int], key: int) -> int:
+    if nodes.len() == 0: return 0
+    cur := 0
+    while cur != -1:
+        cur_key := nodes[cur * 3]
+        if key == cur_key: return 1
+        if key < cur_key:
+            cur = nodes[(cur * 3) + 1]
+        else:
+            cur = nodes[(cur * 3) + 2]
+    return 0

@@ -1,0 +1,6 @@
+// cl-bit-clear-lowest-set-bit: Clear Lowest Set Bit in 32-bit Integer
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn clear_lowest_set_bit(val: int) -> int:
+    return val & (val - 1)

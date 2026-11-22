@@ -1,0 +1,16 @@
+// cl-bvh-node-surface-area: Test Suite
+import "../bvh_sah.zk"
+
+fn test_bvh_sah():
+    // 2x3x4 box surface area = 2*(6 + 12 + 8) = 52.0
+    min_b: vector[float] := [0.0, 0.0, 0.0]
+    max_b: vector[float] := [2.0, 3.0, 4.0]
+    sa := aabb3d_surface_area(min_b, max_b)
+    diff := sa - 52.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.001: sys_exit(1)
+    print("test_bvh_sah passed: box surface area 52.0 verified")
+
+fn main():
+    test_bvh_sah()
+    print("✓ All tests passed for cl-bvh-node-surface-area!")

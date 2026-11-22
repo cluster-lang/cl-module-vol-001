@@ -1,0 +1,15 @@
+// cl-bloom-filter-density-ratio: Test Suite
+import "../bf_dens.zk"
+
+fn test_bf_dens():
+    // 1 word with 16 bits set: density = 16 / 32 = 0.5
+    bits: vector[int] := [65535] // 0xFFFF
+    dens := bloom_filter_density(bits)
+    diff := dens - 0.5
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.0001: sys_exit(1)
+    print("test_bf_dens passed")
+
+fn main():
+    test_bf_dens()
+    print("✓ All tests passed for cl-bloom-filter-density-ratio!")

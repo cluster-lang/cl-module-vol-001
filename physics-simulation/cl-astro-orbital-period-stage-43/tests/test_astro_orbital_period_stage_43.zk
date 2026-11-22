@@ -1,0 +1,13 @@
+// cl-astro-orbital-period-stage-43: Test Suite
+import "../ast_op_43.zk"
+
+fn test_run():
+    res := orbital_period_43(100.0)
+    diff := res - 530.6200
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-astro-orbital-period-stage-43!")

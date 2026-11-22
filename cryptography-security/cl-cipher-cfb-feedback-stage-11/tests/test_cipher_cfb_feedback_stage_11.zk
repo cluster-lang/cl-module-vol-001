@@ -1,0 +1,11 @@
+// cl-cipher-cfb-feedback-stage-11: Test Suite
+import "../cph_cf_11.zk"
+
+fn test_run():
+    res := cfb_shift_11(65535, 255)
+    if res != 16777226: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cipher-cfb-feedback-stage-11!")

@@ -1,0 +1,13 @@
+// cl-catmull-rom-matrix: Test Suite
+import "../cr_mat.zk"
+
+fn test_cr_mat():
+    out: vector[float] := []
+    cr_basis_weights(out, 0.0)
+    if out[1] != 1.0: sys_exit(1)
+    if out[0] != 0.0: sys_exit(1)
+    print("test_cr_mat passed: basis weights at t=0 verified")
+
+fn main():
+    test_cr_mat()
+    print("✓ All tests passed for cl-catmull-rom-matrix!")

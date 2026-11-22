@@ -1,0 +1,14 @@
+// cl-bezier-cubic-split: Test Suite
+import "../bezier_split3.zk"
+
+fn test_bezier_split3():
+    l: vector[float] := []
+    r: vector[float] := []
+    bezier_cubic_split_half(l, r, 0.0, 4.0, 8.0, 12.0)
+    if l[3] != 6.0: sys_exit(1)
+    if r[0] != 6.0: sys_exit(1)
+    print("test_bezier_split3 passed: cubic de Casteljau split verified")
+
+fn main():
+    test_bezier_split3()
+    print("✓ All tests passed for cl-bezier-cubic-split!")

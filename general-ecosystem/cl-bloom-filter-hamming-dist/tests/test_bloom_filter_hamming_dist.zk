@@ -1,0 +1,13 @@
+// cl-bloom-filter-hamming-dist: Test Suite
+import "../bloom_hamm.zk"
+
+fn test_bloom_hamm():
+    fa: vector[int] := [7]
+    fb: vector[int] := [2]
+    d := bloom_hamming_distance(fa, fb)
+    if d != 2: sys_exit(1)
+    print("test_bloom_hamm passed: Hamming distance 2 verified")
+
+fn main():
+    test_bloom_hamm()
+    print("✓ All tests passed for cl-bloom-filter-hamming-dist!")

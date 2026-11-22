@@ -1,0 +1,14 @@
+// cl-bit-rotate-left64: 64-bit Circular Bit Left Rotation Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn lshr64(val: int, shift: int) -> int:
+    mask := (1 << (64 - shift)) - 1
+    return (val >> shift) & mask
+
+fn rotl64(x: int, r: int) -> int:
+    shift := r & 63
+    if shift == 0: return x
+    left := x << shift
+    right := lshr64(x, 64 - shift)
+    return left | right

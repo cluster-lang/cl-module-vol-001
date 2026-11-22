@@ -1,0 +1,10 @@
+// cl-bit-test-bit-index: Test Suite
+import "../bit_6.zk"
+
+fn test_6():
+    if test_bit_at(9, 3) != 1: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_6()
+    print("✓ All tests passed for cl-bit-test-bit-index!")

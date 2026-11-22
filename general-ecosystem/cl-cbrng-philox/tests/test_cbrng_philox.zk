@@ -1,0 +1,13 @@
+// cl-cbrng-philox: Test Suite
+import "../philox.zk"
+
+fn test_philox():
+    ctr: vector[int] := [1, 2]
+    philox2x32_round(ctr, 1337)
+    if ctr[0] == 1: sys_exit(1)
+    if ctr[1] == 2: sys_exit(1)
+    print("test_philox passed: counter-based PRNG round verified")
+
+fn main():
+    test_philox()
+    print("✓ All tests passed for cl-cbrng-philox!")

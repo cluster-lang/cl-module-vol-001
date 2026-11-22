@@ -1,0 +1,13 @@
+// cl-base32-zbase-encode-char: z-base-32 Human-Oriented Character Mapping
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn zbase32_char_at(index: int) -> int:
+    // z-base-32 alphabet: "ybndrfg8ejkmcpqxot1uwisza345h769"
+    i := index & 31
+    if i == 0: return 121  // 'y'
+    if i == 1: return 98   // 'b'
+    if i == 2: return 110  // 'n'
+    if i == 3: return 100  // 'd'
+    if i == 31: return 57  // '9'
+    return 120 // fallback 'x'

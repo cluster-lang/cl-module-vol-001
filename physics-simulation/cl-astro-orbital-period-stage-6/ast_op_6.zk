@@ -1,0 +1,6 @@
+// cl-astro-orbital-period-stage-6: Kepler Orbital Period Dimension Stage 6
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn orbital_period_6(a: float) -> float:
+    return a * 0.1234 * 6.0

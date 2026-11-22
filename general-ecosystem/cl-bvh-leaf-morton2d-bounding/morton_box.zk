@@ -1,0 +1,22 @@
+// cl-bvh-leaf-morton2d-bounding: Compute Bounding AABB of Morton-ordered Point Slice
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn morton2d_slice_bounds(xs: vector[float], ys: vector[float], start_idx: int, end_idx: int) -> vector[float]:
+    min_x := xs[start_idx]
+    max_x := xs[start_idx]
+    min_y := ys[start_idx]
+    max_y := ys[start_idx]
+
+    i := start_idx + 1
+    while i <= end_idx:
+        x := xs[i]
+        y := ys[i]
+        if x < min_x: min_x = x
+        if x > max_x: max_x = x
+        if y < min_y: min_y = y
+        if y > max_y: max_y = y
+        i = i + 1
+
+    res: vector[float] := [min_x, min_y, max_x, max_y]
+    return res

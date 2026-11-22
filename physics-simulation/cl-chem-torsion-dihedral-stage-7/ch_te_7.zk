@@ -1,0 +1,6 @@
+// cl-chem-torsion-dihedral-stage-7: Dihedral Torsional Angle Energy Stage 7
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn dihedral_energy_7(vn: float, cos_nphi: float) -> float:
+    return 0.5 * vn * (1.0 + cos_nphi) * 7.0

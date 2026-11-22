@@ -1,0 +1,13 @@
+// cl-bvh-aabb-expand: Test Suite
+import "../bvh_exp.zk"
+
+fn test_bvh_exp():
+    b: vector[float] := [0.0, 0.0, 10.0, 10.0]
+    aabb_expand_margin(b, 1.0)
+    if b[0] != -1.0: sys_exit(1)
+    if b[2] != 11.0: sys_exit(1)
+    print("test_bvh_exp passed: bounding box margin inflation verified")
+
+fn main():
+    test_bvh_exp()
+    print("✓ All tests passed for cl-bvh-aabb-expand!")

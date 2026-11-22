@@ -1,0 +1,12 @@
+// cl-bvh-leaf-morton3d: 3D 10-bit Morton Code Coordinate Interleaver
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn expand_bits_10to30(v_in: int) -> int:
+    v := v_in & 1023
+    v = (v * 4194305) & 1074790401 // 0x40000001 & mask
+    v = (v ^ (v << 16)) & 50331903
+    return v
+
+fn morton3d_simple(x: int, y: int, z: int) -> int:
+    return (x & 1) | ((y & 1) << 1) | ((z & 1) << 2)

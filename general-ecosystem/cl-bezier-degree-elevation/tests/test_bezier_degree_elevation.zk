@@ -1,0 +1,14 @@
+// cl-bezier-degree-elevation: Test Suite
+import "../elev.zk"
+
+fn test_elev():
+    c := elevate_quadratic_to_cubic(0, 300, 600)
+    if c[0] != 0: sys_exit(1)
+    if c[1] != 200: sys_exit(1) // (0 + 600)/3 = 200
+    if c[2] != 400: sys_exit(1) // (600 + 600)/3 = 400
+    if c[3] != 600: sys_exit(1)
+    print("test_elev passed: degree elevation verified")
+
+fn main():
+    test_elev()
+    print("✓ All tests passed for cl-bezier-degree-elevation!")

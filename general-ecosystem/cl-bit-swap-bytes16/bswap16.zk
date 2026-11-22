@@ -1,0 +1,11 @@
+// cl-bit-swap-bytes16: 16-bit Integer Byte Swapping (Endianness Reversal)
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bit_swap_bytes16(val: int) -> int:
+    mask16 := 65535
+    v := val & mask16
+    b0 := v & 255
+    b1 := (v >> 8) & 255
+    res := (b0 << 8) | b1
+    return res & mask16

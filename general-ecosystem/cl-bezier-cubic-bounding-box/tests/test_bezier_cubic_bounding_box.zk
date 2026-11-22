@@ -1,0 +1,15 @@
+// cl-bezier-cubic-bounding-box: Test Suite
+import "../cubic_bbox.zk"
+
+fn test_cubic_bbox():
+    out: vector[float] := []
+    cubic_derivative_coeffs(out, 0.0, 1.0, 2.0, 3.0)
+    // Straight line: a=0, b=0, c=9
+    if out[0] != 0.0: sys_exit(1)
+    if out[1] != 0.0: sys_exit(1)
+    if out[2] != 3.0: sys_exit(1)
+    print("test_cubic_bbox passed: cubic derivative coefficients verified")
+
+fn main():
+    test_cubic_bbox()
+    print("✓ All tests passed for cl-bezier-cubic-bounding-box!")

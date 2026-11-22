@@ -1,0 +1,13 @@
+// cl-aho-corasick-trie: Test Suite
+import "../aho_trie.zk"
+
+fn test_aho_trie():
+    dict: vector[string] := ["apple", "banana", "cherry"]
+    text := "i love banana split"
+    idx := aho_find_first_match(dict, text)
+    if idx != 1: sys_exit(1) // "banana" is index 1
+    print("test_aho_trie passed: multi-keyword dictionary match verified")
+
+fn main():
+    test_aho_trie()
+    print("✓ All tests passed for cl-aho-corasick-trie!")

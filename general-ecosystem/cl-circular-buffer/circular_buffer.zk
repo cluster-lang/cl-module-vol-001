@@ -1,0 +1,33 @@
+// cl-circular-buffer: Pure Cluster Fixed-Capacity Ring Buffer
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+model CircularBuffer:
+    buf: vector[int]
+    capacity: int
+    head: int
+    count: int
+
+fn cb_new(cap_val: int) -> CircularBuffer:
+    v: vector[int] := []
+    i := 0
+    while i < cap_val:
+        v.push(0)
+        i = i + 1
+    return CircularBuffer(v, cap_val, 0, 0)
+
+fn cb_push(cb: CircularBuffer, val: int):
+    idx := (cb.head + cb.count) % cb.capacity
+    if cb.count == cb.capacity:
+        cb.head = (cb.head + 1) % cb.capacity
+        cb.buf[idx] = val
+    else:
+        cb.buf[idx] = val
+        cb.count = cb.count + 1
+
+fn cb_pop(cb: CircularBuffer) -> int:
+    if cb.count == 0: return 0
+    v := cb.buf[cb.head]
+    cb.head = (cb.head + 1) % cb.capacity
+    cb.count = cb.count - 1
+    return v

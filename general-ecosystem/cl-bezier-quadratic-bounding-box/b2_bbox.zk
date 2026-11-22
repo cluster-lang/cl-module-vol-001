@@ -1,0 +1,39 @@
+// cl-bezier-quadratic-bounding-box: Exact 2D Quadratic Bezier Bounding Box
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bezier2_bbox(p0: vector[float], p1: vector[float], p2: vector[float], out_bbox: vector[float]):
+    min_x := p0[0]
+    if p2[0] < min_x: min_x = p2[0]
+    max_x := p0[0]
+    if p2[0] > max_x: max_x = p2[0]
+
+    min_y := p0[1]
+    if p2[1] < min_y: min_y = p2[1]
+    max_y := p0[1]
+    if p2[1] > max_y: max_y = p2[1]
+
+    denom_x := p0[0] - 2.0 * p1[0] + p2[0]
+    denom_x_abs := denom_x
+    if denom_x_abs < 0.0: denom_x_abs = 0.0 - denom_x_abs
+    if denom_x_abs > 0.000001:
+        tx := (p0[0] - p1[0]) / denom_x
+        if tx > 0.0 and tx < 1.0:
+            bx := (1.0 - tx) * (1.0 - tx) * p0[0] + 2.0 * (1.0 - tx) * tx * p1[0] + tx * tx * p2[0]
+            if bx < min_x: min_x = bx
+            if bx > max_x: max_x = bx
+
+    denom_y := p0[1] - 2.0 * p1[1] + p2[1]
+    denom_y_abs := denom_y
+    if denom_y_abs < 0.0: denom_y_abs = 0.0 - denom_y_abs
+    if denom_y_abs > 0.000001:
+        ty := (p0[1] - p1[1]) / denom_y
+        if ty > 0.0 and ty < 1.0:
+            by := (1.0 - ty) * (1.0 - ty) * p0[1] + 2.0 * (1.0 - ty) * ty * p1[1] + ty * ty * p2[1]
+            if by < min_y: min_y = by
+            if by > max_y: max_y = by
+
+    out_bbox[0] = min_x
+    out_bbox[1] = min_y
+    out_bbox[2] = max_x
+    out_bbox[3] = max_y

@@ -1,0 +1,55 @@
+// cl-bigint: Test Suite
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+import "../bigint.zk"
+
+fn test_string_roundtrip():
+    s := "123456789012345678901234567890"
+    b := bigint_from_string(s)
+    out := bigint_to_string(b)
+    assert out == s, "roundtrip string must match exactly"
+
+    s_neg := "-987654321000"
+    b_neg := bigint_from_string(s_neg)
+    out_neg := bigint_to_string(b_neg)
+    assert out_neg == s_neg, "negative roundtrip string must match"
+
+    print("test_string_roundtrip passed")
+
+fn test_addition_and_subtraction():
+    a := bigint_from_string("999999999999999999")
+    one := bigint_from_int(1)
+    res_add := bigint_add(a, one)
+    assert bigint_to_string(res_add) == "1000000000000000000", "999... + 1 must be 1000..."
+
+    thousand := bigint_from_int(1000)
+    res_sub := bigint_sub(thousand, one)
+    assert bigint_to_string(res_sub) == "999", "1000 - 1 must be 999"
+
+    print("test_addition_and_subtraction passed")
+
+fn test_large_multiplication():
+    x := bigint_from_string("123456789")
+    y := bigint_from_string("987654321")
+    prod := bigint_mul(x, y)
+    // 123456789 * 987654321 = 121932631112635269
+    assert bigint_to_string(prod) == "121932631112635269", "multiplication must equal 121932631112635269"
+
+    print("test_large_multiplication passed")
+
+fn test_power_of_two():
+    two := bigint_from_int(2)
+    p64 := bigint_pow(two, 64)
+    // 2^64 = 18446744073709551616
+    assert bigint_to_string(p64) == "18446744073709551616", "2^64 must equal 18446744073709551616"
+
+    print("test_power_of_two passed: 64-bit exponentiation verified")
+
+fn main():
+    print("Testing cl-bigint (Pure Cluster Arbitrary-Precision Integer Arithmetic)...")
+    test_string_roundtrip()
+    test_addition_and_subtraction()
+    test_large_multiplication()
+    test_power_of_two()
+    print("✓ All tests passed for cl-bigint!")

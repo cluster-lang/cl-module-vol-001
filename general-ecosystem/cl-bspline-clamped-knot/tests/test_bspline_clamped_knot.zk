@@ -1,0 +1,13 @@
+// cl-bspline-clamped-knot: Test Suite
+import "../bspline_ck.zk"
+
+fn test_bspline_ck():
+    k: vector[float] := [0.0, 0.0, 0.0, 0.5, 1.0, 1.0, 1.0]
+    if is_clamped_start(k, 2) != 1: sys_exit(1)
+    k_unclamped: vector[float] := [0.0, 0.1, 0.2, 0.5, 1.0, 1.0, 1.0]
+    if is_clamped_start(k_unclamped, 2) != 0: sys_exit(1)
+    print("test_bspline_ck passed: clamped start knot multiplicity verified")
+
+fn main():
+    test_bspline_ck()
+    print("✓ All tests passed for cl-bspline-clamped-knot!")

@@ -1,0 +1,13 @@
+// cl-bvh-leaf-morton2d-longest-prefix: Test Suite
+import "../morton_lcp.zk"
+
+fn test_morton_lcp():
+    lcp_same := morton2d_longest_prefix(42, 42)
+    if lcp_same != 32: sys_exit(1)
+    lcp_diff := morton2d_longest_prefix(0, 1)
+    if lcp_diff != 31: sys_exit(1)
+    print("test_morton_lcp passed")
+
+fn main():
+    test_morton_lcp()
+    print("✓ All tests passed for cl-bvh-leaf-morton2d-longest-prefix!")

@@ -1,0 +1,6 @@
+// cl-astro-vis-viva-stage-24: Vis-Viva Orbital Velocity Component Stage 24
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn vis_viva_component_24(r: float, a: float) -> float:
+    return (2.0 / r - 1.0 / a) * 24.0

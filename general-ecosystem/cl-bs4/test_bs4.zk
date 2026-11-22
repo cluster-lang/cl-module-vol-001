@@ -1,0 +1,39 @@
+import bs4
+
+fn main():
+    print("Testing cl-bs4 HTML Parser...")
+    
+    html := "<div id=\"main\" class=\"container primary\"><h1 class=\"title\">Welcome to Cluster</h1><p>Fast and safe language.</p><ul class=\"nav\"><li class=\"active\"><a href=\"/home\">Home</a></li><li><a href=\"/docs\">Docs</a></li></ul><img src=\"logo.png\"/><br></div>"
+    
+    soup := bs4::parse(html)
+    
+    // 1. find element by tag
+    h1_id := bs4::find(soup, "h1")
+    assert h1_id != -1, "h1 not found"
+    assert bs4::get_tag_name(soup, h1_id) == "h1", "h1 tag mismatch"
+    assert bs4::get_text(soup, h1_id) == "Welcome to Cluster", "h1 text mismatch"
+    
+    // 2. find by id
+    main_id := bs4::find_by_id(soup, "main")
+    assert main_id != -1, "main div not found"
+    assert bs4::get_attribute(soup, main_id, "id") == "main", "main id attr mismatch"
+    
+    // 3. find by class
+    active_items := bs4::find_by_class(soup, "active")
+    assert active_items.len() == 1, "active class count mismatch"
+    
+    // 4. find_all
+    li_items := bs4::find_all(soup, "li")
+    assert li_items.len() == 2, "li count mismatch"
+    
+    a_items := bs4::find_all(soup, "a")
+    assert a_items.len() == 2, "a count mismatch"
+    assert bs4::get_attribute(soup, a_items[0], "href") == "/home", "a[0] href mismatch"
+    assert bs4::get_attribute(soup, a_items[1], "href") == "/docs", "a[1] href mismatch"
+    
+    // 5. void tags
+    img_id := bs4::find(soup, "img")
+    assert img_id != -1, "img not found"
+    assert bs4::get_attribute(soup, img_id, "src") == "logo.png", "img src mismatch"
+    
+    print("ALL cl-bs4 tests passed successfully!")

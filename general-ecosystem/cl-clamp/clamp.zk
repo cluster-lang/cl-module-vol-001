@@ -1,0 +1,16 @@
+// cl-clamp: Pure Cluster Numeric Clamping, Interpolation & Easing
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn clamp(v: int, min_v: int, max_v: int) -> int:
+    if v < min_v: return min_v
+    if v > max_v: return max_v
+    return v
+
+fn lerp(a: int, b: int, t_percent: int) -> int:
+    return a + (((b - a) * t_percent) / 100)
+
+fn smoothstep(edge0: int, edge1: int, x: int) -> int:
+    t := clamp(((x - edge0) * 100) / (edge1 - edge0), 0, 100)
+    // 3*t^2 - 2*t^3
+    return (t * t * (300 - (2 * t))) / 10000

@@ -1,0 +1,11 @@
+// cl-cipher-gcm-ghash-block-stage-72: Test Suite
+import "../cph_gh_72.zk"
+
+fn test_run():
+    res := ghash_add_72(112233, 445566)
+    if res != 490079: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cipher-gcm-ghash-block-stage-72!")

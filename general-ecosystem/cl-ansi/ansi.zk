@@ -1,0 +1,18 @@
+// cl-ansi: Pure Cluster Terminal Escape Code Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn ansi_reset() -> string:
+    return "[0m"
+
+fn ansi_bold(s: string) -> string:
+    return "[1m" + s + "[0m"
+
+fn ansi_red(s: string) -> string:
+    return "[31m" + s + "[0m"
+
+fn ansi_green(s: string) -> string:
+    return "[32m" + s + "[0m"
+
+fn ansi_cyan(s: string) -> string:
+    return "[36m" + s + "[0m"

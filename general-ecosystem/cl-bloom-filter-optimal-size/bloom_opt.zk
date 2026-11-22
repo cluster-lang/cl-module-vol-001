@@ -1,0 +1,6 @@
+// cl-bloom-filter-optimal-size: Optimal Bloom Filter Bit Capacity Calculation
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bloom_bits_for_capacity(num_elements: int, bits_per_element: int) -> int:
+    return num_elements * bits_per_element

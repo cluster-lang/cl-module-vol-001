@@ -1,0 +1,13 @@
+// cl-bezier-quadratic-midpoint: Test Suite
+import "../bezier_mid.zk"
+
+fn test_bezier_mid():
+    m := bezier_quad_midpoint(0.0, 10.0, 20.0)
+    diff := m - 10.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.001: sys_exit(1)
+    print("test_bezier_mid passed: midpoint 10.0 verified")
+
+fn main():
+    test_bezier_mid()
+    print("✓ All tests passed for cl-bezier-quadratic-midpoint!")

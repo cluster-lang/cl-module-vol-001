@@ -1,0 +1,8 @@
+// cl-base16-nibble-to-hex-char: 4-bit Nibble to Lowercase Hex ASCII
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn nibble_to_hex(nibble: int) -> int:
+    val := nibble & 15
+    if val < 10: return 48 + val
+    return 97 + (val - 10)

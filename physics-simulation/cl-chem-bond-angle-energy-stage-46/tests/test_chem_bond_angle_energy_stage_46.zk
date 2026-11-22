@@ -1,0 +1,13 @@
+// cl-chem-bond-angle-energy-stage-46: Test Suite
+import "../ch_ae_46.zk"
+
+fn test_run():
+    res := angle_energy_46(100.0, 0.1)
+    diff := res - 23.0000
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-chem-bond-angle-energy-stage-46!")

@@ -1,0 +1,226 @@
+// cl-bigint: Pure Cluster Arbitrary-Precision Integer Arithmetic
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+model BigInt:
+    digits: vector[int]
+    is_negative: bool
+
+fn bigint_zero() -> BigInt:
+    d: vector[int] := []
+    d.push(0)
+    return BigInt(d, false)
+
+fn bigint_one() -> BigInt:
+    d: vector[int] := []
+    d.push(1)
+    return BigInt(d, false)
+
+fn bigint_trim(&b: BigInt):
+    while b.digits.len() > 1:
+        last_idx := b.digits.len() - 1
+        if b.digits[last_idx] == 0:
+            new_d: vector[int] := []
+            i := 0
+            while i < last_idx:
+                new_d.push(b.digits[i])
+                i = i + 1
+            b.digits = new_d
+        else:
+            return
+    if b.digits.len() == 1 and b.digits[0] == 0:
+        b.is_negative = false
+
+fn bigint_from_int(n: int) -> BigInt:
+    if n == 0:
+        return bigint_zero()
+
+    is_neg := false
+    val := n
+    if val < 0:
+        is_neg = true
+        val = -val
+
+    d: vector[int] := []
+    while val > 0:
+        d.push(val % 10)
+        val = val / 10
+
+    return BigInt(d, is_neg)
+
+fn bigint_from_string(s: string) -> BigInt:
+    slen := len(s)
+    if slen == 0:
+        return bigint_zero()
+
+    is_neg := false
+    start := 0
+    if substring(s, 0, 1) == "-":
+        is_neg = true
+        start = 1
+
+    d: vector[int] := []
+    idx := slen - 1
+    while idx >= start:
+        ch := substring(s, idx, 1)
+        code := ord(ch)
+        if code >= 48 and code <= 57:
+            d.push(code - 48)
+        idx = idx - 1
+
+    if d.len() == 0:
+        return bigint_zero()
+
+    b := BigInt(d, is_neg)
+    bigint_trim(b)
+    return b
+
+fn bigint_to_string(b: BigInt) -> string:
+    if b.digits.len() == 0:
+        return "0"
+
+    res := ""
+    if b.is_negative and not (b.digits.len() == 1 and b.digits[0] == 0):
+        res = "-"
+
+    idx := b.digits.len() - 1
+    while idx >= 0:
+        res = res + to_text(b.digits[idx])
+        idx = idx - 1
+    return res
+
+fn bigint_cmp_abs(a: BigInt, b: BigInt) -> int:
+    if a.digits.len() > b.digits.len():
+        return 1
+    if a.digits.len() < b.digits.len():
+        return -1
+
+    idx := a.digits.len() - 1
+    while idx >= 0:
+        if a.digits[idx] > b.digits[idx]:
+            return 1
+        if a.digits[idx] < b.digits[idx]:
+            return -1
+        idx = idx - 1
+    return 0
+
+fn bigint_add_abs(a: BigInt, b: BigInt) -> BigInt:
+    res_d: vector[int] := []
+    carry := 0
+
+    max_len := a.digits.len()
+    if b.digits.len() > max_len:
+        max_len = b.digits.len()
+
+    i := 0
+    while i < max_len:
+        sum := carry
+        if i < a.digits.len():
+            sum = sum + a.digits[i]
+        if i < b.digits.len():
+            sum = sum + b.digits[i]
+
+        res_d.push(sum % 10)
+        carry = sum / 10
+        i = i + 1
+
+    if carry > 0:
+        res_d.push(carry)
+
+    res := BigInt(res_d, false)
+    bigint_trim(res)
+    return res
+
+fn bigint_sub_abs(a: BigInt, b: BigInt) -> BigInt:
+    // a >= b
+    res_d: vector[int] := []
+    bor_val := 0
+
+    i := 0
+    while i < a.digits.len():
+        diff := a.digits[i] - bor_val
+        if i < b.digits.len():
+            diff = diff - b.digits[i]
+
+        if diff < 0:
+            diff = diff + 10
+            bor_val = 1
+        else:
+            bor_val = 0
+
+        res_d.push(diff)
+        i = i + 1
+
+    res := BigInt(res_d, false)
+    bigint_trim(res)
+    return res
+
+fn bigint_add(a: BigInt, b: BigInt) -> BigInt:
+    if a.is_negative == b.is_negative:
+        res := bigint_add_abs(a, b)
+        res.is_negative = a.is_negative
+        return res
+
+    cmp := bigint_cmp_abs(a, b)
+    if cmp == 0:
+        return bigint_zero()
+    if cmp > 0:
+        res := bigint_sub_abs(a, b)
+        res.is_negative = a.is_negative
+        return res
+    res := bigint_sub_abs(b, a)
+    res.is_negative = b.is_negative
+    return res
+
+fn bigint_sub(a: BigInt, b: BigInt) -> BigInt:
+    b_neg := BigInt(b.digits, not b.is_negative)
+    return bigint_add(a, b_neg)
+
+fn bigint_mul(a: BigInt, b: BigInt) -> BigInt:
+    if (a.digits.len() == 1 and a.digits[0] == 0) or (b.digits.len() == 1 and b.digits[0] == 0):
+        return bigint_zero()
+
+    total_len := a.digits.len() + b.digits.len()
+    res_d: vector[int] := []
+    k := 0
+    while k < total_len:
+        res_d.push(0)
+        k = k + 1
+
+    i := 0
+    while i < a.digits.len():
+        carry := 0
+        j := 0
+        while j < b.digits.len():
+            pos := i + j
+            curr := res_d[pos] + (a.digits[i] * b.digits[j]) + carry
+            res_d[pos] = curr % 10
+            carry = curr / 10
+            j = j + 1
+        if carry > 0:
+            res_d[i + b.digits.len()] = res_d[i + b.digits.len()] + carry
+        i = i + 1
+
+    is_neg := false
+    if a.is_negative != b.is_negative:
+        is_neg = true
+
+    res := BigInt(res_d, is_neg)
+    bigint_trim(res)
+    return res
+
+fn bigint_pow(base: BigInt, exp: int) -> BigInt:
+    if exp <= 0:
+        return bigint_one()
+
+    res := bigint_one()
+    curr_base := base
+    e := exp
+
+    while e > 0:
+        if (e % 2) == 1:
+            res = bigint_mul(res, curr_base)
+        curr_base = bigint_mul(curr_base, curr_base)
+        e = e / 2
+
+    return res

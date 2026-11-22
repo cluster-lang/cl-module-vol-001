@@ -1,0 +1,16 @@
+// cl-bloom-filter-jaccard: Test Suite
+import "../bloom_jac.zk"
+
+fn test_bloom_jac():
+    fa: vector[int] := [3] // 0011 (2 bits)
+    fb: vector[int] := [7] // 0111 (3 bits)
+    // Intersection: 0011 (2 bits), Union: 0111 (3 bits) -> J = 2/3 = 0.6666...
+    j := bloom_jaccard_similarity(fa, fb)
+    diff := j - (2.0 / 3.0)
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.01: sys_exit(1)
+    print("test_bloom_jac passed: Jaccard similarity ~0.667 verified")
+
+fn main():
+    test_bloom_jac()
+    print("✓ All tests passed for cl-bloom-filter-jaccard!")

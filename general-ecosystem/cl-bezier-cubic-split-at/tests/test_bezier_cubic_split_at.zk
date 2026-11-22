@@ -1,0 +1,13 @@
+// cl-bezier-cubic-split-at: Test Suite
+import "../bez_split.zk"
+
+fn test_bez_split():
+    res := bezier_cubic_split2d(0.0, 0.0, 3.333, 0.0, 6.666, 0.0, 10.0, 0.0, 0.5)
+    diff := res[6] - 5.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.05: sys_exit(1)
+    print("test_bez_split passed: midpoint parameter verified")
+
+fn main():
+    test_bez_split()
+    print("✓ All tests passed for cl-bezier-cubic-split-at!")

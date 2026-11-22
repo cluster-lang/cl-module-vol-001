@@ -1,0 +1,14 @@
+// cl-bvh-leaf-morton3d-interleave: Test Suite
+import "../morton_interleave.zk"
+
+fn test_morton_interleave():
+    m0 := morton3d_interleave(0, 0, 0)
+    if m0 != 0: sys_exit(1)
+    m1 := morton3d_interleave(1, 1, 1)
+    // (1<<2) | (1<<1) | 1 = 7
+    if m1 != 7: sys_exit(1)
+    print("test_morton_interleave passed: 3D Morton interleave verified")
+
+fn main():
+    test_morton_interleave()
+    print("✓ All tests passed for cl-bvh-leaf-morton3d-interleave!")

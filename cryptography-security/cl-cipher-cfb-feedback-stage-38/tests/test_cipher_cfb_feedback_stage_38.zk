@@ -1,0 +1,11 @@
+// cl-cipher-cfb-feedback-stage-38: Test Suite
+import "../cph_cf_38.zk"
+
+fn test_run():
+    res := cfb_shift_38(65535, 255)
+    if res != 16777253: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cipher-cfb-feedback-stage-38!")

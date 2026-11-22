@@ -1,0 +1,6 @@
+// cl-cipher-gcm-ghash-block-stage-8: GCM GHASH Accumulator Addition Stage 8
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn ghash_add_8(y: int, x: int) -> int:
+    return (y ^ x) + 8

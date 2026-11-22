@@ -1,0 +1,36 @@
+// cl-bresenham: Bresenham's Integer Line Rasterization
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn abs_i(x: int) -> int:
+    if x < 0: return 0 - x
+    return x
+
+fn bresenham_line(x0: int, y0: int, x1: int, y1: int) -> vector[int]:
+    pts: vector[int] := []
+    dx := abs_i(x1 - x0)
+    dy := 0 - abs_i(y1 - y0)
+    sx := 1
+    if x0 > x1: sx = -1
+    sy := 1
+    if y0 > y1: sy = -1
+
+    err := dx + dy
+    cx := x0
+    cy := y0
+
+    loop := 1
+    while loop == 1:
+        pts.push(cx); pts.push(cy)
+        if cx == x1:
+            if cy == y1:
+                loop = 0
+        if loop == 1:
+            e2 := 2 * err
+            if e2 >= dy:
+                err = err + dy
+                cx = cx + sx
+            if e2 <= dx:
+                err = err + dx
+                cy = cy + sy
+    return pts

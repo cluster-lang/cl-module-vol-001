@@ -1,0 +1,7 @@
+// cl-checksum-internet-ipv4-add: IPv4 Header One's Complement 16-bit Adder
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn ipv4_checksum_add(sum: int, word: int) -> int:
+    s := sum + (word & 65535)
+    return (s & 65535) + (s >> 16)

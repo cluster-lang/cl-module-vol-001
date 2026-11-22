@@ -1,0 +1,33 @@
+// cl-capsule: 3D Capsule Geometric Distance & Collision
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn clamp_i(val: int, lo: int, hi: int) -> int:
+    if val < lo: return lo
+    if val > hi: return hi
+    return val
+
+fn capsule_dist_sq(ax: int, ay: int, az: int, bx: int, by: int, bz: int, px: int, py: int, pz: int) -> int:
+    abx := bx - ax; aby := by - ay; abz := bz - az
+    apx := px - ax; apy := py - ay; apz := pz - az
+
+    ab_len_sq := (abx * abx) + (aby * aby) + (abz * abz)
+    if ab_len_sq == 0:
+        return (apx * apx) + (apy * apy) + (apz * apz)
+
+    // Project AP onto AB: t = dot(AP, AB) / dot(AB, AB)
+    dot := (apx * abx) + (apy * aby) + (apz * abz)
+    t_scaled := clamp_i((dot * 1000) / ab_len_sq, 0, 1000)
+
+    // Closest point on segment
+    cx := ax + ((t_scaled * abx) / 1000)
+    cy := ay + ((t_scaled * aby) / 1000)
+    cz := az + ((t_scaled * abz) / 1000)
+
+    dx := px - cx; dy := py - cy; dz := pz - cz
+    return (dx * dx) + (dy * dy) + (dz * dz)
+
+fn capsule_contains(ax: int, ay: int, az: int, bx: int, by: int, bz: int, radius: int, px: int, py: int, pz: int) -> int:
+    dsq := capsule_dist_sq(ax, ay, az, bx, by, bz, px, py, pz)
+    if dsq <= (radius * radius): return 1
+    return 0

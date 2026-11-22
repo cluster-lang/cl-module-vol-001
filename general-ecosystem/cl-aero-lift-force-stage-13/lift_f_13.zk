@@ -1,0 +1,6 @@
+// cl-aero-lift-force-stage-13: Aerodynamic Wing Lift Force Stage 13
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn lift_force_13(q_inf: float, wing_area: float, c_lift: float) -> float:
+    return q_inf * wing_area * c_lift * 13.0

@@ -1,0 +1,8 @@
+// cl-checksum-luhn-double-digit: Luhn Algorithm Doubled Digit Transformation
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn luhn_double_digit(d: int) -> int:
+    doubled := (d & 15) * 2
+    if doubled > 9: return doubled - 9
+    return doubled

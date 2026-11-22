@@ -1,0 +1,6 @@
+// cl-cad-plane-curve-curvature-stage-6: 2D Parametric Plane Curve Curvature Stage 6
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn curve_curvature_num_6(x_p: float, y_pp: float, y_p: float, x_pp: float) -> float:
+    return (x_p * y_pp - y_p * x_pp) * 6.0

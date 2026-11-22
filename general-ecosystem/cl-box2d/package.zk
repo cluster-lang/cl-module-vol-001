@@ -1,0 +1,6 @@
+// cl-box2d Package Manifest
+name := "cl-box2d"
+version := "0.1.0"
+description := "2D physics and rigid body engine (Box2D parity)"
+main := "box2d.zk"
+license := "MIT"

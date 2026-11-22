@@ -1,0 +1,16 @@
+// cl-binary-search: Pure Cluster Binary Search Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn binary_search(v: vector[int], target: int) -> int:
+    low := 0
+    high := v.len() - 1
+    while low <= high:
+        mid := (low + high) / 2
+        if v[mid] == target:
+            return mid
+        elif v[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1

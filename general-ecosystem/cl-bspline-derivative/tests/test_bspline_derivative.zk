@@ -1,0 +1,15 @@
+// cl-bspline-derivative: Test Suite
+import "../bspline_d.zk"
+
+fn test_bspline_d():
+    // Sum of derivatives must always be 0.0 (since sum of basis is constant 1)
+    t := 0.45
+    sum_d := bspline_quad_d0(t) + bspline_quad_d1(t) + bspline_quad_d2(t)
+    abs_sum := sum_d
+    if sum_d < 0.0: abs_sum = -sum_d
+    if abs_sum > 0.0001: sys_exit(1)
+    print("test_bspline_d passed: basis derivative partition sum verified")
+
+fn main():
+    test_bspline_d()
+    print("✓ All tests passed for cl-bspline-derivative!")

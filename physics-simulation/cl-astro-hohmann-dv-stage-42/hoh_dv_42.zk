@@ -1,0 +1,6 @@
+// cl-astro-hohmann-dv-stage-42: Hohmann Transfer Orbit Speed Factor Stage 42
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn hohmann_factor_42(r1: float, r2: float) -> float:
+    return (2.0 * r2 / (r1 + r2)) * 42.0

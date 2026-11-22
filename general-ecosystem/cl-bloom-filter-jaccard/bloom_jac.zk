@@ -1,0 +1,29 @@
+// cl-bloom-filter-jaccard: Bloom Filter Jaccard Similarity Estimator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn count_ones64(val: int) -> int:
+    mask64 := 9223372036854775807
+    v := val & mask64
+    count := 0
+    while v > 0:
+        count = count + (v & 1)
+        v = v >> 1
+    return count
+
+fn bloom_jaccard_similarity(fa: vector[int], fb: vector[int]) -> float:
+    intersection_bits := 0
+    union_bits := 0
+    n := fa.len()
+    mask64 := 9223372036854775807
+    i := 0
+    while i < n:
+        va := fa[i] & mask64
+        vb := fb[i] & mask64
+        intersection_bits = intersection_bits + count_ones64(va & vb)
+        union_bits = union_bits + count_ones64(va | vb)
+        i = i + 1
+
+    if union_bits == 0:
+        return 1.0
+    return float(intersection_bits) / float(union_bits)

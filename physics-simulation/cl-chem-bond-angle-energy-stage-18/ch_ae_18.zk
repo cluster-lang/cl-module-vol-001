@@ -1,0 +1,6 @@
+// cl-chem-bond-angle-energy-stage-18: Harmonic Valence Angle Bending Potential Stage 18
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn angle_energy_18(kth: float, dth: float) -> float:
+    return 0.5 * kth * dth * dth * 18.0

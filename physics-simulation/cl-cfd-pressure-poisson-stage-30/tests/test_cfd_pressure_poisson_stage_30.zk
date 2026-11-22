@@ -1,0 +1,13 @@
+// cl-cfd-pressure-poisson-stage-30: Test Suite
+import "../cfd_ps_30.zk"
+
+fn test_run():
+    res := pressure_source_30(1.225, 0.05)
+    diff := res - 1.8375
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-cfd-pressure-poisson-stage-30!")

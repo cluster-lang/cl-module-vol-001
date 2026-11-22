@@ -1,0 +1,13 @@
+// cl-catmull-rom-chordal-weights: Test Suite
+import "../catmull_chord.zk"
+
+fn test_catmull_chord():
+    t_next := chordal_knot_step(0.0, 3.0, 4.0)
+    diff := t_next - 5.0
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.001: sys_exit(1)
+    print("test_catmull_chord passed: chordal knot step 5.0 verified")
+
+fn main():
+    test_catmull_chord()
+    print("✓ All tests passed for cl-catmull-rom-chordal-weights!")

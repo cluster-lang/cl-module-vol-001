@@ -1,0 +1,11 @@
+// cl-checksum-acc-stage-20: Test Suite
+import "../chk_acc_20.zk"
+
+fn test_run():
+    res := chk_acc_stage_20(10, 2)
+    if res != 50: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-checksum-acc-stage-20!")

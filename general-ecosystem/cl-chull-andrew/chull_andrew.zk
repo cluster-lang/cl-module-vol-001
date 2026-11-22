@@ -1,0 +1,10 @@
+// cl-chull-andrew: Andrew's Monotone Chain 2D Cross Product
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+// 2D 3-point cross product: (b.x - a.x)*(c.y - a.y) - (b.y - a.y)*(c.x - a.x)
+// > 0: counter-clockwise turn (left turn)
+// < 0: clockwise turn (right turn)
+// = 0: collinear
+fn cross_product_2d(ax: int, ay: int, bx: int, by: int, cx: int, cy: int) -> int:
+    return ((bx - ax) * (cy - ay)) - ((by - ay) * (cx - ax))

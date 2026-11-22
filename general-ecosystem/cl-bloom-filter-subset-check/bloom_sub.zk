@@ -1,0 +1,15 @@
+// cl-bloom-filter-subset-check: Bloom Filter Bitwise Subset Validator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bloom_is_subset(fa: vector[int], fb: vector[int]) -> int:
+    n := fa.len()
+    mask64 := 9223372036854775807
+    i := 0
+    while i < n:
+        va := fa[i] & mask64
+        vb := fb[i] & mask64
+        if (va & (~vb)) != 0:
+            return 0
+        i = i + 1
+    return 1

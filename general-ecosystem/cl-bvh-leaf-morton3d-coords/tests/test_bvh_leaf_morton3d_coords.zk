@@ -1,0 +1,14 @@
+// cl-bvh-leaf-morton3d-coords: Test Suite
+import "../morton_coords.zk"
+
+fn test_morton_coords():
+    q0 := quantize_coord(0.0, 0.0, 100.0)
+    if q0 != 0: sys_exit(1)
+    qmid := quantize_coord(50.0, 0.0, 100.0)
+    if qmid < 500: sys_exit(1)
+    if qmid > 520: sys_exit(1)
+    print("test_morton_coords passed: coordinate quantization verified")
+
+fn main():
+    test_morton_coords()
+    print("✓ All tests passed for cl-bvh-leaf-morton3d-coords!")

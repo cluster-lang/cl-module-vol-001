@@ -1,0 +1,19 @@
+// cl-binary-search-tree: Test Suite
+import "../bst.zk"
+
+fn test_bst():
+    nodes: vector[int] := []
+    bst_insert(nodes, 50)
+    bst_insert(nodes, 30)
+    bst_insert(nodes, 70)
+    bst_insert(nodes, 20)
+
+    if bst_contains(nodes, 30) != 1: sys_exit(1)
+    if bst_contains(nodes, 70) != 1: sys_exit(1)
+    if bst_contains(nodes, 20) != 1: sys_exit(1)
+    if bst_contains(nodes, 99) != 0: sys_exit(1)
+    print("test_bst passed: binary search tree insertion and lookup verified")
+
+fn main():
+    test_bst()
+    print("✓ All tests passed for cl-binary-search-tree!")

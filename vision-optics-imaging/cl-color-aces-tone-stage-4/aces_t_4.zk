@@ -1,0 +1,8 @@
+// cl-color-aces-tone-stage-4: Filmic ACES Tone Curve Stage 4
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn aces_tone_4(x: float) -> float:
+    num := x * (2.51 * x + 0.03)
+    den := x * (2.43 * x + 0.59) + 0.14
+    return (num / den) * 0.40

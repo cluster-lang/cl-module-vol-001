@@ -1,0 +1,24 @@
+// cl-adler32: Pure Cluster RFC 1950 Adler-32 Rolling Checksum Engine
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn adler32_bytes(data: vector[int]) -> int:
+    a := 1
+    b := 0
+    mod_val := 65521
+    i := 0
+    dlen := data.len()
+    while i < dlen:
+        a = (a + (data[i] & 255)) % mod_val
+        b = (b + a) % mod_val
+        i = i + 1
+    return ((b << 16) | a) & 4294967295
+
+fn adler32(s: string) -> int:
+    bytes: vector[int] := []
+    i := 0
+    slen := len(s)
+    while i < slen:
+        bytes.push(byte_at(s, i))
+        i = i + 1
+    return adler32_bytes(bytes)

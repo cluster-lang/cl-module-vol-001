@@ -1,0 +1,24 @@
+// cl-bvh-leaf-morton2d-split-pos: Optimal Split Index for Morton-Sorted BVH
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bvh_find_split(codes: vector[int], first: int, last: int) -> int:
+    first_code := codes[first]
+    last_code := codes[last]
+    if first_code == last_code:
+        return (first + last) / 2
+    diff := first_code ^ last_code
+    msb := 1
+    d := diff
+    while (d >> 1) > 0:
+        d = d >> 1
+        msb = msb << 1
+    split := first
+    step := last - first
+    while step > 1:
+        half := step / 2
+        mid := split + half
+        if (codes[mid] ^ first_code) < msb:
+            split = mid
+        step = step - half
+    return split

@@ -1,0 +1,22 @@
+// cl-bezier-cubic-eval-point: 3D Cubic Bezier Curve Point Evaluator
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bezier_eval3d(p0x: float, p0y: float, p0z: float, p1x: float, p1y: float, p1z: float, p2x: float, p2y: float, p2z: float, p3x: float, p3y: float, p3z: float, t: float) -> vector[float]:
+    u := 1.0 - t
+    u2 := u * u
+    u3 := u2 * u
+    t2 := t * t
+    t3 := t2 * t
+
+    c0 := u3
+    c1 := 3.0 * u2 * t
+    c2 := 3.0 * u * t2
+    c3 := t3
+
+    x := c0 * p0x + c1 * p1x + c2 * p2x + c3 * p3x
+    y := c0 * p0y + c1 * p1y + c2 * p2y + c3 * p3y
+    z := c0 * p0z + c1 * p1z + c2 * p2z + c3 * p3z
+
+    res: vector[float] := [x, y, z]
+    return res

@@ -1,0 +1,13 @@
+// cl-color-d65-white-bias-stage-18: Test Suite
+import "../d65_bl_18.zk"
+
+fn test_run():
+    res := d65_white_balance_18(10.0)
+    diff := res - 195.9894
+    if diff < 0.0: diff = 0.0 - diff
+    if diff > 0.005: sys_exit(1)
+    print("test passed")
+
+fn main():
+    test_run()
+    print("✓ All tests passed for cl-color-d65-white-bias-stage-18!")

@@ -1,0 +1,7 @@
+// cl-char-to-upper: Convert Lowercase ASCII to Uppercase
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn char_to_upper(c: int) -> int:
+    if c >= 97 and c <= 122: return c - 32
+    return c

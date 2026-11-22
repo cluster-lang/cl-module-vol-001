@@ -1,0 +1,11 @@
+// cl-base32-zbase-encode-byte: Test Suite
+import "../zbase_byte.zk"
+
+fn test_zbase_byte():
+    if zbase_encode_5bit(0) != 121: sys_exit(1)
+    if zbase_encode_5bit(31) != 57: sys_exit(2)
+    print("test_zbase_byte passed: single 5-bit encoding verified")
+
+fn main():
+    test_zbase_byte()
+    print("✓ All tests passed for cl-base32-zbase-encode-byte!")

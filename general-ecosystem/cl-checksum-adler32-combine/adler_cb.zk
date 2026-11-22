@@ -1,0 +1,7 @@
+// cl-checksum-adler32-combine: Adler-32 Combine Sum A and Sum B into 32-bit Word
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn adler32_combine(sum_a: int, sum_b: int) -> int:
+    mask32 := 4294967295
+    return (((sum_b & 65535) << 16) | (sum_a & 65535)) & mask32

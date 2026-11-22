@@ -1,0 +1,15 @@
+// cl-catmull-rom-spline2d: Test Suite
+import "../cr2d.zk"
+
+fn test_cr2d():
+    out: vector[float] := []
+    cr_eval_2d(out, 0.0, 0.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 0.0)
+    if out[0] < 9.99: sys_exit(1)
+    if out[0] > 10.01: sys_exit(1)
+    if out[1] < 19.99: sys_exit(1)
+    if out[1] > 20.01: sys_exit(1)
+    print("test_cr2d passed: 2D Catmull-Rom point interpolation verified")
+
+fn main():
+    test_cr2d()
+    print("✓ All tests passed for cl-catmull-rom-spline2d!")

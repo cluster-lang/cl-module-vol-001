@@ -1,0 +1,18 @@
+// cl-bezier-quadratic-bounding-box: Test Suite
+import "../b2_bbox.zk"
+
+fn test_b2_bbox():
+    p0: vector[float] := [0.0, 0.0]
+    p1: vector[float] := [2.0, 4.0]
+    p2: vector[float] := [4.0, 0.0]
+    out_bbox: vector[float] := [0.0, 0.0, 0.0, 0.0]
+    bezier2_bbox(p0, p1, p2, out_bbox)
+    // [min_x, min_y, max_x, max_y] = [0.0, 0.0, 4.0, 2.0]
+    d_maxy := out_bbox[3] - 2.0
+    if d_maxy < 0.0: d_maxy = 0.0 - d_maxy
+    if d_maxy > 0.0001: sys_exit(1)
+    print("test_b2_bbox passed")
+
+fn main():
+    test_b2_bbox()
+    print("✓ All tests passed for cl-bezier-quadratic-bounding-box!")

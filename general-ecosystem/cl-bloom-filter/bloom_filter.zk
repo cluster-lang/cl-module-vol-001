@@ -1,0 +1,98 @@
+// cl-bloom-filter: Pure Cluster Probabilistic Bloom Filter
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+model BloomFilter:
+    words: vector[int]
+    bit_size: int
+    num_hashes: int
+    count: int
+
+fn bloom_new(bit_size: int, num_hashes: int) -> BloomFilter:
+    // Using 30 bits per integer word to stay safely within positive integers
+    word_count := (bit_size / 30) + 1
+    ws: vector[int] := []
+    i := 0
+    while i < word_count:
+        ws.push(0)
+        i = i + 1
+    return BloomFilter(ws, bit_size, num_hashes, 0)
+
+fn hash_fnv1a(s: string) -> int:
+    hash := 2166136261
+    i := 0
+    slen := len(s)
+    while i < slen:
+        b := byte_at(s, i)
+        hash = (hash ^ b) * 16777619
+        hash = hash % 2147483647
+        if hash < 0:
+            hash = -hash
+        i = i + 1
+    return hash
+
+fn hash_djb2(s: string) -> int:
+    hash := 5381
+    i := 0
+    slen := len(s)
+    while i < slen:
+        b := byte_at(s, i)
+        hash = ((hash * 33) + b) % 2147483647
+        if hash < 0:
+            hash = -hash
+        i = i + 1
+    return hash
+
+fn bloom_get_index(bf: BloomFilter, h1: int, h2: int, i: int) -> int:
+    idx := (h1 + i * h2) % bf.bit_size
+    if idx < 0:
+        idx = -idx
+    return idx
+
+fn bloom_add(&bf: BloomFilter, item: string):
+    h1 := hash_fnv1a(item)
+    h2 := hash_djb2(item)
+    if h2 == 0:
+        h2 = 1
+
+    i := 0
+    while i < bf.num_hashes:
+        bit_pos := bloom_get_index(bf, h1, h2, i)
+        word_idx := bit_pos / 30
+        bit_idx := bit_pos % 30
+        mask := 1 << bit_idx
+        bf.words[word_idx] = bf.words[word_idx] | mask
+        i = i + 1
+
+    bf.count = bf.count + 1
+
+fn bloom_contains(bf: BloomFilter, item: string) -> bool:
+    h1 := hash_fnv1a(item)
+    h2 := hash_djb2(item)
+    if h2 == 0:
+        h2 = 1
+
+    i := 0
+    while i < bf.num_hashes:
+        bit_pos := bloom_get_index(bf, h1, h2, i)
+        word_idx := bit_pos / 30
+        bit_idx := bit_pos % 30
+        mask := 1 << bit_idx
+        if (bf.words[word_idx] & mask) == 0:
+            return false
+        i = i + 1
+
+    return true
+
+fn bloom_count(bf: BloomFilter) -> int:
+    return bf.count
+
+fn bloom_bit_size(bf: BloomFilter) -> int:
+    return bf.bit_size
+
+fn bloom_clear(&bf: BloomFilter):
+    i := 0
+    while i < bf.words.len():
+        bf.words[i] = 0
+        i = i + 1
+    bf.count = 0

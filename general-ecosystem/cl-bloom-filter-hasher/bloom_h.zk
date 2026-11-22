@@ -1,0 +1,11 @@
+// cl-bloom-filter-hasher: Double Hashing Bit Index Sequencer
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bloom_generate_k_hashes(h1: int, h2: int, k: int, m_bits: int, out: vector[int]):
+    i := 0
+    mask63 := 9223372036854775807
+    while i < k:
+        pos := (h1 + (i * h2)) & mask63
+        out.push(pos % m_bits)
+        i = i + 1

@@ -1,0 +1,15 @@
+// cl-bit-rotate-right64-fast: Test Suite
+import "../rotr64.zk"
+
+fn test_rotr64():
+    // 16 >> 2 = 4
+    if bit_rotate_right64(16, 2) != 4: sys_exit(1)
+    // 4 >> 1 = 2
+    if bit_rotate_right64(4, 1) != 2: sys_exit(2)
+    // 0 shift preserves value
+    if bit_rotate_right64(10, 0) != 10: sys_exit(3)
+    print("test_rotr64 passed: circular right rotation verified")
+
+fn main():
+    test_rotr64()
+    print("✓ All tests passed for cl-bit-rotate-right64-fast!")

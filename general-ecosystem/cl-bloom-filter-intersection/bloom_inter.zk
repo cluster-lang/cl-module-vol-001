@@ -1,0 +1,10 @@
+// cl-bloom-filter-intersection: Bitwise AND Bloom Filter Intersection
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bloom_intersection(out: vector[int], filter1: vector[int], filter2: vector[int]):
+    n := filter1.len()
+    i := 0
+    while i < n:
+        out.push(filter1[i] & filter2[i])
+        i = i + 1

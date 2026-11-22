@@ -1,0 +1,9 @@
+// cl-bencode: Pure Cluster BitTorrent Bencode Serializer
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn bencode_int(val: int) -> string:
+    return "i" + to_text(val) + "e"
+
+fn bencode_str(s: string) -> string:
+    return to_text(len(s)) + ":" + s

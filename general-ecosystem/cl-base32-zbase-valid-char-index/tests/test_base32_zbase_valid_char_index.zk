@@ -1,0 +1,15 @@
+// cl-base32-zbase-valid-char-index: Test Suite
+import "../zbase_idx.zk"
+
+fn test_zbase_idx():
+    // 'y' is index 0
+    if zbase32_char_index(121) != 0: sys_exit(1)
+    // '9' is index 31
+    if zbase32_char_index(57) != 31: sys_exit(1)
+    // '!' is invalid (-1)
+    if zbase32_char_index(33) != (0 - 1): sys_exit(1)
+    print("test_zbase_idx passed")
+
+fn main():
+    test_zbase_idx()
+    print("✓ All tests passed for cl-base32-zbase-valid-char-index!")

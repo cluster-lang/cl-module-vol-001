@@ -1,0 +1,10 @@
+// cl-bit-rotate-left-u32-4: Test Suite
+import "../rotl_4.zk"
+
+fn test_rotl():
+    if rot_left_u32_4(1) != 16: sys_exit(1)
+    print("test_rotl passed")
+
+fn main():
+    test_rotl()
+    print("✓ All tests passed for cl-bit-rotate-left-u32-4!")

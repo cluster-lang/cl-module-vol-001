@@ -1,0 +1,9 @@
+// cl-bspline-clamped-basis-cubic: Cubic Clamped B-Spline Basis Step
+// Contributor: zk-mohammad <ZaidKhan-alamgir@proton.me>
+// CCFL v2.0 Terms with copyright stewardship managed by Mohammad Zaid/cluster
+
+fn cox_de_boor_basis0(u: float, u_i: float, u_next: float) -> float:
+    if u >= u_i:
+        if u < u_next:
+            return 1.0
+    return 0.0

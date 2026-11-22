@@ -1,0 +1,13 @@
+// cl-bvh-leaf-morton2d: Test Suite
+import "../morton2d.zk"
+
+fn test_morton2d():
+    m1 := morton2d_encode(1, 1)
+    if m1 != 3: sys_exit(1)
+    m2 := morton2d_encode(2, 0)
+    if m2 != 4: sys_exit(1)
+    print("test_morton2d passed: 2D Morton interleaving verified")
+
+fn main():
+    test_morton2d()
+    print("✓ All tests passed for cl-bvh-leaf-morton2d!")

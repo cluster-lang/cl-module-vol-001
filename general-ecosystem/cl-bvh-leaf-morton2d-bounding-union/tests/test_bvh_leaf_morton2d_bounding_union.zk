@@ -1,0 +1,14 @@
+// cl-bvh-leaf-morton2d-bounding-union: Test Suite
+import "../bvh_union.zk"
+
+fn test_bvh_union():
+    b1: vector[float] := [0.0, 0.0, 2.0, 2.0]
+    b2: vector[float] := [1.0, 1.0, 4.0, 5.0]
+    out: vector[float] := [0.0, 0.0, 0.0, 0.0]
+    bvh_aabb_union(out, b1, b2)
+    if out[0] != 0.0 or out[1] != 0.0 or out[2] != 4.0 or out[3] != 5.0: sys_exit(1)
+    print("test_bvh_union passed")
+
+fn main():
+    test_bvh_union()
+    print("✓ All tests passed for cl-bvh-leaf-morton2d-bounding-union!")
